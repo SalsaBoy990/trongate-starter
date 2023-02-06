@@ -1,0 +1,16 @@
+.w3-block {
+    display: block;
+    width: 100%
+}
+
+.w3-hide {
+    display: none !important
+}
+
+.w3-show-block, .w3-show {
+    display: block !important
+}
+
+.w3-show-inline-block {
+    display: inline-block !important
+}

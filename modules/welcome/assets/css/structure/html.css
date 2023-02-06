@@ -1,0 +1,19 @@
+/* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
+html {
+    box-sizing: border-box
+}
+
+*, *:before, *:after {
+    box-sizing: inherit
+}
+
+
+html, body {
+    font-family: Liberation Sans, Tahoma, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5
+}
+
+html {
+    overflow-x: hidden
+}
