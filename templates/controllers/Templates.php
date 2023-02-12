@@ -9,8 +9,8 @@ class Templates extends Trongate {
         load('public', $data);
     }
 
-    function w3css($data) {
-        load('w3css', $data);
+    function clean($data) {
+        load('clean', $data);
     }
 
     function error_404($data) {

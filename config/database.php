@@ -2,5 +2,5 @@
 //Database settings
 define('HOST', 'localhost');
 define('USER', 'root');
-define('PASSWORD', '');
-define('DATABASE', '');
+define('PASSWORD', 'guland007');
+define('DATABASE', 'trongate_documentation');
