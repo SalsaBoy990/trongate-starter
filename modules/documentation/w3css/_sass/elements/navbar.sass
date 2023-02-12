@@ -1,28 +1,31 @@
-.w3-bar-block .w3-dropdown-hover, .w3-bar-block .w3-dropdown-click
+#top-nav
+    font-size: 0.9em
+
+.bar-block .dropdown-hover, .bar-block .dropdown-click
     width: 100%
 
 
-.w3-bar-block .w3-dropdown-hover .w3-dropdown-content, .w3-bar-block .w3-dropdown-click .w3-dropdown-content
+.bar-block .dropdown-hover .dropdown-content, .bar-block .dropdown-click .dropdown-content
     min-width: 100%
 
 
-.w3-bar-block .w3-dropdown-hover .w3-button, .w3-bar-block .w3-dropdown-click .w3-button
+.bar-block .dropdown-hover .button, .bar-block .dropdown-click .button
     width: 100%
     text-align: left
     padding: 8px 16px
 
 
-.w3-bar
+.bar
     width: 100%
-    overflow: hidden
+    background-color: transparent
+    //overflow: hidden
 
-
-.w3-center .w3-bar
+.center .bar
     display: inline-block
     width: auto
 
 
-.w3-bar .w3-bar-item
+.bar .bar-item
     padding: 8px 16px
     float: left
     width: auto
@@ -31,16 +34,17 @@
     outline: 0
 
 
-.w3-bar .w3-dropdown-hover, .w3-bar .w3-dropdown-click
-    position: static
+.bar .dropdown-hover, .bar .dropdown-click
+    position: relative
     float: left
 
 
-.w3-bar .w3-button
+.bar .button, .bar button
     white-space: normal
+    margin-top: 0
 
 
-.w3-bar-block .w3-bar-item
+.bar-block .bar-item
     width: 100%
     display: block
     padding: 8px 16px
@@ -51,6 +55,20 @@
     outline: 0
 
 
-.w3-bar-block.w3-center .w3-bar-item
+.bar-block.center .bar-item
     text-align: center
 
+
+.bar.three
+    .bar-item
+        width: 33.3%
+
+
+.bar
+    .bar-item
+        margin: 0
+
+
+
+.slider-nav
+    width: 100%

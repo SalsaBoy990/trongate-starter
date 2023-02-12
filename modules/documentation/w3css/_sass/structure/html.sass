@@ -1,14 +1,23 @@
-html
+html, body
+    -ms-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%
     box-sizing: border-box
     overflow-x: hidden
+    height: 100%
+    font-family: "Liberation Sans", Arial, sans-serif
+    font-size: 1rem
+    line-height: 1.5
+    scroll-behavior: smooth
+
+
+body
+    margin: 0
+    @include fullWidth()
 
 
 *, *:before, *:after
-    box-sizing: inherit
+    box-sizing: inherit // DO NOT REMOVE IT!!
 
-
-html, body
-    font-family: Liberation Sans, Tahoma, Arial, sans-serif
-    font-size: 16px
-    line-height: 1.5
-
+@media (prefers-reduced-motion: reduce)
+    html
+        scroll-behavior: smooth

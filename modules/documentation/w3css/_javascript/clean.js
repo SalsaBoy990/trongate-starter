@@ -1,4 +1,4 @@
-import {closeAlert} from './modules/closeAlert';
+import {closeAlert, closeElement } from './modules/closeAlert';
 import {filterList} from './modules/filterList';
 import {toggleAccordion} from "./modules/toggleAccordion";
 import {toggleDropdown} from "./modules/toggleDropdown";
@@ -13,6 +13,7 @@ import {openLightbox,closeLightbox, currentLightbox, showLightboxItems, stepLigh
 
 window.$ = {
     closeAlert,
+    closeElement,
     filterList,
     toggleAccordion,
     toggleDropdown,
@@ -47,3 +48,4 @@ window.$.showSlides(1);
 
 // Initialize animation
 window.$.animate("normal")
+

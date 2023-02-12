@@ -1,42 +1,4 @@
-.w3-table, .w3-table-all
-    border-collapse: collapse
-    border-spacing: 0
-    width: 100%
-    display: table
-
-
-.w3-table-all
-    border: 1px solid #ccc
-
-
-.w3-bordered tr, .w3-table-all tr
-    border-bottom: 1px solid #ddd
-
-
-.w3-striped tbody tr:nth-child(even)
-    background-color: #f1f1f1
-
-
-.w3-table-all tr:nth-child(odd)
-    background-color: #fff
-
-
-.w3-table-all tr:nth-child(even)
-    background-color: #f1f1f1
-
-
-.w3-table td, .w3-table th, .w3-table-all td, .w3-table-all th
-    padding: 8px 8px
-    display: table-cell
-    text-align: left
-    vertical-align: top
-
-
-.w3-table th:first-child, .w3-table td:first-child, .w3-table-all th:first-child, .w3-table-all td:first-child
-    padding-left: 16px
-
-
-.w3-hoverable tbody tr:hover, .w3-ul.w3-hoverable li:hover
+.w3-ul.w3-hoverable li:hover
     background-color: #ccc
 
 
@@ -44,23 +6,60 @@
     text-align: center
 
 
-.w3-cell-row
+.cell-row
     display: table
     width: 100%
 
 
-.w3-cell
+.cell
     display: table-cell
 
 
-.w3-cell-top
+.cell-top
     vertical-align: top
 
 
-.w3-cell-middle
+.cell-middle
     vertical-align: middle
 
 
-.w3-cell-bottom
+.cell-bottom
     vertical-align: bottom
 
+
+table
+    border-radius: 0.25em
+    //width: initial
+    margin-top: $table-margin-bottom
+    margin-bottom: $table-margin-bottom
+    border-spacing: 0
+    display: table
+
+    thead
+        height: $table-row-height
+        background-color: $table-header-bg-color
+
+        tr
+            height: $table-row-height
+        th
+            color: $table-header-fg-color
+            background-color: $table-header-bg-color
+
+    th, td
+        text-align: left
+
+    tbody
+        tr
+            height: $table-row-height
+
+
+@media screen and (max-width: $mobile)
+    table
+        width: 100%
+
+
+th, td
+    border-color: $darkest-gray
+
+th
+    font-size: 1em

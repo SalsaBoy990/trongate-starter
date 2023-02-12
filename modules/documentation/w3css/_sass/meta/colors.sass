@@ -1,0 +1,491 @@
+// Main Colors
+$white: #fff
+$off-white: #f5f5f5
+$light-gray: #f1f1f1
+$light-grey: #f1f1f1
+$gray: #9e9e9e
+$grey: #b4b4b4
+$dark-gray: #616161
+$dark-grey: #616161
+$darkest-gray: #333
+$darkest-grey: #333
+
+$pale-blue: #e7ffff
+$light-blue: #87CEEB
+$cyan: #00bcd4
+$gray-blue: #607d8b
+$aqua: #00ffff
+$medium-blue: #2196F3
+$solus-blue: #5294E2
+$blue: #1a559c
+$dark-blue: #133c72
+$indigo: #3f51b5
+$brown: #795548
+
+$pale-green: #ddffdd
+$khaki: #f0e68c
+$lime: #cddc39
+$light-green: #8bc34a
+$green: #87d838
+$grass-green: #4CAF50
+$dark-green: #2f6c30
+$teal: #009688
+$dark-teal: #017066
+
+$sand: #fdf5e6
+//$pale-yellow: #ffffcc
+$yellow: #ffeb3b
+$amber: #ffc107
+//$orange: #ff9900
+
+$pale-yellow: #f6cdaf
+$orange: #ff9800
+$deep-orange: #ff5722
+$pink: #e91e63
+$purple: #c489bd
+$medium-purple: #9c27b0
+$deep-purple: #673ab7
+
+$pale-red: #ffdddd
+$light-red: #f67878
+$red: #f44336
+$dark-red: #96231c
+
+
+// Derived Colors
+$lightest-gray: darken($off-white, 5%)
+
+// ----
+// Defaults
+// ----
+$link: $blue
+$text: $darkest-gray
+
+
+// -------
+// Elements
+// -------
+
+// Buttons
+$button-bg-color: $solus-blue
+$button-fg-color: $white
+$button-menu-inactive-color: $gray
+
+// Code
+$code-fg-color: $text
+$code-bg-color: $off-white
+
+// Keybaord
+$kbd-fg-color: $text
+$kbd-bg-color: $light-gray
+
+// Navigation
+$navigation-bg-color: $off-white
+$navigation-fg-color: $text
+$navigation-link-color: $navigation-fg-color
+
+// Search
+$search-fg-color: $text
+$search-bg-color: $white
+
+// Tables
+$table-cell-odd: $white
+$table-cell-even: $light-gray
+$table-header-fg-color: $white
+$table-header-bg-color: $darkest-gray
+
+
+// ------
+// Structure
+// ------
+
+// Banner
+$banner-top-fg-color: $white
+$banner-top-bg-color: $solus-blue
+
+// Footer
+$footer-bg-color: $navigation-bg-color
+$footer-fg-color: $navigation-fg-color
+
+// Header
+$header-bg-color: $navigation-bg-color
+$header-fg-color: $navigation-fg-color
+$header-menu-bg-color: darken($navigation-bg-color, 5%)
+
+// Table of Contents
+$toc-nav-fg-color: $link
+$toc-nav-bg-color: $light-gray
+
+
+.button.amber, .button.hover-amber:hover,
+.amber, .hover-amber:hover
+    color: #000
+    background-color: $amber
+
+
+.button.aqua, .button.hover-aqua:hover,
+.aqua, .hover-aqua:hover
+    color: #000
+    background-color: $aqua
+
+
+.button.blue, .button.hover-blue:hover,
+.blue, .hover-blue:hover
+    color: #fff
+    background-color: $blue
+
+
+.button.medium-blue, .button.hover-medium-blue:hover,
+.medium-blue, .hover-medium-blue:hover
+    color: #fff
+    background-color: $medium-blue
+
+
+.button.light-blue, .button.hover-light-blue:hover,
+.light-blue, .hover-light-blue:hover
+    color: #000
+    background-color: $light-blue
+
+
+.button.brown, .button.hover-brown:hover,
+.brown, .hover-brown:hover
+    color: #fff
+    background-color: $brown
+
+
+.button.cyan, .button.hover-cyan:hover,
+.cyan, .hover-cyan:hover
+    color: #000
+    background-color: $cyan
+
+
+.button.blue-grey, .button.hover-blue-grey:hover,
+.blue-grey, .hover-blue-grey:hover, .blue-gray, .hover-blue-gray:hover
+    color: #fff
+    background-color: $gray-blue
+
+
+.button.green, .button.hover-green:hover,
+.green, .hover-green:hover
+    color: #fff
+    background-color: $grass-green
+
+
+.button.dark-green, .button.hover-dark-green:hover,
+.dark-green, .hover-dark-green:hover
+    color: #fff
+    background-color: $dark-green
+
+
+.button.light-green, .button.hover-light-green:hover,
+.light-green, .hover-light-green:hover
+    color: #000
+    background-color: $light-green
+
+
+.button.indigo, .button.hover-indigo:hover,
+.indigo, .hover-indigo:hover
+    color: #fff
+    background-color: $indigo
+
+
+.button.khaki, .button.hover-khaki:hover,
+.khaki, .hover-khaki:hover
+    color: #000
+    background-color: $khaki
+
+
+.button.lime, .button.hover-lime:hover,
+.lime, .hover-lime:hover
+    color: #000
+    background-color: $lime
+
+
+.button.orange, .button.hover-orange:hover,
+.orange, .hover-orange:hover
+    color: #000
+    background-color: $orange
+
+
+.button.deep-orange, .button.hover-deep-orange:hover,
+.deep-orange, .hover-deep-orange:hover
+    color: #fff
+    background-color: $deep-orange
+
+
+.button.pink, .button.hover-pink:hover,
+.pink, .hover-pink:hover
+    color: #fff
+    background-color: $pink
+
+
+.button.purple, .button.hover-purple:hover,
+.purple, .hover-purple:hover
+    color: #fff
+    background-color: $medium-purple
+
+
+.button.deep-purple, .button.hover-deep-purple:hover,
+.deep-purple, .hover-deep-purple:hover
+    color: #fff
+    background-color: $deep-purple
+
+
+.button.red, .button.hover-red:hover,
+.red, .hover-red:hover
+    color: #fff
+    background-color: $red
+
+.button.dark-red, .button.hover-dark-red:hover,
+.dark-red, .hover-dark-red:hover
+    color: #fff
+    background-color: $dark-red
+
+
+.button.sand, .button.hover-sand:hover,
+.sand, .hover-sand:hover
+    color: #000
+    background-color: $sand
+
+
+.button.teal, .button.hover-teal:hover,
+.teal, .hover-teal:hover
+    color: #fff
+    background-color: $teal
+
+
+.button.dark-teal, .button.hover-dark-teal:hover,
+.dark-teal, .hover-dark-teal:hover
+    color: #fff
+    background-color: $dark-teal
+
+
+.button.yellow, .button.hover-yellow:hover,
+.yellow, .hover-yellow:hover
+    color: #000
+    background-color: $yellow
+
+
+.button.white, .button.hover-white:hover,
+.white, .hover-white:hover
+    color: #000
+    background-color: $white
+
+
+.button.black, .button.hover-black:hover,
+.black, .hover-black:hover
+    color: #fff
+    background-color: #000
+
+
+.button.grey, .button.hover-grey:hover, .button.gray, .button.hover-gray:hover,
+.grey, .hover-grey:hover, .gray, .hover-gray:hover
+    color: #000
+    background-color: $gray
+
+
+.button.light-grey, .button.hover-light-grey:hover, .button.light-gray, .button.hover-light-gray:hover,
+.light-grey, .hover-light-grey:hover, .light-gray, .hover-light-gray:hover
+    color: #000
+    background-color: $light-gray
+
+
+.button.dark-grey, .button.hover-dark-grey:hover, .button.dark-gray, .button.hover-dark-gray:hover,
+.dark-grey, .hover-dark-grey:hover, .dark-gray, .hover-dark-gray:hover
+    color: #fff
+    background-color: $dark-gray
+
+
+.button.pale-red, .button.hover-pale-red:hover,
+.pale-red, .hover-pale-red:hover
+    color: #000
+    background-color: $pale-red
+
+
+.button.pale-green, .button.hover-pale-green:hover,
+.pale-green, .hover-pale-green:hover
+    color: #000
+    background-color: $pale-green
+
+
+.button.pale-yellow, .button.hover-pale-yellow:hover,
+.pale-yellow, .hover-pale-yellow:hover
+    color: #000
+    background-color: #ffffcc
+
+
+.button.pale-blue, .button.hover-pale-blue:hover,
+.pale-blue, .hover-pale-blue:hover
+    color: #000
+    background-color: #ddffff
+
+
+.button.border-amber, .button.hover-border-amber:hover,
+.border-amber, .hover-border-amber:hover
+    border-color: $amber
+
+
+.button.border-aqua, .button.hover-border-aqua:hover,
+.border-aqua, .hover-border-aqua:hover
+    border-color: $aqua
+
+
+.button.border-blue, .button.hover-border-blue:hover,
+.border-blue, .hover-border-blue:hover
+    border-color: $blue
+
+
+.button.border-medium-blue, .button.hover-border-medium-blue:hover,
+.border-medium-blue, .hover-border-medium-blue:hover
+    border-color: $medium-blue
+
+
+.button.border-light-blue, .button.hover-border-light-blue:hover,
+.border-light-blue, .hover-border-light-blue:hover
+    border-color: $light-blue
+
+
+.button.border-brown, .button.hover-border-brown:hover,
+.border-brown, .hover-border-brown:hover
+    border-color: $brown
+
+
+.button.border-cyan, .button.hover-border-cyan:hover,
+.border-cyan, .hover-border-cyan:hover
+    border-color: $cyan
+
+
+.button.border-blue-grey, .button.hover-border-blue-grey:hover, .button.border-blue-gray, .button.hover-border-blue-gray:hover,
+.border-blue-grey, .hover-border-blue-grey:hover, .border-blue-gray, .hover-border-blue-gray:hover
+    border-color: $gray-blue
+
+
+.button.border-green, .button.hover-border-green:hover,
+.border-green, .hover-border-green:hover
+    border-color: $grass-green
+
+
+.button.border-dark-green, .button.hover-border-dark-green:hover,
+.border-dark-green, .hover-border-dark-green:hover
+    border-color: $dark-green
+
+
+.button.border-light-green, .button.hover-border-light-green:hover,
+.border-light-green, .hover-border-light-green:hover
+    border-color: $light-green
+
+
+.button.border-indigo, .button.hover-border-indigo:hover,
+.border-indigo, .hover-border-indigo:hover
+    border-color: $indigo
+
+
+.button.border-khaki, .button.hover-border-khaki:hover,
+.border-khaki, .hover-border-khaki:hover
+    border-color: $khaki
+
+
+.button.border-lime, .button.hover-border-lime:hover,
+.border-lime, .hover-border-lime:hover
+    border-color: $lime
+
+
+.button.border-orange, .button.hover-border-orange:hover,
+.border-orange, .hover-border-orange:hover
+    border-color: $orange
+
+
+.button.border-deep-orange, .button.hover-border-deep-orange:hover,
+.border-deep-orange, .hover-border-deep-orange:hover
+    border-color: $deep-orange
+
+
+.button.border-pink, .button.hover-border-pink:hover,
+.border-pink, .hover-border-pink:hover
+    border-color: $pink
+
+
+.button.border-purple, .button.hover-border-purple:hover,
+.border-purple, .hover-border-purple:hover
+    border-color: $purple
+
+
+.button.border-deep-purple, .button.hover-border-deep-purple:hover,
+.border-deep-purple, .hover-border-deep-purple:hover
+    border-color: $deep-purple
+
+
+.button.border-red, .button.hover-border-red:hover,
+.border-red, .hover-border-red:hover
+    border-color: $red
+
+
+.button.border-dark-red, .button.hover-border-dark-red:hover,
+.border-dark-red, .hover-border-dark-red:hover
+    border-color: $dark-red
+
+
+.button.border-sand, .button.hover-border-sand:hover,
+.border-sand, .hover-border-sand:hover
+    border-color: $sand
+
+
+.button.border-teal, .button.hover-border-teal:hover,
+.border-teal, .hover-border-teal:hover
+    border-color: $teal
+
+
+.button.border-dark-teal, .button.hover-border-dark-teal:hover,
+.border-dark-teal, .hover-border-dark-teal:hover
+    border-color: $dark-teal
+
+
+.button.border-yellow, .button.hover-border-yellow:hover,
+.border-yellow, .hover-border-yellow:hover
+    border-color: $yellow
+
+
+.button.border-white, .button.hover-border-white:hover,
+.border-white, .hover-border-white:hover
+    border-color: #fff
+
+
+.button.border-black, .button.hover-border-black:hover,
+.border-black, .hover-border-black:hover
+    border-color: #000
+
+
+.button.border-grey, .button.hover-border-grey:hover, .button.border-gray, .button.hover-border-gray:hover,
+.border-grey, .hover-border-grey:hover, .border-gray, .hover-border-gray:hover
+    border-color: $gray
+
+
+.button.border-light-grey, .button.hover-border-light-grey:hover, .button.border-light-gray, .button.hover-border-light-gray:hover,
+.border-light-grey, .hover-border-light-grey:hover, .border-light-gray, .hover-border-light-gray:hover
+    border-color: $light-gray
+
+
+.button.border-dark-grey, .button.hover-border-dark-grey:hover, .button.border-dark-gray, .button.hover-border-dark-gray:hover,
+.border-dark-grey, .hover-border-dark-grey:hover, .border-dark-gray, .hover-border-dark-gray:hover
+    border-color: $dark-gray
+
+
+.button.border-pale-red, .button.hover-border-pale-red:hover,
+.border-pale-red, .hover-border-pale-red:hover
+    border-color: $pale-red
+
+
+.button.border-pale-green, .button.hover-border-pale-green:hover,
+.border-pale-green, .hover-border-pale-green:hover
+    border-color: $pale-green
+
+
+.button.border-pale-yellow, .button.hover-border-pale-yellow:hover,
+.border-pale-yellow, .hover-border-pale-yellow:hover
+    border-color: $pale-yellow
+
+
+.button.border-pale-blue, .button.hover-border-pale-blue:hover,
+.border-pale-blue, .hover-border-pale-blue:hover
+    border-color: $pale-blue
+

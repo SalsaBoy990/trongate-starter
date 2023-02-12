@@ -35,10 +35,10 @@ export function showLightboxItems(n, lightboxItemClass = "lightbox-item", dotsCl
         x[i].style.display = "none";
     }
     for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        dots[i].className = dots[i].className.replace(" opacity-off", "");
 
     }
     x[slideIndexLightbox - 1].style.display = "block";
-    dots[slideIndexLightbox - 1].className += " w3-opacity-off";
+    dots[slideIndexLightbox - 1].className += " opacity-off";
     captionText.innerHTML = dots[slideIndexLightbox - 1].alt;
 }

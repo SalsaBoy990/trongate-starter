@@ -1,3 +1,9 @@
-.w3-main, #main
+.main, #main
     transition: margin-left .4s
+    @include fullWidth()
+    min-height: 100%
+    @include row()
+    padding: $main-padding
 
+.main-container
+    display: flex

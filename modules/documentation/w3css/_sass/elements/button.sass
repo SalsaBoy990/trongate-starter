@@ -1,35 +1,189 @@
-.w3-btn, .w3-button
-    border: none
+button, .button, .close-button
     display: inline-block
     padding: 8px 16px
     vertical-align: middle
     overflow: hidden
     text-decoration: none
-    color: inherit
-    background-color: inherit
     text-align: center
     cursor: pointer
     white-space: nowrap
-
-
-.w3-btn:hover
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
-
-
-.w3-btn, .w3-button
+    box-sizing: border-box
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
     -webkit-touch-callout: none
     -webkit-user-select: none
-    -khtml-user-select: none
     -moz-user-select: none
     -ms-user-select: none
     user-select: none
+    border: 1px solid transparent
+    font-family: "Liberation Sans", Arial, sans-serif
+
+button:hover, .button:hover
+    background-color: $solus-blue
+
+button, .button
+    color: inherit
+    background-color: inherit
+
+button.close-button, span.close-button
+    background-color: transparent
+    &:hover
+        border: 1px solid transparent
+        background-color: rgba(0, 0, 0, 0.3)
 
 
-.w3-btn.w3-disabled:hover, .w3-btn:disabled:hover
+.shadow:hover
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+
+
+button:disabled,
+.button:disabled
+    cursor: not-allowed
+    color: #fff
+    border-color: #000
+    background-color: #000
+    opacity: 0.3
+
+button:disabled:hover, .button:disabled:hover
     box-shadow: none
+    border: 1px solid transparent
+    cursor: initial
+
+.button-circle
+    padding: 12px
+    border-radius: 50%
+    aspect-ratio: 1
+    display: flex
+    align-items: center
+    justify-content: center
+
+.button-square
+    padding: 10px
+    border-radius: 0.125em
+    aspect-ratio: 1
+    display: flex
+    align-items: center
+    justify-content: center
+
+@media screen and (max-width: 550px)
+    .button-circle, .button-square
+        width: auto
+        display: flex
 
 
-.w3-button:hover
-    color: #000 !important
-    background-color: #ccc !important
+.pointer,
+.arrow
+    cursor: pointer
 
+
+button, [type=button], [type=reset], [type=submit]
+    -webkit-appearance: button
+
+
+button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner
+    border-style: none
+    padding: 0
+
+
+button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring
+    outline: 1px dotted ButtonText
+
+
+.primary
+    color: white
+    background-color: $solus-blue
+    border-color: $solus-blue
+
+    &:hover
+        border-color: $blue
+        background-color: $blue
+        color: white
+
+.primary.alt
+    color: $text
+    background-color: rgba(255, 255, 255, 0.8)
+    border-color: $solus-blue
+
+    &:hover
+        border-color: $blue
+        background-color: white
+        color: $blue
+
+
+.danger
+    color: white
+    background-color: $red
+    border-color: $red
+
+    &:hover
+        border-color: $dark-red
+        background-color: $dark-red
+        color: white
+
+
+.info
+    color: white
+    background-color: $medium-blue
+    border-color: $medium-blue
+
+    &:hover
+        background-color: $blue
+        border-color: $blue
+        color: white
+
+
+.success
+    color: white
+    background-color: $grass-green
+    border-color: $grass-green
+
+    &:hover
+        background-color: $dark-green
+        border-color: $dark-green
+        color: white
+
+
+.other
+    color: white
+    background-color: $teal
+    border-color: $teal
+
+    &:hover
+        background-color: $dark-teal
+        border-color: $dark-teal
+        color: white
+
+
+.black-button
+    background-color: $dark-grey
+    border-color: $dark-grey
+    color: white
+    &:hover
+        background-color: black
+        border-color: black
+        color: white
+
+
+.light-button
+    background-color: $light-gray
+    border-color: $dark-gray
+    color: $dark-gray
+    &:hover
+        background-color: $dark-gray
+        border-color: $dark-gray
+        color: white
+
+.link-button
+    background-color: transparent
+    border-color: transparent
+    color: $text
+    &:hover
+        background-color: transparent
+        border-color: transparent
+        color: $blue
+
+
+.scroll-to-top-button
+    position: fixed
+    right: 2em
+    bottom: 3em

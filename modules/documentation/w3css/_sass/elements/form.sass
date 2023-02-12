@@ -1,62 +1,84 @@
-.w3-input
-    padding: 8px
-    display: block
+input[type="text"],
+input[type="number"],
+textarea,
+input[type="email"],
+input[type="password"],
+select
+    font-family: "Liberation Sans", Arial, sans-serif
 
-    border-bottom: 1px solid #ccc
-    width: 100%
+    &:focus
+        border-color: $solus-blue
 
+input:disabled
+    cursor: not-allowed
+    background-color: $light-gray
 
-.w3-select
-    padding: 9px 0
-    width: 100%
-    border: none
-    border-bottom: 1px solid #ccc
+input
+    overflow: hidden
 
+input[type="radio"],
+input[type="checkbox"]
+    width: 1.4em
+    height: 1.4em
+    margin: 0.6em 0.25em 1em 1em
 
-.w3-dropdown-click, .w3-dropdown-hover
-    position: relative
+textarea
+    resize: vertical
+
+label ~ input[type="radio"]
     display: inline-block
-    cursor: pointer
 
 
-.w3-dropdown-hover:hover .w3-dropdown-content
-    display: block
-
-
-.w3-dropdown-hover:first-child, .w3-dropdown-click:hover
-    background-color: #ccc
-    color: #000
-
-
-.w3-dropdown-hover:hover > .w3-button:first-child, .w3-dropdown-click:hover > .w3-button:first-child
-    background-color: #ccc
-    color: #000
-
-
-.w3-dropdown-content
-    cursor: auto
-    color: #000
-    background-color: #fff
-    display: none
-    position: absolute
-    min-width: 160px
-    margin: 0
-    padding: 0
-    z-index: 1
-
-
-.w3-check, .w3-radio
-    width: 24px
-    height: 24px
-    position: relative
-    top: 6px
-
-
-.w3-disabled, .w3-btn:disabled, .w3-button:disabled
+.disabled, button:disabled, .button:disabled
     cursor: not-allowed
     opacity: 0.3
 
 
-.w3-disabled *, :disabled *
+.disabled *, :disabled *
     pointer-events: none
+
+
+
+button, select
+    text-transform: none
+
+
+fieldset
+    border: 1px solid #c0c0c0
+    margin: 0 2px
+    padding: .35em .625em .75em
+
+
+legend
+    color: inherit
+    display: table
+    max-width: 100%
+    padding: 0
+    white-space: normal
+
+
+textarea
+    overflow: auto
+
+
+[type=checkbox], [type=radio]
+    padding: 0
+
+
+[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button
+    height: auto
+
+
+[type=search]
+    //-webkit-appearance: textfield
+    outline-offset: -2px
+
+
+[type=search]::-webkit-search-decoration
+    -webkit-appearance: none
+
+
+::-webkit-file-upload-button
+    -webkit-appearance: button
+    font: inherit
 

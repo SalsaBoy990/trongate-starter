@@ -1,14 +1,27 @@
-.w3-ul
-    list-style-type: none
+ol, ul
+    list-style-position: outside
+    line-height: $list-line-height
+    padding: $list-padding
+
+dl, ol, ul
+    margin-bottom: $list-margin-bottom
+
+ul
+    list-style-type: disc
+
+
+dt
+    font-weight: bold
+    margin-top: 1em
+dd
+    font-style: italic
+    padding: $list-padding
+    margin-top: $definition-margin
+
+ul.list-card
     padding: 0
-    margin: 0
-
-
-.w3-ul li
-    padding: 8px 16px
-    border-bottom: 1px solid #ddd
-
-
-.w3-ul li:last-child
-    border-bottom: none
+    list-style-type: none
+    li
+        padding: 1em
+        border-bottom: 1px solid #eee
 

@@ -2,7 +2,7 @@
 *  Accordions Toggle action
 *
 * */
-export function toggleAccordion(accordionId, toggleClass = "w3-show", headerActiveClass = "w3-dark-grey", accordionItemClass = "accordion-item") {
+export function toggleAccordion(accordionId, toggleClass = "show", headerActiveClass = "dark-grey", accordionItemClass = "accordion-item") {
     const x = document.getElementById(accordionId);
 
     // Hide all accordion items

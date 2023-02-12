@@ -1,13 +1,20 @@
 SHELL = /bin/bash
 
+FONTCUSTOM_FLAGS = --config _font/fontcustom.yml \
+	--name=solbit \
+	--no-hash \
+	--output=assets/css/fonts/ \
+	_font/
+
 SASSFLAGS = --style nested -M
 
 # sassc - a very fast SASS compiler written in C++
 install-sass:
-	sudo apt install sassc
+	sudo apt install fontcustom sassc
 
 compile:
-	sassc $(SASSFLAGS) _sass/w3next.sass > assets/css/w3next.css
+	fontcustom compile $(FONTCUSTOM_FLAGS)
+	sassc $(SASSFLAGS) _sass/clean.sass > assets/css/clean.css
 
 .DEFAULT_GOAL := all
 
@@ -22,14 +29,17 @@ watch:
   		inotifywait -qre close_write ./_sass; \
 	done
 
+sass:
+	sass _sass/clean.sass assets/css/clean.css --watch
+
 # esbuild - a very fast JavaScript bundler written in Go
 install-esbuild:
 	npm install --save-exact esbuild
 
 # create bundle from the source
 esbuild:
-	./node_modules/.bin/esbuild _javascript/w3.js --bundle --sourcemap --outfile=assets/js/w3.js
+	./node_modules/.bin/esbuild _javascript/clean.js --bundle --sourcemap --outfile=assets/js/clean.js
 
 esbuild-watch:
-	./node_modules/.bin/esbuild _javascript/w3.js --bundle --sourcemap --outfile=assets/js/w3.js --watch
+	./node_modules/.bin/esbuild _javascript/clean.js --bundle --sourcemap --outfile=assets/js/w3.clean --watch
 

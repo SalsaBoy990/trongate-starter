@@ -1,15 +1,19 @@
-.w3-code
-    width: auto
-    background-color: #fff
-    padding: 8px 12px
-    border-left: 4px solid #4CAF50
+code, pre, samp
+    font-family: "Liberation Mono", monospace, monospace
+    font-size: 1em
+
+code
+    padding: $code-padding
     word-wrap: break-word
 
-
-.w3-codespan
-    color: crimson
-    background-color: #f1f1f1
-    padding-left: 4px
-    padding-right: 4px
-    font-size: 110%
+pre // ie. pre > code
+    display: block
+    white-space: normal
+    overflow-x: auto // Ensure there is a scrollbar for when code snippet lines exceed pre width.
+    color: $code-fg-color
+    background-color: $code-bg-color
+    border-radius: $code-border-radius
+    border-left: 4px solid #4CAF50
+    padding: $pre-padding
+    margin: $pre-margin-bottom 0
 

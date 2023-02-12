@@ -1,0 +1,100 @@
+html.dark
+    body
+        background-color: $darkest-grey
+        color: $light-gray
+
+
+    h1, h2, h3, h4, h5, h6, label, form
+        color: $light-gray
+
+    input, textarea
+        color: black
+        background: $light-gray
+        border-color: $darkest-gray
+
+
+        &:disabled
+            cursor: not-allowed
+            background: $gray
+            border-color: $gray
+
+        &:focus
+            border-color: $blue
+            background-color: $pale-blue
+
+
+    .banner
+        h1, h2, h3, h4, h5, h6, p, ul, ol, span
+            color: white
+
+
+    .panel, .clean-container, .cell, .card
+        h1, h2, h3, h4, h5, h6, p, ul, ol, span
+            color: inherit
+
+
+    p, ul:not(.list-card,.card-list,.clean-container), ol
+        color: $light-gray
+
+
+    a:not(.button, .close-button, .link-button)
+        color: $light-blue
+
+        &:hover
+            color: $amber
+
+
+    a.bar-item.button, a.button.link-button
+        color: white
+
+    a.button.link-button:hover
+        color: $amber
+
+    header:not(.clean-container)
+        color: $light-grey
+        background-color: black
+
+
+    footer
+        background-color: black
+
+
+    pre, code
+        color: $light-gray
+        background-color: black
+
+
+    table
+        thead
+            th
+                background-color: black
+
+        tr:nth-child(odd)
+            background-color: $off-white
+
+        tr:nth-child(even)
+            background-color: #bdbdbd
+
+        tr:hover, tr:nth-child(odd):hover
+            background-color: $pale-blue
+            
+        td
+            color: $darkest-gray
+
+
+    .toc nav
+        background-color: $dark-grey
+
+    .clean-modal-content
+        background-color: $darkest-gray
+
+    .accordion-item
+        background-color: black
+
+    .list-card
+        background-color: white
+        color: $darkest-gray
+
+
+    .clean-modal, .search-modal
+        background-color: rgba(255, 255, 255, 0.6)

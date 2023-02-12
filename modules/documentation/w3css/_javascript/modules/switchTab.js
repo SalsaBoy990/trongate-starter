@@ -2,7 +2,7 @@
 *  Tab Switcher action
 *
 * */
-export function switchTab(event, tabId, tabsClass = "tabs", buttonClass = "tabActivateButton", activeButtonClass = "w3-red") {
+export function switchTab(event, tabId, tabsClass = "tabs", buttonClass = "tabActivateButton", activeButtonClass = "red") {
     const x = document.getElementsByClassName(tabsClass);
     for (let i = 0; i < x.length; i++) {
         x[i].style.display = "none";

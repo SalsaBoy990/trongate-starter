@@ -1,0 +1,27 @@
+// Table of Contents
+.toc
+    flex-shrink: 0
+    margin-top: $toc-margin-top
+    margin-right: $toc-margin-right
+
+    > h2
+        font-size: $toc-heading-font-size
+
+    nav
+        border-radius: 0.25em
+        background-color: $toc-nav-bg-color
+        margin-top: $toc-nav-margin-top
+        padding: $toc-nav-padding
+
+        h3, h4
+            text-align: left
+            color: $toc-nav-fg-color
+            font-size: $toc-nav-font-size
+
+        h4
+            padding-left: $toc-nav-indent
+
+@media screen and (max-width: $mobile)
+    //.toc
+        display: none
+

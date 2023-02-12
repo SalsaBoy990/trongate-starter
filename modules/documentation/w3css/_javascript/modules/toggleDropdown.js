@@ -2,7 +2,7 @@
 *  Dropdown toggle action
 *
 * */
-export function toggleDropdown(dropdownId, toggleClass = "w3-show") {
+export function toggleDropdown(dropdownId, toggleClass = "show") {
     const x = document.getElementById(dropdownId);
     if (x.classList) {
         x.classList.toggle(toggleClass);
