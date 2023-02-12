@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="data" x-bind:class="{'dark': darkMode }" x-transition>
+<html lang="en" x-data="data" :class="{'dark': darkMode }" x-transition>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,12 @@
     <!-- don't change anything above here -->
     <!-- add your own stylesheet below here -->
     <link rel="stylesheet" href="<?= BASE_URL ?>css/custom.css">
-    <link rel="stylesheet" type="text/css" href="documentation-w3css_module/css/clean.css">
+    <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <title>Public</title>
 </head>
-<body x-on:scroll="setScrollToTop()">
+<body @scroll="setScrollToTop()">
 <div class="wrapper">
     <header>
         <div id="header-sm">
@@ -28,7 +28,7 @@
 
                 <span class="pointer" rel="button"
                       @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                      x-bind:title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
+                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
                 </span>
 
                 <?php
@@ -50,7 +50,7 @@
 
                     <li><span class="pointer" rel="button"
                               @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                              x-bind:title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
+                              :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
                         </span>
                     </li>
                 </ul>
@@ -79,7 +79,7 @@
     <ul auto-populate="true"></ul>
 </div>
 <script src="<?= BASE_URL ?>js/app.js"></script>
-<script src="documentation-w3css_module/js/clean.js"></script>
+<script src="documentation-clean_module/js/clean.js"></script>
 
 <script>
 

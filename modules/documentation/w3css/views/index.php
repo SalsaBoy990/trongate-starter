@@ -13,7 +13,7 @@
         </button>
     </section>
 
-    <div x-cloak x-show="open" class="search-modal" x-bind:class="{'show': open}">
+    <div x-cloak x-show="open" class="search-modal" :class="{'show': open}">
         <div class="clean-modal-content small-content card animate-top relative ">
             <div class="clean-container light-gray round-medium">
                 <span @click="open = ! open" class="close-button large teal topright">&times;</span>
@@ -29,7 +29,7 @@
 
 <div x-data="{ showToc: true}" class="main-container container relative">
     <span @click="showToc = ! showToc" class="pointer absolute padding-small" role="button" title="Table of content">
-        <i x-bind:class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
+        <i :class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
     </span>
 
     <aside x-show="showToc" x-transition class="toc">
@@ -145,7 +145,7 @@
 
         <h2> Video </h2>
         <video controls title="Test Video">
-            <source src="documentation-w3css_module/vids/GNOME-Workspace-Switch.mp4" type="video/mp4">
+            <source src="documentation-clean_module/vids/GNOME-Workspace-Switch.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
@@ -310,7 +310,7 @@
                 <div class="clean-container round-top">
                     <h2>Amazing</h2>
                 </div>
-                <img src="documentation-w3css_module/images/img_snowtops.jpg" alt="Car">
+                <img src="documentation-clean_module/images/img_snowtops.jpg" alt="Car">
                 <div class="clean-container">
                     <p>French Alps</p>
                 </div>
@@ -383,7 +383,7 @@
             <li class="hover-light-grey">
                 <span onclick="this.parentElement.style.display='none'"
                       class="close-button white xlarge float-right hover-red">&times;</span>
-                <img src="documentation-w3css_module/images/img_avatar2.png"
+                <img src="documentation-clean_module/images/img_avatar2.png"
                      class="float-left circle margin-right profile" alt="Mike">
                 <span class="large">Mike</span><br>
                 <span>Web Designer</span>
@@ -391,7 +391,7 @@
             <li class="hover-light-grey">
                 <span onclick="$.closeElement(event)"
                       class="close-button white xlarge float-right hover-red">&times;</span>
-                <img src="documentation-w3css_module/images/img_avatar5.png"
+                <img src="documentation-clean_module/images/img_avatar5.png"
                      class="float-left circle margin-right profile" alt="Jill">
                 <span class="large">Jill</span><br>
                 <span>Support</span>
@@ -399,7 +399,7 @@
             <li class="hover-light-grey">
                 <span onclick="$.closeElement(event)"
                       class="close-button white xlarge float-right hover-red">&times;</span>
-                <img src="documentation-w3css_module/images/img_avatar6.png"
+                <img src="documentation-clean_module/images/img_avatar6.png"
                      class="float-left circle margin-right profile" alt="Jane">
                 <span class="large">Jane</span><br>
                 <span>Accountant</span>
@@ -407,7 +407,7 @@
             <li class="hover-light-grey">
                 <span onclick="$.closeElement(event)"
                       class="close-button white xlarge float-right hover-red">&times;</span>
-                <img src="documentation-w3css_module/images/img_avatar3.png"
+                <img src="documentation-clean_module/images/img_avatar3.png"
                      class="float-left circle margin-right profile" alt="Jack">
                 <span class="large">Jack</span><br>
                 <span>Advisor</span>
@@ -757,7 +757,7 @@
             <div class="half">
                 <p class="margin-top hide-medium hide-large">
                 <div class="relative green">
-                    <img src="documentation-w3css_module/images/img_lights.jpg" alt="Pants" class="thumbnail">
+                    <img src="documentation-clean_module/images/img_lights.jpg" alt="Pants" class="thumbnail">
                     <div class="topleft padding">Top Left</div>
                     <div class="topright padding">Top Right</div>
                     <div class="bottomleft padding">Bottom Left</div>
@@ -803,14 +803,14 @@
         <p>Modal Image:</p>
 
         <div>
-            <img class="hover-opacity thumbnail-third pointer" src="documentation-w3css_module/images/img_nature.jpg"
+            <img class="hover-opacity thumbnail-third pointer" src="documentation-clean_module/images/img_nature.jpg"
                  alt="Nature"
                  onclick="$.openModal('imageModal')">
 
             <div id="imageModal" class="clean-modal" onclick="$.closeModal('imageModal')">
                 <span class="close-button hover-red xxlarge topright">&times;</span>
                 <div class="clean-modal-content medium-content card card-4 animate-zoom">
-                    <img src="documentation-w3css_module/images/img_nature_wide.jpg" alt="Nature">
+                    <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
                 </div>
             </div>
         </div>
@@ -905,7 +905,7 @@
         <div id="accordionThree" class="hide black accordion-item">
             <div class="clean-container">
                 <p>Accordion with Images:</p>
-                <img src="documentation-w3css_module/images/img_snowtops.jpg"
+                <img src="documentation-clean_module/images/img_snowtops.jpg"
                      class="animate-zoom thumbnail-third" alt="French Alps">
                 <p>French Alps</p>
             </div>
@@ -955,52 +955,52 @@
             <div class="col s3 clean-container">
                 <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                    onclick="$.openTabbedImage('Nature');">
-                    <img src="documentation-w3css_module/images/img_nature.jpg" alt="Nature">
+                    <img src="documentation-clean_module/images/img_nature.jpg" alt="Nature">
                 </a>
             </div>
             <div class="col s3 clean-container">
                 <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                    onclick="$.openTabbedImage('Snow');">
-                    <img src="documentation-w3css_module/images/img_snowtops.jpg" alt="Fjords">
+                    <img src="documentation-clean_module/images/img_snowtops.jpg" alt="Fjords">
                 </a>
             </div>
             <div class="col s3 clean-container">
                 <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                    onclick="$.openTabbedImage('Mountains');">
-                    <img src="documentation-w3css_module/images/img_mountains.jpg" alt="Mountains">
+                    <img src="documentation-clean_module/images/img_mountains.jpg" alt="Mountains">
                 </a>
             </div>
             <div class="col s3 clean-container">
                 <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                    onclick="$.openTabbedImage('Lights');">
-                    <img src="documentation-w3css_module/images/img_lights.jpg" alt="Lights">
+                    <img src="documentation-clean_module/images/img_lights.jpg" alt="Lights">
                 </a>
             </div>
         </div>
         <br>
         <div id="Nature" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-w3css_module/images/img_nature_wide.jpg" alt="Nature">
+            <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
             <span onclick="$.hide(event)"
                   class="topright close-button xlarge transparent text-white">&times;</span>
             <div class="bottomleft clean-container padding text-white">Nature</div>
         </div>
 
         <div id="Snow" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-w3css_module/images/img_snow_wide.jpg" alt="Snow">
+            <img src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
             <span onclick="$.hide(event)"
                   class="topright close-button xlarge transparent text-white">&times;</span>
             <div class="bottomleft clean-container padding text-white">Snow</div>
         </div>
 
         <div id="Mountains" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-w3css_module/images/img_mountains_wide.jpg" alt="Mountains">
+            <img src="documentation-clean_module/images/img_mountains_wide.jpg" alt="Mountains">
             <span onclick="$.hide(event)"
                   class="topright close-button xlarge transparent">&times;</span>
             <div class="bottomleft clean-container padding text-white">Mountains</div>
         </div>
 
         <div id="Lights" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-w3css_module/images/img_lights_wide.jpg" alt="Lights">
+            <img src="documentation-clean_module/images/img_lights_wide.jpg" alt="Lights">
             <span onclick="$.hide(event)"
                   class="topright close-button xlarge transparent text-white">&times;</span>
             <div class="bottomleft clean-container padding text-white">Northern Lights</div>
@@ -1104,7 +1104,7 @@
 
         <div class="w3-content relative">
             <div class="relative slide-item">
-                <img src="documentation-w3css_module/images/img_nature_wide.jpg" alt="Beautiful Nature">
+                <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Beautiful Nature">
                 <div class="topleft padding text-white small">
                     1 / 3
                 </div>
@@ -1113,7 +1113,7 @@
                 </div>
             </div>
             <div class="relative slide-item">
-                <img src="documentation-w3css_module/images/img_snow_wide.jpg" alt="French Alps">
+                <img src="documentation-clean_module/images/img_snow_wide.jpg" alt="French Alps">
                 <div class="topleft text-white padding small">
                     2 / 3
                 </div>
@@ -1122,7 +1122,7 @@
                 </div>
             </div>
             <div class="relative slide-item">
-                <img src="documentation-w3css_module/images/img_mountains_wide.jpg" alt="Mountains">
+                <img src="documentation-clean_module/images/img_mountains_wide.jpg" alt="Mountains">
                 <div class="topleft text-white padding small">
                     3 / 3
                 </div>
@@ -1154,9 +1154,9 @@
             <div class="clean-modal-content medium-content">
 
                 <div class="clean-content">
-                    <img class="lightbox-item" src="documentation-w3css_module/images/img_nature_wide.jpg" alt="Nature">
-                    <img class="lightbox-item" src="documentation-w3css_module/images/img_snow_wide.jpg" alt="Snow">
-                    <img class="lightbox-item" src="documentation-w3css_module/images/img_mountains_wide.jpg"
+                    <img class="lightbox-item" src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
+                    <img class="lightbox-item" src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
+                    <img class="lightbox-item" src="documentation-clean_module/images/img_mountains_wide.jpg"
                          alt="Mountains">
                     <div class="row black center">
                         <div class="clean-container relative">
@@ -1169,17 +1169,17 @@
 
                         <div class="col s4">
                             <img class="lightbox-dots opacity hover-opacity-off pointer"
-                                 src="documentation-w3css_module/images/img_nature_wide.jpg"
+                                 src="documentation-clean_module/images/img_nature_wide.jpg"
                                  onclick="$.currentLightbox(1)" alt="Nature and sunrise">
                         </div>
                         <div class="col s4">
                             <img class="lightbox-dots opacity hover-opacity-off pointer"
-                                 src="documentation-w3css_module/images/img_snow_wide.jpg"
+                                 src="documentation-clean_module/images/img_snow_wide.jpg"
                                  onclick="$.currentLightbox(2)" alt="French Alps">
                         </div>
                         <div class="col s4">
                             <img class="lightbox-dots opacity hover-opacity-off pointer"
-                                 src="documentation-w3css_module/images/img_mountains_wide.jpg"
+                                 src="documentation-clean_module/images/img_mountains_wide.jpg"
                                  onclick="$.currentLightbox(3)" alt="Mountains and fjords">
                         </div>
                     </div> <!-- End row -->
@@ -1190,15 +1190,15 @@
 
         <div class="row-padding">
             <div class="col s4">
-                <img src="documentation-w3css_module/images/img_nature_wide.jpg"
+                <img src="documentation-clean_module/images/img_nature_wide.jpg"
                      onclick="$.openLightbox();$.currentLightbox(1)" class="hover-shadow pointer" alt="Nature">
             </div>
             <div class="col s4">
-                <img src="documentation-w3css_module/images/img_snow_wide.jpg"
+                <img src="documentation-clean_module/images/img_snow_wide.jpg"
                      onclick="$.openLightbox();$.currentLightbox(2)" class="hover-shadow pointer" alt="Snow">
             </div>
             <div class="col s4">
-                <img src="documentation-w3css_module/images/img_mountains_wide.jpg"
+                <img src="documentation-clean_module/images/img_mountains_wide.jpg"
                      onclick="$.openLightbox();$.currentLightbox(3)" class="hover-shadow pointer" alt="Mountains">
             </div>
         </div>
@@ -1244,19 +1244,19 @@
 
         <div class="row-padding">
             <div class="col m3 s4">
-                <img src="documentation-w3css_module/images/img_lights.jpg" class="round testsm"
+                <img src="documentation-clean_module/images/img_lights.jpg" class="round testsm"
                      alt="Northern Lights">
             </div>
             <div class="col m3 s4">
-                <img src="documentation-w3css_module/images/img_forest.jpg" class="circle testsm" alt="Forest">
+                <img src="documentation-clean_module/images/img_forest.jpg" class="circle testsm" alt="Forest">
             </div>
             <div class="col m3 s4">
-                <img src="documentation-w3css_module/images/img_mountains.jpg" class="testsm hover-opacity border"
+                <img src="documentation-clean_module/images/img_mountains.jpg" class="testsm hover-opacity border"
                      alt="Mountains">
             </div>
             <div class="col m3 hide-small">
                 <div class="relative">
-                    <img src="documentation-w3css_module/images/img_nature.jpg" alt="Nature"
+                    <img src="documentation-clean_module/images/img_nature.jpg" alt="Nature"
                          class="card card-4 testsm">
                     <div class="bottomleft text-white clean-container padding">Nature
                     </div>
@@ -1273,28 +1273,28 @@
         <div class="row-padding center">
 
             <div class="col m3 hide-small">
-                <img src="documentation-w3css_module/images/img_workshop.jpg" alt="Workshop">
+                <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
                 <div class="red clean-container">
                     <p>Normal</p>
                 </div>
             </div>
 
             <div class="col m3 s4 opacity">
-                <img src="documentation-w3css_module/images/img_workshop.jpg" alt="Workshop">
+                <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
                 <div class="red clean-container">
                     <p>Opacity</p>
                 </div>
             </div>
 
             <div class="col m3 s4 grayscale">
-                <img src="documentation-w3css_module/images/img_workshop.jpg" alt="Workshop">
+                <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
                 <div class="red clean-container">
                     <p>Grayscale</p>
                 </div>
             </div>
 
             <div class="col m3 s4 sepia">
-                <img src="documentation-w3css_module/images/img_workshop.jpg" alt="Workshop">
+                <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
                 <div class="red clean-container">
                     <p>Sepia</p>
                 </div>
