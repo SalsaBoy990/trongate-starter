@@ -12,7 +12,7 @@ SASSFLAGS = --style nested -M
 install-sass:
 	sudo apt install fontcustom sassc
 
-compile:
+sass:
 	fontcustom compile $(FONTCUSTOM_FLAGS)
 	sassc $(SASSFLAGS) _sass/clean.sass > assets/css/clean.css
 
@@ -20,17 +20,15 @@ compile:
 
 .PHONY: all
 
-all: compile
+all: sass
 
 # Watch changes in SASS files and compile the CSS bundle
-watch:
+sass-watch:
 	while true; do \
   		make; \
   		inotifywait -qre close_write ./_sass; \
 	done
 
-sass:
-	sass _sass/clean.sass assets/css/clean.css --watch
 
 # esbuild - a very fast JavaScript bundler written in Go
 install-esbuild:
