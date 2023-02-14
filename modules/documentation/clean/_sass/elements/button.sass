@@ -49,21 +49,27 @@ button:disabled:hover, .button:disabled:hover
     border: 1px solid transparent
     cursor: initial
 
-.button-circle
+.button-circle, a.button-circle
     padding: 12px
     border-radius: 50%
     aspect-ratio: 1
     display: flex
     align-items: center
     justify-content: center
+    width: 30px
+    height: 30px
+    text-decoration: none
 
-.button-square
+.button-square, a.button-square
     padding: 10px
     border-radius: 0.125em
     aspect-ratio: 1
     display: flex
     align-items: center
     justify-content: center
+    width: 30px
+    height: 30px
+    text-decoration: none
 
 @media screen and (max-width: 550px)
     .button-circle, .button-square

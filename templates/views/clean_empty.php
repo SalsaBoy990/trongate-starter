@@ -12,9 +12,10 @@
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <title>Public</title>
+    <title><?= $page_headline ?? 'Clean Empty Page' ?></title>
 </head>
 <body @scroll="setScrollToTop()">
+
 <div class="wrapper">
     <header>
         <div id="header-sm">
@@ -58,7 +59,32 @@
         </div>
     </header>
 
-    <div><?= Template::display($data) ?></div>
+
+    <div x-data="{ showToc: true}" class="main-container container relative">
+
+
+        <span @click="showToc = ! showToc" class="pointer absolute padding-small top-left margin-top-24" role="button"
+              title="Table of content">
+            <i :class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
+        </span>
+
+
+        <aside x-show="showToc" x-transition class="toc">
+            <h2> Table of Contents </h2>
+            <nav>
+                <a href="#"><h3><?= anchor('entries/create', 'Create New Entry') ?></h3></a>
+                <a href="#"><h3><?= anchor('entries/manage', 'Entry List') ?></h3></a>
+
+            </nav>
+        </aside>
+
+
+        <main class="content">
+            <?= Template::display($data) ?>
+        </main>
+
+    </div>
+
 
     <span class="light-gray pointer scroll-to-top-button padding-small round" role="button"
           title="Toggle table of content"
@@ -67,17 +93,24 @@
     </span>
 
 </div>
+
+
 <footer class="footer">
     <div class="container">
         <!-- it's okay to remove the links and content here - everything is cool (DC) -->
         <div class="normal">&copy; Copyright <?= date('Y').' '.OUR_NAME ?></div>
         <div class="small"><?= anchor('https://trongate.io', 'Powered by Trongate') ?></div>
     </div>
+
 </footer>
+
+
 <div id="slide-nav">
     <div id="close-btn" onclick="closeSlideNav()">&times;</div>
     <ul auto-populate="true"></ul>
 </div>
+
+
 <script src="<?= BASE_URL ?>js/app.js"></script>
 <script src="documentation-clean_module/js/clean.js"></script>
 
@@ -122,9 +155,8 @@
             }
         }));
     });
-
-
 </script>
+
 
 </body>
 </html>

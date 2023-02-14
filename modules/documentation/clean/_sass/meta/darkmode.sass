@@ -1,15 +1,17 @@
 html.dark
     body
-        background-color: $darkest-grey
+        background-color: #1D2546
         color: $light-gray
 
 
     h1, h2, h3, h4, h5, h6, label, form
-        color: $light-gray
+        color: #ccc
+
+
 
     input, textarea
         color: black
-        background: $light-gray
+        background: #ccc
         border-color: $darkest-gray
 
 
@@ -20,12 +22,12 @@ html.dark
 
         &:focus
             border-color: $blue
-            background-color: $pale-blue
+            background-color: rgba(255, 255, 225, 0.8)
 
 
     .banner
         h1, h2, h3, h4, h5, h6, p, ul, ol, span
-            color: white
+            color: #c5c5c5
 
 
     .panel, .clean-container, .cell, .card
@@ -34,14 +36,14 @@ html.dark
 
 
     p, ul:not(.list-card,.card-list,.clean-container), ol
-        color: $light-gray
+        color: #c5c5c5
 
 
-    a:not(.button, .close-button, .link-button)
+    a:not(.button, .close-button, .link-button, .button-square, .button-circle)
         color: $light-blue
 
         &:hover
-            color: $amber
+            color: #FD844A
 
 
     a.bar-item.button, a.button.link-button
@@ -51,12 +53,13 @@ html.dark
         color: $amber
 
     header:not(.clean-container)
-        color: $light-grey
+        color: #c5c5c5
         background-color: black
 
 
     footer
         background-color: black
+        color: $gray
 
 
     pre, code
@@ -68,22 +71,23 @@ html.dark
         thead
             th
                 background-color: black
+                color: #ccc
 
         tr:nth-child(odd)
-            background-color: $off-white
+            background-color: rgba(213, 189, 225, 0.2)
 
         tr:nth-child(even)
-            background-color: #bdbdbd
+            background-color: rgba(213, 189, 225, 0.1)
 
         tr:hover, tr:nth-child(odd):hover
-            background-color: $pale-blue
+            background-color: rgba(213, 189, 225, 0.3)
             
         td
-            color: $darkest-gray
+            color: #ccc
 
 
     .toc nav
-        background-color: $dark-grey
+        background-color: rgba(213, 189, 225, 0.1)
 
     .clean-modal-content
         background-color: $darkest-gray
@@ -92,7 +96,7 @@ html.dark
         background-color: black
 
     .list-card
-        background-color: white
+        background-color: #c5c5c5
         color: $darkest-gray
 
 
