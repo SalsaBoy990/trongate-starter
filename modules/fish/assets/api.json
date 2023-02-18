@@ -1,0 +1,116 @@
+{
+  "Get": {
+    "url_segments": "api/get/fish",
+    "request_type": "GET",
+    "description": "Fetch rows from table",
+    "enableParams": true,
+    "authorization":"*"
+  },
+  "Get By Post": {
+    "url_segments": "api/get/fish",
+    "request_type": "POST",
+    "description": "Fetch rows from table using POST request.",
+    "enableParams": true,
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
+  },
+  "Find One": {
+    "url_segments": "api/get/fish/{id}",
+    "request_type": "GET",
+    "description": "Fetch one row",
+    "required_fields": [
+      {
+        "name": "id",
+        "label": "ID"
+      }
+    ]
+  },
+  "Exists": {
+    "url_segments": "api/exists/fish/{id}",
+    "request_type": "GET",
+    "description": "Check if instance exists",
+    "required_fields": [
+      {
+        "name": "id",
+        "label": "ID"
+      }
+    ]
+  },
+  "Count": {
+    "url_segments": "api/count/fish",
+    "request_type": "GET",
+    "description": "Count number of records",
+    "enableParams": true
+  },
+  "Count By Post": {
+    "url_segments": "api/count/fish",
+    "request_type": "POST",
+    "description": "Count number of records using POST request",
+    "enableParams": true,
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
+  },
+  "Create": {
+    "url_segments": "api/create/fish",
+    "request_type": "POST",
+    "description": "Insert database record",
+    "enableParams": true
+  },
+  "Insert Batch": {
+    "url_segments": "api/batch/fish",
+    "request_type": "POST",
+    "description": "Insert multiple records",
+    "enableParams": true
+  },
+  "Update": {
+    "url_segments": "api/update/fish/{id}",
+    "request_type": "PUT",
+    "description": "Update a database record",
+    "enableParams": true,
+    "required_fields": [
+      {
+        "name": "id",
+        "label": "ID"
+      }
+    ]
+  },
+  "Destroy": {
+    "url_segments": "api/destroy/fish",
+    "request_type": "DELETE",
+    "description": "Delete row or rows",
+    "enableParams": true
+  },
+  "Delete One": {
+    "url_segments": "api/delete/fish/{id}",
+    "request_type": "DELETE",
+    "description": "Delete one row",
+    "required_fields": [
+      {
+        "name": "id",
+        "label": "ID"
+      }
+    ]
+  },
+
+  "Describe": {
+    "url_segments": "fish/describe",
+    "request_type": "GET",
+    "description": "Describe the fish",
+    "enableParams": true,
+    "authorization": "*"
+  },
+
+  "Search": {
+    "url_segments": "api/search/fish",
+    "request_type": "GET",
+    "description": "Search for fish by type",
+    "enableParams": true,
+    "authorization": "*"
+  }
+}
