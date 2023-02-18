@@ -1,0 +1,10 @@
+{
+    "Get": {
+        "url_segments": "api/get/entries",
+        "request_type": "GET",
+        "description": "Fetch rows from table",
+        "enableParams": true,
+        "authorization":"*"
+    }
+}
+
