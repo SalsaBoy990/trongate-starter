@@ -1,9 +1,15 @@
 // Video
-
 video
-	@include fullWidth()
-	margin-bottom: $video-margin-bottom
+    width: clamp(70%, 900px, 100%)
+    margin-bottom: 1em
 
-@media screen and (min-width: $desktop)
-	video
-		max-width: $video-desktop-max-width
+
+.ratio-16x9
+    position: relative
+    padding-top: 56.25%
+
+    video
+        position: absolute
+        width: 100%
+        top: 0
+        aspect-ratio: 16/9

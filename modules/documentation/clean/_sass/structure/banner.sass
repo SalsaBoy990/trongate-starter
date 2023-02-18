@@ -1,15 +1,59 @@
 // Banner
 .banner
-	@include fullWidth()
-	@include column()
-	padding: $banner-padding
-	align-items: center
-	background-color: $banner-top-bg-color
+    width: 100%
+    display: flex
+    flex-direction: column
+    padding: 1.25em 6%
+    align-items: center
+    background-color: $secondary
 
-	h1, h2
-		color: $banner-top-fg-color
-		margin-bottom: $banner-top-heading-margin
-	h1
-		font-size: $banner-top-h1-size
-	h2
-		font-size: $banner-top-h2-size
+    h1, p
+        color: $white !important
+        margin-bottom: 1em
+
+    h1
+        font-size: $xlarge
+
+    p
+        font-size: $medium
+
+
+    input[type="search"]
+        display: inline-flex
+        justify-content: space-between
+        width: 30em
+        color: $text
+        background-color: $off-white
+        cursor: pointer
+        height: 44px
+        padding-left: 1.75em
+
+        &:hover
+            color: $text
+            background-color: $white !important
+
+
+    i
+        color: $dark-gray
+
+
+    @media screen and (max-width: 768px)
+        .searchbar input[type="search"], .searchbar
+            width: 100%
+
+
+.search-results
+    width: 100%
+    display: flex
+    flex-direction: column
+    padding: 0 6%
+    margin-top: -1em
+    margin-bottom: 1em
+    align-items: center
+
+    .card
+        width: 30em
+
+        @media screen and (max-width: 768px)
+            width: 88%
+

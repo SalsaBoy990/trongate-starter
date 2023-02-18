@@ -1,8 +1,10 @@
-// General styles
+@import normalize
+@import theme
+
+
 @import meta/sizes
 @import meta/colors
 @import meta/font
-@import meta/functions
 @import meta/mixins
 @import meta/position
 @import meta/display
@@ -40,7 +42,6 @@
 @import elements/card
 @import elements/code
 @import elements/keyboard
-@import elements/search
 @import elements/video
 @import elements/form
 @import elements/heading
@@ -54,15 +55,16 @@
 @import elements/table
 @import elements/tooltip
 
-
 @import meta/darkmode
 
-
-@import fonts/solbit.css
-
+.container
+    width: 95%
 
 .button-group
     display: flex
     flex-direction: row
     flex-wrap: nowrap
     column-gap: 0.5em
+
+.z-2
+    z-index: 2

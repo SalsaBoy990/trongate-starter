@@ -1,19 +1,20 @@
 code, pre, samp
-    font-family: "Liberation Mono", monospace, monospace
+    font-family: $mono !important
     font-size: 1em
 
-code
-    padding: $code-padding
-    word-wrap: break-word
 
-pre // ie. pre > code
+code
+    padding: 0
     display: block
-    white-space: break-spaces;
-    overflow-x: auto // Ensure there is a scrollbar for when code snippet lines exceed pre width.
-    color: $code-fg-color
-    background-color: $code-bg-color
-    border-radius: $code-border-radius
-    border-left: 4px solid #4CAF50
-    padding: $pre-padding
-    margin: $pre-margin-bottom 0
+
+
+pre
+    display: block
+    white-space: pre
+    // Ensure there is a scrollbar for when code snippet lines exceed pre width.
+    overflow-x: auto
+    border-radius: 0.25em
+    border: 4px solid #4d4d4d
+    padding: 0
+    margin: 1em 0
 

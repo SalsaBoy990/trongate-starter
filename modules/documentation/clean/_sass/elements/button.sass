@@ -19,7 +19,7 @@ button, .button, .close-button
     font-family: "Liberation Sans", Arial, sans-serif
 
 button:hover, .button:hover
-    background-color: $solus-blue
+    background-color: $secondary
 
 button, .button
     color: inherit
@@ -27,6 +27,7 @@ button, .button
 
 button.close-button, span.close-button
     background-color: transparent
+
     &:hover
         border: 1px solid transparent
         background-color: rgba(0, 0, 0, 0.3)
@@ -40,14 +41,15 @@ button:disabled,
 .button:disabled
     cursor: not-allowed
     color: #fff
-    border-color: #000
-    background-color: #000
+    border-color: $black
+    background-color: $black
     opacity: 0.3
 
-button:disabled:hover, .button:disabled:hover
-    box-shadow: none
-    border: 1px solid transparent
-    cursor: initial
+    &:disabled:hover
+        box-shadow: none
+        border: 1px solid transparent
+        cursor: initial
+
 
 .button-circle, a.button-circle
     padding: 12px
@@ -60,6 +62,7 @@ button:disabled:hover, .button:disabled:hover
     height: 30px
     text-decoration: none
 
+
 .button-square, a.button-square
     padding: 10px
     border-radius: 0.125em
@@ -71,49 +74,34 @@ button:disabled:hover, .button:disabled:hover
     height: 30px
     text-decoration: none
 
-@media screen and (max-width: 550px)
-    .button-circle, .button-square
+    @media screen and (max-width: 550px)
         width: auto
         display: flex
 
 
-.pointer,
-.arrow
+.pointer
     cursor: pointer
-
-
-button, [type=button], [type=reset], [type=submit]
-    -webkit-appearance: button
-
-
-button::-moz-focus-inner, [type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner
-    border-style: none
-    padding: 0
-
-
-button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring, [type=submit]:-moz-focusring
-    outline: 1px dotted ButtonText
 
 
 .primary
     color: white
-    background-color: $solus-blue
-    border-color: $solus-blue
+    background-color: $primary
+    border-color: $primary
 
     &:hover
-        border-color: $blue
-        background-color: $blue
+        border-color: #2a3677
+        background-color: #2a3677
         color: white
 
 .primary.alt
     color: $text
     background-color: rgba(255, 255, 255, 0.8)
-    border-color: $solus-blue
+    border-color: $primary
 
     &:hover
-        border-color: $blue
+        border-color: $primary
         background-color: white
-        color: $blue
+        color: $primary
 
 
 .danger
@@ -164,9 +152,10 @@ button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring
     background-color: $dark-grey
     border-color: $dark-grey
     color: white
+
     &:hover
-        background-color: black
-        border-color: black
+        background-color: $black
+        border-color: $black
         color: white
 
 
@@ -174,6 +163,7 @@ button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring
     background-color: $light-gray
     border-color: $dark-gray
     color: $dark-gray
+
     &:hover
         background-color: $dark-gray
         border-color: $dark-gray
@@ -183,13 +173,31 @@ button:-moz-focusring, [type=button]:-moz-focusring, [type=reset]:-moz-focusring
     background-color: transparent
     border-color: transparent
     color: $text
+
     &:hover
         background-color: transparent
         border-color: transparent
-        color: $blue
+        color: $primary
 
+.white-button
+    background-color: $off-white
+    border-color: white
+    color: $black
+
+    &:hover
+        background-color: white
+        border-color: white
+        color: $primary
 
 .scroll-to-top-button
     position: fixed
-    right: 2em
-    bottom: 3em
+    right: 1.5em
+    bottom: 2.5em
+
+    &:hover, &:focus
+        filter: invert(1)
+
+
+
+.circle
+    line-height: initial !important

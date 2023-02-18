@@ -13,7 +13,7 @@ install-sass:
 	sudo apt install fontcustom sassc
 
 sass:
-	fontcustom compile $(FONTCUSTOM_FLAGS)
+	#fontcustom compile $(FONTCUSTOM_FLAGS)
 	sassc $(SASSFLAGS) _sass/clean.sass > assets/css/clean.css
 
 .DEFAULT_GOAL := all
@@ -36,8 +36,8 @@ install-esbuild:
 
 # create bundle from the source
 esbuild:
-	./node_modules/.bin/esbuild _javascript/clean.js --bundle --sourcemap --outfile=assets/js/clean.js
+	./node_modules/.bin/esbuild _javascript/clean.js --bundle --sourcemap --target=es6 --outfile=assets/js/clean.js
 
 esbuild-watch:
-	./node_modules/.bin/esbuild _javascript/clean.js --bundle --sourcemap --outfile=assets/js/w3.clean --watch
+	./node_modules/.bin/esbuild _javascript/clean.js --bundle --sourcemap --outfile=assets/js/clean.js --watch
 

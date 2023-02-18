@@ -1,10 +1,11 @@
 // Footer
 .footer
-	@include fullWidth()
-	@include column
-	padding: $footer-padding
+	display: inline-flex
+	flex-direction: column
+	width: 100%
+	padding: 2.5em 6%
 	color: $text
-	background-color: $footer-bg-color
+	background-color: $light-gray
 
 	a
 		color: $link
@@ -12,14 +13,14 @@
 		&:hover
 			color: $darkest-gray
 
-	// Footer menus and Copyright
 	.menu
 		&:last-of-type
-			margin-bottom: $footer-margin
+			margin-bottom: 1.25em
+
+		@media screen and (max-width: $mobile)
+			margin-top: 1.25em
+
 
 	b, p
-		color: $footer-fg-color
+		color: $off-white
 
-	@media screen and (max-width: $mobile) // Mobile
-		.menu
-			margin-top: $footer-margin

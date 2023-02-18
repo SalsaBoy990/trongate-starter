@@ -4,26 +4,39 @@ textarea,
 input[type="email"],
 input[type="password"],
 select
-    font-family: "Liberation Sans", Arial, sans-serif
+    font-family: $sans
 
     &:focus
         border-color: $solus-blue
 
-input:disabled
-    cursor: not-allowed
-    background-color: $light-gray
 
 input
     overflow: hidden
 
+    &:disabled
+        cursor: not-allowed
+        background-color: $light-gray
+
+
 input[type="radio"],
 input[type="checkbox"]
-    width: 1.4em
-    height: 1.4em
+    cursor: pointer
+    width: 1.25em
+    height: 1.25em
     margin: 0.6em 0.25em 1em 1em
+
+    &:disabled
+        cursor: not-allowed
+
+
+[type="search"]
+    border-radius: 0.25em
+    outline: none
+
 
 textarea
     resize: vertical
+
 
 label ~ input[type="radio"]
     display: inline-block
@@ -38,47 +51,5 @@ label ~ input[type="radio"]
     pointer-events: none
 
 
-
-button, select
-    text-transform: none
-
-
 fieldset
     border: 1px solid #c0c0c0
-    margin: 0 2px
-    padding: .35em .625em .75em
-
-
-legend
-    color: inherit
-    display: table
-    max-width: 100%
-    padding: 0
-    white-space: normal
-
-
-textarea
-    overflow: auto
-
-
-[type=checkbox], [type=radio]
-    padding: 0
-
-
-[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button
-    height: auto
-
-
-[type=search]
-    //-webkit-appearance: textfield
-    outline-offset: -2px
-
-
-[type=search]::-webkit-search-decoration
-    -webkit-appearance: none
-
-
-::-webkit-file-upload-button
-    -webkit-appearance: button
-    font: inherit
-

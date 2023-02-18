@@ -1,29 +1,36 @@
-<?php //json($data); ?>
-
-<div x-data="{ open: false }" x-init="open = false">
+<div x-data="ajaxSearchData" x-cloak x-init="panelOpen = false; searchTerm = ''">
     <section class="banner">
-        <h1> Section Banner </h1>
-        <h2> This is a description of this section </h2>
-        <button class="search js" @click="open = !open">
-            <b class="icon-search">Search Articles</b>
-            <span class="shortcut">
-                <kbd>Ctrl</kbd>
-                <kbd>K</kbd>
-            </span>
-        </button>
+        <h1>Section Banner</h1>
+        <p>This is a description of this section</p>
+        <div class="searchbar relative">
+            <input @keydown="searchByTitle('<?= BASE_URL ?>' + 'api/get/entries/')" x-model="searchTerm"
+                   @click="togglePanel()" type="search"
+                   placeholder="Search in entries"/>
+            <b class="left margin-left-8">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </b>
+        </div>
     </section>
 
-    <div x-cloak x-show="open" class="search-modal" :class="{'show': open}">
-        <div class="clean-modal-content small-content card animate-top relative ">
-            <div class="clean-container light-gray round-medium">
-                <span @click="open = ! open" class="close-button large teal topright">&times;</span>
-                <h2>Search</h2>
-                <p>Some text. Some text. Some text.</p>
-                <p>Some text. Some text. Some text.</p>
+    <div x-cloak class="search-results relative">
+        <div x-cloak x-show="panelOpen" :class="{'show': panelOpen }"
+             class="card white absolute padding z-2 hide">
+            <span @click="clearSearch()"
+                  class="close-button large topright">&times;</span>
+            <h2 class="normal" x-text="'Results (' + count + ')'"></h2>
+            <div id="search-results">
+                <template x-for="item in results">
+                    <div class="clean-container round border border-default margin-y">
+                        <b>
+                            <a :href="'<?= BASE_URL ?>' + 'entries/show/' + item.id" x-text="item.title"></a>
+                        </b>
+                        <p class="small" x-text="item.content.substr(0, 120) + '...'"></p>
+                    </div>
+                </template>
             </div>
+
         </div>
     </div>
-
 </div>
 
 
@@ -217,27 +224,27 @@
         <p>The <a href="#">panel</a>
             class can display all kinds of notes and quotes:</p>
 
-        <div class="clean-container round border border-default margin-y">
+        <div class="clean-container round border border-default margin-top margin-bottom">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round light-grey border border-default margin-y">
+        <div class="clean-container round light-grey border border-default margin-top margin-bottom">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round pale-red leftbar border border-red margin-y">
+        <div class="clean-container round pale-red leftbar border border-red margin-top margin-bottom">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round pale-green bottombar border-green border margin-y">
+        <div class="clean-container round pale-green bottombar border-green border margin-top margin-bottom">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round leftbar border border-default sand margin-y">
+        <div class="clean-container round leftbar border border-default sand margin-top margin-bottom">
             <p><i class="xlarge serif">"Make it as simple as possible, but not simpler."</i></p>
             <p>Albert Einstein</p>
         </div>
@@ -247,43 +254,32 @@
         <h2>Clean.CSS Alerts</h2>
         <p>The <a href="#">panel</a>
             class can also be used for all kinds of alerts:</p>
-        <div class="panel pale-red text-dark-red border border-dark-red relative">
-            <span onclick="" class="close-button large topright">&times;</span>
+        <div x-data="alertData" x-show="openAlert" class="panel pale-red text-dark-red border border-dark-red relative">
+            <span @click="hideAlert()" class="close-button large topright">&times;</span>
             <h3>Danger!</h3>
             <p>Red often indicates a dangerous or negative situation.</p>
         </div>
 
-        <div class="panel pale-yellow text-dark-yellow border border-dark-yellow relative">
-            <span onclick="$.closeAlert(event)" class="close-button large topright">&times;</span>
+        <div x-data="alertData" x-show="openAlert"
+             class="panel pale-yellow text-dark-yellow border border-dark-yellow relative">
+            <span @click="hideAlert()" class="close-button large topright">&times;</span>
             <h3>Warning!</h3>
             <p>Yellow often indicates a warning that might need attention.</p>
         </div>
 
-        <div class="panel pale-green text-dark-green border border-dark-green relative">
-  <span onclick="$.closeAlert(event)"
-        class="close-button large topright">&times;</span>
+        <div x-data="alertData" x-show="openAlert"
+             class="panel pale-green text-dark-green border border-dark-green relative">
+            <span @click="hideAlert()" class="close-button large topright">&times;</span>
             <h3>Success!</h3>
             <p>Green often indicates something successful or positive.</p>
         </div>
 
-        <div class="panel pale-blue text-blue border border-blue relative">
-  <span onclick="$.closeAlert(event)"
-        class="close-button large topright">&times;</span>
+        <div x-data="alertData" x-show="openAlert" class="panel pale-blue text-blue border border-blue relative">
+            <span @click="hideAlert()" class="close-button large topright">&times;</span>
             <h3>Info!</h3>
             <p>Blue often indicates a neutral informative change or action.</p>
         </div>
 
-        <div>
-            <h3>Example</h3>
-            <pre>
-                <code>
-                    &lt;div class=&quot;panel yellow&quot;&gt;<br>
-                    &nbsp; &lt;h3&gt;Warning!&lt;/h3&gt;<br>
-                    &nbsp; &lt;p&gt;Yellow often indicates a warning that might need attention.&lt;/p&gt;<br>
-                    &lt;/div&gt;
-                </code>
-            </pre>
-        </div>
         <hr>
 
         <h2>Clean.CSS Cards</h2>
@@ -318,14 +314,10 @@
         </div>
         <div>
             <h3>Example</h3>
-            <pre>
-                <code>
-                &lt;div class="card card-4"&gt;<br>&nbsp; &lt;img src="img_snowtops.jpg" alt="Alps"&gt;<br>
-                &nbsp; &lt;div class=&quot;clean-container center&quot;&gt;<br>
-                &nbsp;&nbsp;&nbsp;&lt;p&gt;French Alps&lt;/p&gt;<br>
-                &nbsp; &lt;/div&gt;<br>&lt;/div&gt;
-                </code>
-            </pre>
+            <pre><code class="language-html">&lt;div class=&quot;panel yellow&quot;&gt;
+    &lt;h3&gt;Warning!&lt;/h3&gt;
+    &lt;p&gt;Yellow often indicates a warning that might need attention.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
         </div>
 
 
@@ -366,11 +358,7 @@
         </table>
         <div>
             <h3>Example</h3>
-            <pre>
-                <code>
-                &lt;table&gt;
-                </code>
-            </pre>
+            <pre><code class="language-html">&lt;table&gt;</code></pre>
         </div>
 
         <hr>
@@ -415,14 +403,12 @@
         </ul>
         <div>
             <h3>Example</h3>
-            <pre>
-                <code>
-                &lt;ul class=&quot;border&quot;&gt;<br>&nbsp;
-                &lt;li&gt;&lt;h2&gt;Names&lt;/h2&gt;&lt;/li&gt;<br>&nbsp;
-                &lt;li&gt;Jill&lt;/li&gt;<br>&nbsp; &lt;li&gt;Eve&lt;/li&gt;<br>&nbsp;
-                &lt;li&gt;Adam&lt;/li&gt;<br>&lt;/ul&gt;<br>
-                </code>
-            </pre>
+            <pre><code class="language-html">&lt;ul class=&quot;border&quot;&gt;
+    &lt;li&gt;&lt;h2&gt;Names&lt;/h2&gt;&lt;/li&gt;
+    &lt;li&gt;Jill&lt;/li&gt;
+    &lt;li&gt;Eve&lt;/li&gt;
+    &lt;li&gt;Adam&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
         </div>
 
         <hr>
@@ -489,33 +475,33 @@
         <p>The <a href="#">tag</a> and the
             <a href="#">badge</a>
             classes are capable of displaying all kinds of tags, labels, badges and signs:</p>
-        <p><span class="badge badge-circle dark-grey text-white">2</span>
-            <span class="badge badge-circle teal text-white">8</span>
-            <span class="badge badge-circle red text-white">A</span>
-            <span class="badge badge-circle orange text-white">B</span>
+        <p><span class="badge circle dark-grey text-white">2</span>
+            <span class="badge circle teal text-white">8</span>
+            <span class="badge circle red text-white">A</span>
+            <span class="badge circle orange text-white">B</span>
         </p>
 
-        <p><span class="tag dark-grey">New</span>
-            <span class="tag orange text-white">Warning</span>
-            <span class="tag red">Danger</span>
-            <span class="tag blue">Info</span>
+        <p><span class="badge dark-grey">New</span>
+            <span class="badge orange text-white">Warning</span>
+            <span class="badge red">Danger</span>
+            <span class="badge blue">Info</span>
         </p>
 
         <div class="row">
             <div class="half">
-                <div class="tag round green">
-                    <div class="tag round green">Falcon Ridge Parkway</div>
+                <div class="badge round green">
+                    <div class="badge round green">Falcon Ridge Parkway</div>
                 </div>
                 <div>
-                    <div class="tag jumbo red">S</div>
-                    <div class="tag jumbo black">A</div>
-                    <div class="tag jumbo yellow">L</div>
-                    <div class="tag jumbo black">E</div>
+                    <div class="badge jumbo red">S</div>
+                    <div class="badge jumbo black">A</div>
+                    <div class="badge jumbo yellow">L</div>
+                    <div class="badge jumbo black">E</div>
                 </div>
             </div>
 
             <div class="half">
-                <div class="tag xlarge padding-large round-large red center">DO NOT<br>
+                <div class="badge xlarge padding-large round-large red center">DO NOT<br>
                     BREATHE<br>UNDER WATER
                 </div>
             </div>
@@ -777,15 +763,15 @@
         <p>The <a href="#">clean-modal</a>
             class provides modal dialog in pure HTML:</p>
 
-        <div>
-            <button onclick="$.openModal('modalOne')"
+        <div x-data="modalData">
+            <button @click="openModal()"
                     class="dark-grey hover-black padding-16">Click to Open Modal
             </button>
 
-            <div id="modalOne" class="clean-modal">
+            <div x-show="modal" x-cloak class="clean-modal" :class="{'show': modal}">
                 <div class="clean-modal-content small-content card card-4 animate-top relative">
                     <header class="clean-container teal">
-                        <span onclick="$.closeModal('modalOne')" class="close-button large teal topright">&times;</span>
+                        <span @click="closeModal()" class="close-button large teal topright">&times;</span>
                         <h2>Header</h2>
                     </header>
                     <div class="clean-container">
@@ -802,12 +788,12 @@
 
         <p>Modal Image:</p>
 
-        <div>
+        <div x-data="modalData">
             <img class="hover-opacity thumbnail-third pointer" src="documentation-clean_module/images/img_nature.jpg"
                  alt="Nature"
-                 onclick="$.openModal('imageModal')">
+                 @click="openModal()">
 
-            <div id="imageModal" class="clean-modal" onclick="$.closeModal('imageModal')">
+            <div x-show="modal" x-cloak class="clean-modal" :class="{'show': modal}" @click="closeModal()">
                 <span class="close-button hover-red xxlarge topright">&times;</span>
                 <div class="clean-modal-content medium-content card card-4 animate-zoom">
                     <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
@@ -830,14 +816,18 @@
         </div>
         <br>
 
-        <div class="light-grey">
-            <div id="progressBarOne" class="clean-container green" style="width:5%">0</div>
-        </div>
-        <br>
+        <div x-data="progressBarData" x-init="width = 2; speed = 25;">
+            <div class="light-grey">
+                <div class="clean-container green" style="width:5%; height: 20px" :style="{ width: (width + '%') }"
+                     x-text="label">0
+                </div>
+            </div>
+            <br>
 
-        <button class="dark-grey hover-black hover-border-black" onclick="$.moveProgressBar('progressBarOne', 100)">
-            Click Me
-        </button>
+            <button class="dark-grey hover-black hover-border-black" @click="triggerMove()">
+                Click Me
+            </button>
+        </div>
 
         <hr>
 
@@ -846,7 +836,7 @@
             classes provide dropdowns:</p>
         <div class="row">
             <div class="col s6">
-                <div x-data="dropdown" class="dropdown-hover" @click.outside="hideDropdown">
+                <div x-data="dropdownData" class="dropdown-hover" @click.outside="hideDropdown">
                     <button @mouseover="toggleDropdown" class="dark-grey hover-black">
                         Hover Me! <i class="fa fa-caret-down"></i>
                     </button>
@@ -858,7 +848,7 @@
                 </div>
             </div>
             <div class="col s6">
-                <div x-data="dropdown" class="dropdown-click" @click.outside="hideDropdown">
+                <div x-data="dropdownData" class="dropdown-click" @click.outside="hideDropdown">
                     <button @click="toggleDropdown" class="dark-grey hover-black">
                         Click Me! <i class="fa fa-caret-down"></i>
                     </button>
@@ -876,38 +866,41 @@
         <h2>Clean.CSS Accordions</h2>
         <p>Read more at <a href="#">Clean.CSS Accordions</a></p>
 
-        <button onclick="$.toggleAccordion('accordionOne')"
-                class="hover-dark-grey light-grey block left-align">Open
-            Section 1
-        </button>
-        <div id="accordionOne" class="hide accordion-item">
-            <div class="clean-container">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex
-                    ea commodo consequat.</p>
+        <div x-data="accordionData">
+            <button @click="toggleAccordion('accordionOne')"
+                    class="hover-dark-grey light-grey block left-align">Open
+                Section 1
+            </button>
+            <div id="accordionOne" class="hide accordion-item">
+                <div class="clean-container">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex
+                        ea commodo consequat.</p>
+                </div>
             </div>
-        </div>
-        <button onclick="$.toggleAccordion('accordionTwo')"
-                class="hover-dark-grey light-grey block left-align">Open
-            Section 2
-        </button>
-        <div id="accordionTwo" class="hide bar-block accordion-item">
-            <a class="bar-item" href="javascript:void(0)">Link 1</a>
-            <a class="bar-item" href="javascript:void(0)">Link 2</a>
-            <a class="bar-item" href="javascript:void(0)">Link 3</a>
-        </div>
-        <button onclick="$.toggleAccordion('accordionThree')"
-                class="hover-dark-grey light-grey block left-align">Open
-            Section 3
-        </button>
-        <div id="accordionThree" class="hide black accordion-item">
-            <div class="clean-container">
-                <p>Accordion with Images:</p>
-                <img src="documentation-clean_module/images/img_snowtops.jpg"
-                     class="animate-zoom thumbnail-third" alt="French Alps">
-                <p>French Alps</p>
+            <button @click="toggleAccordion('accordionTwo')"
+                    class="hover-dark-grey light-grey block left-align">Open
+                Section 2
+            </button>
+            <div id="accordionTwo" class="hide bar-block accordion-item">
+                <a class="bar-item" href="javascript:void(0)">Link 1</a>
+                <a class="bar-item" href="javascript:void(0)">Link 2</a>
+                <a class="bar-item" href="javascript:void(0)">Link 3</a>
+            </div>
+            <button @click="toggleAccordion('accordionThree')"
+                    class="hover-dark-grey light-grey block left-align">Open
+                Section 3
+            </button>
+            <div id="accordionThree" class="hide black accordion-item">
+                <div class="clean-container">
+                    <p>Accordion with Images:</p>
+                    <img src="documentation-clean_module/images/img_snowtops.jpg"
+                         class="animate-zoom thumbnail-third" alt="French Alps">
+                    <p>French Alps</p>
+                </div>
             </div>
         </div>
         <hr>
@@ -916,14 +909,14 @@
         <p><a href="#">Tabs</a> are perfect for single page web applications, or for
             web
             pages capable of displaying different subjects.</p>
-        <div class="border">
+        <div x-data="tabsData" class="border round">
             <div class="bar light-grey">
                 <a href="javascript:void(0)" class="bar-item tabActivateButton"
-                   onclick="$.switchTab(event, 'London', 'tabs', 'tabActivateButton', 'red')">London</a>
+                   @click="switchTab('London')" :class="{'red': tabId === 'London'}">London</a>
                 <a href="javascript:void(0)" class="bar-item tabActivateButton"
-                   onclick="$.switchTab(event, 'Paris', 'tabs', 'tabActivateButton', 'red')">Paris</a>
+                   @click="switchTab('Paris')" :class="{'red': tabId === 'Paris'}">Paris</a>
                 <a href="javascript:void(0)" class="bar-item tabActivateButton"
-                   onclick="$.switchTab(event, 'Tokyo', 'tabs', 'tabActivateButton', 'red')">Tokyo</a>
+                   @click="switchTab('Tokyo')" :class="{'red': tabId === 'Tokyo'}">Tokyo</a>
             </div>
 
             <div id="London" class="clean-container tabs animate-opacity red">
@@ -947,63 +940,66 @@
                     and the most populous metropolitan area in the world.</p>
             </div>
         </div>
+
         <br>
 
         <p>Tabbed Image Gallery (Click on one of the pictures):</p>
 
-        <div class="row-padding margin-top">
-            <div class="col s3 clean-container">
-                <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
-                   onclick="$.openTabbedImage('Nature');">
-                    <img src="documentation-clean_module/images/img_nature.jpg" alt="Nature">
-                </a>
+        <div x-data="tabbedImagesData">
+            <div class="row-padding margin-top">
+                <div class="col s3 clean-container">
+                    <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
+                       @click="openTabbedImage('Nature');">
+                        <img src="documentation-clean_module/images/img_nature.jpg" alt="Nature">
+                    </a>
+                </div>
+                <div class="col s3 clean-container">
+                    <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
+                       @click="openTabbedImage('Snow');">
+                        <img src="documentation-clean_module/images/img_snowtops.jpg" alt="Fjords">
+                    </a>
+                </div>
+                <div class="col s3 clean-container">
+                    <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
+                       @click="openTabbedImage('Mountains');">
+                        <img src="documentation-clean_module/images/img_mountains.jpg" alt="Mountains">
+                    </a>
+                </div>
+                <div class="col s3 clean-container">
+                    <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
+                       @click="openTabbedImage('Lights');">
+                        <img src="documentation-clean_module/images/img_lights.jpg" alt="Lights">
+                    </a>
+                </div>
             </div>
-            <div class="col s3 clean-container">
-                <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
-                   onclick="$.openTabbedImage('Snow');">
-                    <img src="documentation-clean_module/images/img_snowtops.jpg" alt="Fjords">
-                </a>
+            <br>
+            <div id="Nature" class="picture relative tabbed-image-gallery-item">
+                <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
+                <span @click="hide(event)"
+                      class="topright close-button xlarge transparent text-white">&times;</span>
+                <div class="bottomleft clean-container padding text-white">Nature</div>
             </div>
-            <div class="col s3 clean-container">
-                <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
-                   onclick="$.openTabbedImage('Mountains');">
-                    <img src="documentation-clean_module/images/img_mountains.jpg" alt="Mountains">
-                </a>
-            </div>
-            <div class="col s3 clean-container">
-                <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
-                   onclick="$.openTabbedImage('Lights');">
-                    <img src="documentation-clean_module/images/img_lights.jpg" alt="Lights">
-                </a>
-            </div>
-        </div>
-        <br>
-        <div id="Nature" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
-            <span onclick="$.hide(event)"
-                  class="topright close-button xlarge transparent text-white">&times;</span>
-            <div class="bottomleft clean-container padding text-white">Nature</div>
-        </div>
 
-        <div id="Snow" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
-            <span onclick="$.hide(event)"
-                  class="topright close-button xlarge transparent text-white">&times;</span>
-            <div class="bottomleft clean-container padding text-white">Snow</div>
-        </div>
+            <div id="Snow" class="picture relative tabbed-image-gallery-item">
+                <img src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
+                <span @click="hide(event)"
+                      class="topright close-button xlarge transparent text-white">&times;</span>
+                <div class="bottomleft clean-container padding text-white">Snow</div>
+            </div>
 
-        <div id="Mountains" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-clean_module/images/img_mountains_wide.jpg" alt="Mountains">
-            <span onclick="$.hide(event)"
-                  class="topright close-button xlarge transparent">&times;</span>
-            <div class="bottomleft clean-container padding text-white">Mountains</div>
-        </div>
+            <div id="Mountains" class="picture relative tabbed-image-gallery-item">
+                <img src="documentation-clean_module/images/img_mountains_wide.jpg" alt="Mountains">
+                <span @click="hide(event)"
+                      class="topright close-button xlarge transparent">&times;</span>
+                <div class="bottomleft clean-container padding text-white">Mountains</div>
+            </div>
 
-        <div id="Lights" class="picture relative tabbed-image-gallery-item">
-            <img src="documentation-clean_module/images/img_lights_wide.jpg" alt="Lights">
-            <span onclick="$.hide(event)"
-                  class="topright close-button xlarge transparent text-white">&times;</span>
-            <div class="bottomleft clean-container padding text-white">Northern Lights</div>
+            <div id="Lights" class="picture relative tabbed-image-gallery-item">
+                <img src="documentation-clean_module/images/img_lights_wide.jpg" alt="Lights">
+                <span @click="hide(event)"
+                      class="topright close-button xlarge transparent text-white">&times;</span>
+                <div class="bottomleft clean-container padding text-white">Northern Lights</div>
+            </div>
         </div>
 
         <hr>
@@ -1073,7 +1069,7 @@
         <h2>Clean.CSS Pagination</h2>
         <p>Clean.CSS provides simple ways for <a href="#">page pagination</a>.</p>
 
-        <div class="bar">
+        <div class="bar margin-top margin-bottom">
             <a class="bar-item button" href="javascript:void(0)">&laquo;</a>
             <a class="bar-item button black" href="javascript:void(0)">1</a>
             <a class="bar-item button" href="javascript:void(0)">2</a>
@@ -1083,13 +1079,13 @@
             <a class="bar-item button" href="javascript:void(0)">&raquo;</a>
         </div>
 
-        <div class="bar border round">
+        <div class="bar border round margin-top margin-bottom">
             <a href="javascript:void(0)" class="button link-button">&#10094; Previous</a>
             <a href="javascript:void(0)" class="button float-right link-button">Next &#10095;</a>
         </div>
 
         <div class="center">
-            <div class="bar">
+            <div class="bar margin-top margin-bottom">
                 <a href="javascript:void(0)" class="button link-button">&#10094;</a>
                 <a href="javascript:void(0)" class="button link-button">&#10095;</a>
             </div>
@@ -1102,7 +1098,8 @@
             other
             content:</p>
 
-        <div class="w3-content relative">
+        <div x-data="sliderData" x-init="slideItemClass = 'slide-item'; slideDotsClass = 'slide-dots';"
+             class="clean-content relative">
             <div class="relative slide-item">
                 <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Beautiful Nature">
                 <div class="topleft padding text-white small">
@@ -1131,12 +1128,12 @@
                 </div>
             </div>
             <div class="slider-nav center clean-container section large text-white bottomleft">
-                <div class="float-left hover-text-khaki large arrow" onclick="$.slideSwitcher(-1)">&#10094;</div>
-                <div class="float-right hover-text-khaki large arrow" onclick="$.slideSwitcher(1)">&#10095;</div>
+                <div class="float-left hover-text-khaki large pointer" @click="switchSlide(-1)">&#10094;</div>
+                <div class="float-right hover-text-khaki large pointer" @click="switchSlide(1)">&#10095;</div>
                 <div class="margin-top text-center">
-                    <span class="badge slide-dots border hover-white" onclick="$.currentSlide(1)"></span>
-                    <span class="badge slide-dots border hover-white" onclick="$.currentSlide(2)"></span>
-                    <span class="badge slide-dots border hover-white" onclick="$.currentSlide(3)"></span>
+                    <span class="badge slide-dots border hover-white" @click="currentSlide(1)"></span>
+                    <span class="badge slide-dots border hover-white" @click="currentSlide(2)"></span>
+                    <span class="badge slide-dots border hover-white" @click="currentSlide(3)"></span>
                 </div>
 
             </div>
@@ -1148,58 +1145,61 @@
         <p>Combine <a href="#">Modals</a> and <a href="#">Slideshows</a> to create a
             lightbox
             (modal image gallery):</p>
-        <div id="modalLightOne" class="clean-modal black">
-            <span class="text-white xxlarge hover-text-grey clean-container topright pointer"
-                  title="Close Lightbox" onclick="$.closeLightbox()">&times;</span>
-            <div class="clean-modal-content medium-content">
+        <div x-data="lightboxData">
+            <div x-show="openLighbox" class="gallery-modal black" :class="{'show': openLighbox }">
+                <span class="text-white xxlarge hover-text-grey clean-container topright pointer"
+                      title="Close Lightbox" @click="closeLightbox()">&times;</span>
+                <div class="clean-modal-content big-content">
 
-                <div class="clean-content">
-                    <img class="lightbox-item" src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
-                    <img class="lightbox-item" src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
-                    <img class="lightbox-item" src="documentation-clean_module/images/img_mountains_wide.jpg"
-                         alt="Mountains">
-                    <div class="row black center">
-                        <div class="clean-container relative">
-                            <p id="lightbox-caption-id" class="text-center"></p>
-                            <span class="middle hover-text-grey large arrow" style="left:2%"
-                                  onclick="$.stepLightbox(-1)" title="Previous image">&#10094;</span>
-                            <span class="middle hover-text-grey large arrow" style="left:98%"
-                                  onclick="$.stepLightbox(1)" title="Next image">&#10095;</span>
-                        </div>
+                    <div class="clean-content">
+                        <img class="lightbox-item" src="documentation-clean_module/images/img_nature_wide.jpg"
+                             alt="Nature">
+                        <img class="lightbox-item" src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
+                        <img class="lightbox-item" src="documentation-clean_module/images/img_mountains_wide.jpg"
+                             alt="Mountains">
+                        <div class="row black center">
+                            <div class="clean-container relative">
+                                <p id="lightbox-caption-id" class="text-center"></p>
+                                <span class="middle hover-text-grey large pointer" style="left:2%"
+                                      @click="stepLightbox(-1)" title="Previous image">&#10094;</span>
+                                <span class="middle hover-text-grey large pointer" style="left:98%"
+                                      @click="stepLightbox(1)" title="Next image">&#10095;</span>
+                            </div>
 
-                        <div class="col s4">
-                            <img class="lightbox-dots opacity hover-opacity-off pointer"
-                                 src="documentation-clean_module/images/img_nature_wide.jpg"
-                                 onclick="$.currentLightbox(1)" alt="Nature and sunrise">
-                        </div>
-                        <div class="col s4">
-                            <img class="lightbox-dots opacity hover-opacity-off pointer"
-                                 src="documentation-clean_module/images/img_snow_wide.jpg"
-                                 onclick="$.currentLightbox(2)" alt="French Alps">
-                        </div>
-                        <div class="col s4">
-                            <img class="lightbox-dots opacity hover-opacity-off pointer"
-                                 src="documentation-clean_module/images/img_mountains_wide.jpg"
-                                 onclick="$.currentLightbox(3)" alt="Mountains and fjords">
-                        </div>
-                    </div> <!-- End row -->
-                </div> <!-- End w3-content -->
+                            <div class="col s4">
+                                <img class="lightbox-dots opacity hover-opacity-off pointer"
+                                     src="documentation-clean_module/images/img_nature_wide.jpg"
+                                     @click="currentLightbox(1)" alt="Nature and sunrise">
+                            </div>
+                            <div class="col s4">
+                                <img class="lightbox-dots opacity hover-opacity-off pointer"
+                                     src="documentation-clean_module/images/img_snow_wide.jpg"
+                                     @click="currentLightbox(2)" alt="French Alps">
+                            </div>
+                            <div class="col s4">
+                                <img class="lightbox-dots opacity hover-opacity-off pointer"
+                                     src="documentation-clean_module/images/img_mountains_wide.jpg"
+                                     @click="currentLightbox(3)" alt="Mountains and fjords">
+                            </div>
+                        </div> <!-- End row -->
+                    </div> <!-- End clean-content -->
 
-            </div> <!-- End modal content -->
-        </div> <!-- End modal -->
+                </div> <!-- End modal content -->
+            </div> <!-- End modal -->
 
-        <div class="row-padding">
-            <div class="col s4">
-                <img src="documentation-clean_module/images/img_nature_wide.jpg"
-                     onclick="$.openLightbox();$.currentLightbox(1)" class="hover-shadow pointer" alt="Nature">
-            </div>
-            <div class="col s4">
-                <img src="documentation-clean_module/images/img_snow_wide.jpg"
-                     onclick="$.openLightbox();$.currentLightbox(2)" class="hover-shadow pointer" alt="Snow">
-            </div>
-            <div class="col s4">
-                <img src="documentation-clean_module/images/img_mountains_wide.jpg"
-                     onclick="$.openLightbox();$.currentLightbox(3)" class="hover-shadow pointer" alt="Mountains">
+            <div class="row-padding">
+                <div class="col s4">
+                    <img src="documentation-clean_module/images/img_nature_wide.jpg"
+                         @click="openLightbox();currentLightbox(1)" class="hover-shadow pointer" alt="Nature">
+                </div>
+                <div class="col s4">
+                    <img src="documentation-clean_module/images/img_snow_wide.jpg"
+                         @click="openLightbox();currentLightbox(2)" class="hover-shadow pointer" alt="Snow">
+                </div>
+                <div class="col s4">
+                    <img src="documentation-clean_module/images/img_mountains_wide.jpg"
+                         @click="openLightbox();currentLightbox(3)" class="hover-shadow pointer" alt="Mountains">
+                </div>
             </div>
         </div>
 
@@ -1209,32 +1209,34 @@
         <p>The <a href="#">animate</a>
             classes provide an easy way to slide and fade in elements:</p>
 
-        <div class="center">
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('top')">Top
-            </button>
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('bottom')">
-                Bottom
-            </button>
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('left')">Left
-            </button>
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('right')">Right
-            </button>
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('fade')">Fade In
-            </button>
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('zoom')">Zoom
-            </button>
-            <button class="green hover-dark-green hover-border-dark-green" onclick="$.animate('spin')">Spin
-            </button>
-        </div>
-        <div class="center">
-            <div id="top" class="panel animate animate-top">Animation is Fun!</div>
-            <div id="bottom" class="panel animate animate-bottom">Animation is Fun!</div>
-            <div id="left" class="panel animate animate-left">Animation is Fun!</div>
-            <div id="right" class="panel animate animate-right">Animation is Fun!</div>
-            <div id="fade" class="panel animate animate-opacity">Animation is Fun!</div>
-            <div id="zoom" class="panel animate animate-zoom">Animation is Fun!</div>
-            <div id="spin" class="panel animate spin">Animation is Fun!</div>
-            <div id="normal" class="panel animate ">Animation is Fun!</div>
+        <div x-data="animateData">
+            <div class="center">
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('top')">Top
+                </button>
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('bottom')">
+                    Bottom
+                </button>
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('left')">Left
+                </button>
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('right')">Right
+                </button>
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('fade')">Fade In
+                </button>
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('zoom')">Zoom
+                </button>
+                <button class="green hover-dark-green hover-border-dark-green" @click="animate('spin')">Spin
+                </button>
+            </div>
+            <div class="center">
+                <div x-show="target === 'top'" class="panel animate animate-top">Animation is Fun!</div>
+                <div x-show="target === 'bottom'" class="panel animate animate-bottom">Animation is Fun!</div>
+                <div x-show="target === 'left'" class="panel animate animate-left">Animation is Fun!</div>
+                <div x-show="target === 'right'" class="panel animate animate-right">Animation is Fun!</div>
+                <div x-show="target === 'fade'" class="panel animate animate-opacity">Animation is Fun!</div>
+                <div x-show="target === 'zoom'" class="panel animate animate-zoom">Animation is Fun!</div>
+                <div x-show="target === 'spin'" class="panel animate spin">Animation is Fun!</div>
+                <div x-show="target === 'normal'" class="panel animate ">Animation is Fun!</div>
+            </div>
         </div>
 
         <hr>
@@ -1377,64 +1379,66 @@
         <h2>Clean.CSS Filters</h2>
         <p>Use <a href="#">Clean.CSS Filters</a> to search for a specific element inside a list, table, dropdown,
             etc:</p>
-        <input type="text" placeholder="Search for names.." id="filter-field"
-               onkeyup="$.filterList('filter-field', 'filter-table', 'table')">
 
-        <table id="filter-table">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Country</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Berglunds snabbkop</td>
-                <td>Sweden</td>
-            </tr>
-            <tr>
-                <td>Island Trading</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Koniglich Essen</td>
-                <td>Germany</td>
-            </tr>
-            <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Canada</td>
-            </tr>
-            <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Italy</td>
-            </tr>
-            <tr>
-                <td>North/South</td>
-                <td>UK</td>
-            </tr>
-            <tr>
-                <td>Paris specialites</td>
-                <td>France</td>
-            </tr>
-            </tbody>
-        </table>
+        <div x-data="filterData" x-init="dataType = 'table'; sourceId = 'filter-table';">
+            <input type="text" placeholder="Search for names.." x-model="filterTerm"
+                   @keyup="filter()">
 
+            <table id="filter-table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Berglunds snabbkop</td>
+                    <td>Sweden</td>
+                </tr>
+                <tr>
+                    <td>Island Trading</td>
+                    <td>UK</td>
+                </tr>
+                <tr>
+                    <td>Koniglich Essen</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Laughing Bacchus Winecellars</td>
+                    <td>Canada</td>
+                </tr>
+                <tr>
+                    <td>Magazzini Alimentari Riuniti</td>
+                    <td>Italy</td>
+                </tr>
+                <tr>
+                    <td>North/South</td>
+                    <td>UK</td>
+                </tr>
+                <tr>
+                    <td>Paris specialites</td>
+                    <td>France</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <input type="text" placeholder="Search for fruits.."
-               id="filter-fruits"
-               onkeyup="$.filterList('filter-fruits', 'filter-list', 'list')">
-        <ul id="filter-list">
-            <li>Apple</li>
-            <li>Orange</li>
-            <li>Banana</li>
-            <li>Peach</li>
-            <li>Melon</li>
-            <li>Cherry</li>
-        </ul>
+        <div x-data="filterData" x-init="dataType = 'list'; sourceId = 'filter-list';">
+            <input type="text" placeholder="Search for fruits.." x-model="filterTerm" @keyup="filter()">
+            <ul id="filter-list">
+                <li>Apple</li>
+                <li>Orange</li>
+                <li>Banana</li>
+                <li>Peach</li>
+                <li>Melon</li>
+                <li>Cherry</li>
+            </ul>
+        </div>
 
         <hr>
 
@@ -1444,10 +1448,10 @@
 
         <p class="tooltip">Hover over this text!
             <i class="fa fa-question-circle pointer" aria-hidden="true"></i>
-            <span class="tag black">Tooltip content</span></p>
+            <span class="badge black">Tooltip content</span></p>
         <p class="tooltip">Hover over this text!
             <i class="fa fa-question-circle pointer" aria-hidden="true"></i>
-            <span class="tag black animate-opacity round-large">Tooltip content</span></p>
+            <span class="badge black animate-opacity round-large">Tooltip content</span></p>
         <hr>
 
         <h2>Color Themes</h2>
@@ -1475,7 +1479,8 @@
                         </li>
                     </ul>
 
-                    <div class="clean-container indigo xlarge round-bottom">&laquo;<span class="float-right">&raquo;</span></div>
+                    <div class="clean-container indigo xlarge round-bottom">&laquo;<span
+                                class="float-right">&raquo;</span></div>
                 </div>
             </div>
 
@@ -1503,7 +1508,8 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="clean-container teal xlarge round-bottom">&laquo;<span class="float-right">&raquo;</span></div>
+                    <div class="clean-container teal xlarge round-bottom pointer">&laquo;<span
+                                class="float-right">&raquo;</span></div>
                 </div>
             </div>
         </div>

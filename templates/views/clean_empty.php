@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>css/app.css">
     <!-- don't change anything above here -->
     <!-- add your own stylesheet below here -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/custom.css">
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
+    <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/prism.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <title><?= $page_headline ?? 'Clean Empty Page' ?></title>
+    <title><?= $page_headline ?? 'Clean Empty page' ?></title>
 </head>
 <body @scroll="setScrollToTop()">
-
 <div class="wrapper">
     <header>
         <div id="header-sm">
@@ -93,70 +92,29 @@
     </span>
 
 </div>
-
-
 <footer class="footer">
     <div class="container">
         <!-- it's okay to remove the links and content here - everything is cool (DC) -->
         <div class="normal">&copy; Copyright <?= date('Y').' '.OUR_NAME ?></div>
         <div class="small"><?= anchor('https://trongate.io', 'Powered by Trongate') ?></div>
     </div>
-
 </footer>
-
-
 <div id="slide-nav">
     <div id="close-btn" onclick="closeSlideNav()">&times;</div>
     <ul auto-populate="true"></ul>
 </div>
-
-
 <script src="<?= BASE_URL ?>js/app.js"></script>
 <script src="documentation-clean_module/js/clean.js"></script>
+<script src="documentation-clean_module/js/prism.js"></script>
 
 <script>
 
     document.addEventListener('alpine:init', () => {
-        Alpine.data('data', () => ({
-            scrollTop: 0,
-            darkMode: localStorage.getItem('darkMode') === 'true',
-
-            toggleDarkMode() {
-                this.darkMode = !this.darkMode;
-            },
-
-            isDarkModeOn() {
-                return this.darkMode === true;
-            },
-
-            setScrollToTop() {
-                this.scrollTop = document.body.scrollTop;
-            },
-
-            scrollToTop() {
-                document.body.scrollTop = 0;
-
-            },
-
-            init() {
-                this.$watch('darkMode', val => localStorage.setItem('darkMode', val));
-            },
-        }));
-
-        Alpine.data('dropdown', () => ({
-            openDropdown: false,
-
-            toggleDropdown() {
-                this.openDropdown = !this.openDropdown;
-            },
-
-            hideDropdown() {
-                this.openDropdown = false;
-            }
-        }));
+        Alpine.data('data', $.data);
+        Alpine.data('dropdown', $.dropdown);
+        Alpine.data('ajaxSearch', $.ajaxSearch);
     });
+
 </script>
-
-
 </body>
 </html>

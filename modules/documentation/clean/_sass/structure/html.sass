@@ -1,10 +1,8 @@
 html, body
-    -ms-text-size-adjust: 100%
-    -webkit-text-size-adjust: 100%
     box-sizing: border-box
     overflow-x: hidden
     height: 100%
-    font-family: "Liberation Sans", Arial, sans-serif
+    font-family: $sans
     font-size: 1rem
     line-height: 1.5
     scroll-behavior: smooth
@@ -12,12 +10,8 @@ html, body
 
 body
     margin: 0
-    @include fullWidth()
+    width: 100%
 
 
 *, *:before, *:after
     box-sizing: inherit // DO NOT REMOVE IT!!
-
-@media (prefers-reduced-motion: reduce)
-    html
-        scroll-behavior: smooth

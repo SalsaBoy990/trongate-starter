@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>css/app.css">
     <!-- don't change anything above here -->
     <!-- add your own stylesheet below here -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>css/custom.css">
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
+    <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/prism.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <title>Public</title>
@@ -80,51 +80,26 @@
 </div>
 <script src="<?= BASE_URL ?>js/app.js"></script>
 <script src="documentation-clean_module/js/clean.js"></script>
+<script src="documentation-clean_module/js/prism.js"></script>
 
 <script>
 
     document.addEventListener('alpine:init', () => {
-        Alpine.data('data', () => ({
-            scrollTop: 0,
-            darkMode: localStorage.getItem('darkMode') === 'true',
-
-            toggleDarkMode() {
-                this.darkMode = !this.darkMode;
-            },
-
-            isDarkModeOn() {
-                return this.darkMode === true;
-            },
-
-            setScrollToTop() {
-                this.scrollTop = document.body.scrollTop;
-            },
-
-            scrollToTop() {
-                document.body.scrollTop = 0;
-
-            },
-
-            init() {
-                this.$watch('darkMode', val => localStorage.setItem('darkMode', val));
-            },
-        }));
-
-        Alpine.data('dropdown', () => ({
-            openDropdown: false,
-
-            toggleDropdown() {
-                this.openDropdown = !this.openDropdown;
-            },
-
-            hideDropdown() {
-                this.openDropdown = false;
-            }
-        }));
+        Alpine.data('data', $.data);
+        Alpine.data('dropdownData', $.dropdownData);
+        Alpine.data('ajaxSearchData', $.ajaxSearchData);
+        Alpine.data('modalData', $.modalData);
+        Alpine.data('progressBarData', $.progressBarData);
+        Alpine.data('animateData', $.animateData);
+        Alpine.data('filterData', $.filterData);
+        Alpine.data('alertData', $.alertData);
+        Alpine.data('sliderData', $.sliderData);
+        Alpine.data('lightboxData', $.lightboxData);
+        Alpine.data('accordionData', $.accordionData);
+        Alpine.data('tabsData', $.tabsData);
+        Alpine.data('tabbedImagesData', $.tabbedImagesData);
     });
 
-
 </script>
-
 </body>
 </html>

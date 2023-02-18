@@ -1,19 +1,24 @@
 html.dark
     body
-        background-color: #1D2546
+        background-color: $bg-dark
         color: $light-gray
 
 
     h1, h2, h3, h4, h5, h6, label, form
-        color: #ccc
+        color: $light-gray
 
+
+    button, .button
+        filter: saturate(70%)
+
+        &:hover, &:focus
+            filter: invert(1)
 
 
     input, textarea
-        color: black
-        background: #ccc
+        color: $black
+        background: $light-gray
         border-color: $darkest-gray
-
 
         &:disabled
             cursor: not-allowed
@@ -21,7 +26,7 @@ html.dark
             border-color: $gray
 
         &:focus
-            border-color: $blue
+            border-color: $primary-light
             background-color: rgba(255, 255, 225, 0.8)
 
 
@@ -30,9 +35,23 @@ html.dark
             color: #c5c5c5
 
 
+    #search-results
+        a
+            color: $link
+
+            &:hover
+                color: $darkest-gray
+
+
     .panel, .clean-container, .cell, .card
+        filter: saturate(65%)
+
         h1, h2, h3, h4, h5, h6, p, ul, ol, span
             color: inherit
+
+
+    .panel
+        filter: saturate(60%)
 
 
     p, ul:not(.list-card,.card-list,.clean-container), ol
@@ -40,7 +59,7 @@ html.dark
 
 
     a:not(.button, .close-button, .link-button, .button-square, .button-circle)
-        color: $light-blue
+        color: $primary-light
 
         &:hover
             color: #FD844A
@@ -49,51 +68,56 @@ html.dark
     a.bar-item.button, a.button.link-button
         color: white
 
+
     a.button.link-button:hover
         color: $amber
 
+
     header:not(.clean-container)
         color: #c5c5c5
-        background-color: black
+        background-color: $black
 
 
     footer
-        background-color: black
+        background-color: $black
         color: $gray
 
 
     pre, code
         color: $light-gray
-        background-color: black
+        background-color: $black
 
 
     table
         thead
             th
-                background-color: black
-                color: #ccc
+                background-color: $black
+                color: $lightest-gray
 
         tr:nth-child(odd)
-            background-color: rgba(213, 189, 225, 0.2)
+            background-color: rgba(255, 255, 255, 0.05)
 
         tr:nth-child(even)
-            background-color: rgba(213, 189, 225, 0.1)
+            background-color: transparent
 
-        tr:hover, tr:nth-child(odd):hover
-            background-color: rgba(213, 189, 225, 0.3)
-            
+        tr:hover
+            background-color: rgba(0, 0, 0, 0.1)
+
         td
-            color: #ccc
+            color: $lightest-gray
 
 
     .toc nav
-        background-color: rgba(213, 189, 225, 0.1)
+        background-color: rgba(255, 255, 255, 0.05)
+
 
     .clean-modal-content
         background-color: $darkest-gray
 
+
     .accordion-item
-        background-color: black
+        background-color: $black
+
 
     .list-card
         background-color: #c5c5c5
@@ -102,3 +126,8 @@ html.dark
 
     .clean-modal, .search-modal
         background-color: rgba(255, 255, 255, 0.6)
+
+
+    .dropdown-content
+        color: #fff
+        background-color: $black
