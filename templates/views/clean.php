@@ -22,7 +22,10 @@
                 &#9776;
             </div>
             <div class="logo">
-                <?= anchor(BASE_URL, WEBSITE_NAME) ?>
+                <a href="<?= BASE_URL ?>">
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
+                    <span>Clean Theme</span>
+                </a>
             </div>
             <div>
 
@@ -38,7 +41,10 @@
         </div>
         <div id="header-lg">
             <div class="logo">
-                <?= anchor(BASE_URL, WEBSITE_NAME) ?>
+                <a href="<?= BASE_URL ?>">
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
+                    <span>Clean Theme</span>
+                </a>
             </div>
             <div>
                 <ul id="top-nav">

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/prism.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <title><?= $page_headline ?? 'Clean Empty page' ?></title>
+    <title>Public</title>
 </head>
 <body @scroll="setScrollToTop()">
 <div class="wrapper">
@@ -22,7 +22,10 @@
                 &#9776;
             </div>
             <div class="logo">
-                <?= anchor(BASE_URL, WEBSITE_NAME) ?>
+                <a href="<?= BASE_URL ?>">
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
+                    <span>Clean Theme</span>
+                </a>
             </div>
             <div>
 
@@ -38,7 +41,10 @@
         </div>
         <div id="header-lg">
             <div class="logo">
-                <?= anchor(BASE_URL, WEBSITE_NAME) ?>
+                <a href="<?= BASE_URL ?>">
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
+                    <span>Clean Theme</span>
+                </a>
             </div>
             <div>
                 <ul id="top-nav">
@@ -111,8 +117,7 @@
 
     document.addEventListener('alpine:init', () => {
         Alpine.data('data', $.data);
-        Alpine.data('dropdown', $.dropdown);
-        Alpine.data('ajaxSearch', $.ajaxSearch);
+        Alpine.data('filterData', $.filterData);
     });
 
 </script>

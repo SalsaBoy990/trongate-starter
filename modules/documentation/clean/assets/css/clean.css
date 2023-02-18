@@ -2241,3 +2241,20 @@ html.dark .dropdown-content {
 
 .z-2 {
   z-index: 2; }
+
+#header-sm .logo a,
+#header-lg .logo a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25em;
+  font-size: 0.875em; }
+  #header-sm .logo a span,
+  #header-lg .logo a span {
+    font-weight: 700; }
+  #header-sm .logo a img,
+  #header-lg .logo a img {
+    height: 36px;
+    width: auto; }
+
+#close-btn {
+  cursor: pointer; }
