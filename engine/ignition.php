@@ -6,11 +6,6 @@ require_once '../config/database.php';
 require_once '../config/site_owner.php';
 require_once '../config/themes.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-ini_set('html_errors', 1);
-error_reporting(E_ALL);
-
 spl_autoload_register(function($class_name) {
 
     if (strpos($class_name, '_helper')) {
