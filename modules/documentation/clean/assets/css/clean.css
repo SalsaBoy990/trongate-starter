@@ -1267,7 +1267,6 @@ html, body {
   scroll-behavior: smooth; }
 
 body {
-  margin: 0;
   width: 100%; }
 
 *, *:before, *:after {
@@ -2258,3 +2257,7 @@ html.dark .dropdown-content {
 
 #close-btn {
   cursor: pointer; }
+
+.darkmode-toggle {
+  top: -2px;
+  position: relative; }
