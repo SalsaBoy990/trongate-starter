@@ -1,1 +1,1 @@
-<h1>Index works</h1>
+<?= Modules::run('documentation-clean/index') ?>
