@@ -34,12 +34,12 @@
 </div>
 
 
-<div x-data="{ showToc: true}" class="main-container container relative">
+<div x-data="{ showToc: false}" class="main-container container relative">
     <span @click="showToc = ! showToc" class="pointer absolute padding-small" role="button" title="Table of content">
         <i :class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
     </span>
 
-    <aside x-show="showToc" x-transition class="toc">
+    <aside x-show="showToc" x-cloak x-transition class="toc">
         <h2> Table of Contents </h2>
         <nav>
             <a href="#"><h3>Elements</h3></a>
