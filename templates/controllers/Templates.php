@@ -17,6 +17,10 @@ class Templates extends Trongate {
         load('clean_empty', $data);
     }
 
+    function clean_no_toc($data) {
+        load('clean_no_toc', $data);
+    }
+
     function error_404($data) {
         load('error_404', $data);
     }
