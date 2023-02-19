@@ -28,16 +28,15 @@
                 </a>
             </div>
             <div>
-
-                <span class="pointer" rel="button"
-                      @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
-                </span>
-
                 <?php
                 echo anchor('account', '<i class="fa fa-user"></i>');
                 echo anchor('logout', '<i class="fa fa-sign-out"></i>');
-                ?></div>
+                ?>
+                <span class="pointer darkmode-toggle" rel="button"
+                      @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
+                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
+                </span>
+            </div>
         </div>
         <div id="header-lg">
             <div class="logo">
@@ -52,13 +51,7 @@
                     <li><a href="<?= BASE_URL ?>"><i class="fa fa-lightbulb-o"></i>About Us</a></li>
                     <li><a href="<?= BASE_URL ?>"><i class="fa fa-street-view"></i>Our Values</a></li>
                     <li><a href="<?= BASE_URL ?>"><i class="fa fa-gears"></i>How We Work</a></li>
-                    <li><a href="<?= BASE_URL ?>"><i class="fa fa-send"></i>Get In Touch</a></li>
-
-                    <li><span class="pointer" rel="button"
-                              @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                              :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
-                        </span>
-                    </li>
+                    <li><a href="<?= BASE_URL ?>documentation-clean/index"><i class="fa fa-send"></i>Clean Template</a></li>
                 </ul>
             </div>
         </div>

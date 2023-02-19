@@ -23,27 +23,26 @@
             </div>
             <div class="logo">
                 <a href="<?= BASE_URL ?>">
-                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
-                    <span>Clean Theme</span>
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
+                    <span><?= WEBSITE_NAME ?></span>
                 </a>
             </div>
             <div>
-
-                <span class="pointer" rel="button"
-                      @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
-                </span>
-
                 <?php
                 echo anchor('account', '<i class="fa fa-user"></i>');
                 echo anchor('logout', '<i class="fa fa-sign-out"></i>');
-                ?></div>
+                ?>
+                <span class="pointer darkmode-toggle" rel="button"
+                      @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
+                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
+                </span>
+            </div>
         </div>
         <div id="header-lg">
             <div class="logo">
                 <a href="<?= BASE_URL ?>">
-                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
-                    <span>Clean Theme</span>
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
+                    <span><?= WEBSITE_NAME ?></span>
                 </a>
             </div>
             <div>
@@ -86,26 +85,8 @@
 </div>
 <script src="<?= BASE_URL ?>js/app.js"></script>
 <script src="documentation-clean_module/js/clean.js"></script>
+<script src="documentation-clean_module/js/alpine-init.js"></script>
 <script src="documentation-clean_module/js/prism.js"></script>
 
-<script>
-
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('data', $.data);
-        Alpine.data('dropdownData', $.dropdownData);
-        Alpine.data('ajaxSearchData', $.ajaxSearchData);
-        Alpine.data('modalData', $.modalData);
-        Alpine.data('progressBarData', $.progressBarData);
-        Alpine.data('animateData', $.animateData);
-        Alpine.data('filterData', $.filterData);
-        Alpine.data('alertData', $.alertData);
-        Alpine.data('sliderData', $.sliderData);
-        Alpine.data('lightboxData', $.lightboxData);
-        Alpine.data('accordionData', $.accordionData);
-        Alpine.data('tabsData', $.tabsData);
-        Alpine.data('tabbedImagesData', $.tabbedImagesData);
-    });
-
-</script>
 </body>
 </html>
