@@ -15,6 +15,10 @@ echo form_open($form_location);
 echo form_label('Entry Title');
 //echo form_input('title', '');
 echo form_input('title', $title);
+
+echo form_label('Entry Content');
+echo form_textarea('content', $content, [ 'id' => 'entry-content-area']);
+
 echo '<br>';
 
 echo form_submit('submit', 'Submit', [ 'class' => 'primary']);

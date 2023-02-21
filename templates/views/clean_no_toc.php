@@ -15,6 +15,8 @@
     <title><?= $title . ' | ' ?><?= WEBSITE_NAME ?>></title>
 
     <?= Template::partial('partials/public/meta', $data) ?>
+
+    <script src="entries_module/assets/tinymce/tinymce.js" referrerpolicy="origin"></script>
 </head>
 <body @scroll="setScrollToTop()">
 <div class="wrapper">

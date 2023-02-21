@@ -13,6 +13,15 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <title>Public</title>
+
+    <script src="entries_module/tinymce/tinymce.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#entry-content-area',
+            language: 'hu_HU',
+            directionality: 'ltr'
+        });
+    </script>
 </head>
 <body @scroll="setScrollToTop()">
 <div class="wrapper">

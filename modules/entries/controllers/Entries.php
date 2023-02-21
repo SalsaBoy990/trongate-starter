@@ -2,6 +2,16 @@
 
 class Entries extends Trongate
 {
+    // To sanitize user input from TinyMCE text editor
+    // Usage: $clean_html = $this->purifier->purify($dirty_html);
+    private $purifier;
+
+    public function __construct($module_name=NULL) {
+        parent::__construct($module_name);
+
+        require_once '../modules/entries/assets/htmlpurifier/library/HTMLPurifier.includes.php';
+        $this->purifier = new HTMLPurifier();
+    }
 
     function index()
     {
@@ -29,6 +39,7 @@ class Entries extends Trongate
         $data = $this->_get_data_from_db($id);
         $data['view_module'] = 'entries';
         $data['view_file'] = 'show';
+        $data['content'] = $this->purifier->purify($data['content']);
 
         $this->template('clean_empty', $data);
 
@@ -71,6 +82,7 @@ class Entries extends Trongate
             settype($update_id, 'int');
 
             $data['title'] = post('title', true);
+            $data['content'] = $this->purifier->purify(post('content'));
 
             if ($update_id > 0) {
 
@@ -128,10 +140,9 @@ class Entries extends Trongate
 
     function search()
     {
-        $params['search_key'] = '%csodálatos%';
+        $params['search_key'] = '%' . $term . '%';
         $sql = 'SELECT * FROM entries WHERE title LIKE :search_key';
         $row = $this->model->query_bind($sql, $params, 'object');
-
         json($row);
     }
 }
