@@ -332,37 +332,52 @@
       // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       // body: JSON.stringify(params) // body data type must match "Content-Type" header
     };
+    const stripTagsRegex = new RegExp("(<([^>]+)>)", "ig");
     return {
       searchTerm: "",
       panelOpen: false,
       count: 0,
       results: [],
       searchByTitle(apiPath, columnName = "title") {
-        if (this.searchTerm.length > 3) {
+        if (this.searchTerm.length >= 3) {
           const key = columnName + " LIKE";
           let args = {};
           args[key] = "%" + this.searchTerm + "%";
           const queryParams = new URLSearchParams(args);
           fetch(apiPath + "?" + queryParams.toString(), config).then((response) => response.json()).then((data2) => {
-            console.log(data2);
+            if (!data2) {
+              return;
+            }
+            let newData = [];
+            let searchTermRegex = new RegExp(`${this.searchTerm}`, "ig");
+            for (let i = 0; i < data2.length; i++) {
+              let title = data2[i].title.replaceAll(stripTagsRegex, "");
+              let content = data2[i].content.replaceAll(stripTagsRegex, "");
+              title = title.replaceAll(searchTermRegex, "<mark>$&</mark>");
+              content = content.replaceAll(searchTermRegex, "<mark>$&</mark>");
+              newData[i] = data2[i];
+              newData[i].title = title;
+              newData[i].content = content;
+            }
             this.panelOpen = true;
-            this.results = data2;
-            this.count = data2.length;
+            this.results = newData;
+            this.count = newData.length;
           });
         } else {
-          this.count = 0;
-          this.panelOpen = false;
-          this.results = [];
+          this.initializeProperties();
         }
       },
       clearSearch() {
         this.searchTerm = "";
-        this.count = 0;
-        this.panelOpen = false;
-        this.results = [];
+        this.initializeProperties();
       },
       togglePanel() {
         this.panelOpen = !this.panelOpen;
+      },
+      initializeProperties() {
+        this.count = 0;
+        this.panelOpen = false;
+        this.results = [];
       }
     };
   }

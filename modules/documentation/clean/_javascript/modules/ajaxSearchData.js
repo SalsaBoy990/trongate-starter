@@ -18,6 +18,9 @@ export function ajaxSearchData() {
         // body: JSON.stringify(params) // body data type must match "Content-Type" header
     };
 
+    // https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
+    const stripTagsRegex =  new RegExp('(<([^>]+)>)', 'ig');
+
     return {
         searchTerm: '',
         panelOpen: false,
@@ -25,39 +28,64 @@ export function ajaxSearchData() {
         results: [],
 
         searchByTitle(apiPath, columnName = 'title') {
-            if (this.searchTerm.length > 3) {
+            // decrease the number of HTTP calls
+            if (this.searchTerm.length >= 3) {
                 const key = columnName + ' LIKE';
                 let args = {};
                 args[key] = '%' + this.searchTerm + '%';
 
                 const queryParams = new URLSearchParams(args);
 
+                // Send request to the api endpoint
                 fetch(apiPath + '?' + queryParams.toString(), config)
                     .then((response) => response.json())
                     .then((data) => {
-                        console.log(data);
+                        if (!data) {
+                            return;
+                        }
+                        let newData = [];
+                        let searchTermRegex = new RegExp(`${this.searchTerm}`, "ig"); // search for all instances
+
+                        for (let i = 0; i < data.length; i++) {
+                            // remove html tags
+                            let title = data[i].title.replaceAll(stripTagsRegex, '');
+                            let content = data[i].content.replaceAll(stripTagsRegex, '');
+
+                            // add marks to highlight the search term in the text
+                            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace#specifying_a_string_as_the_replacement
+                            title = title.replaceAll(searchTermRegex, '<mark>$&</mark>');
+                            content = content.replaceAll(searchTermRegex, '<mark>$&</mark>');
+
+                            newData[i] = data[i];
+                            newData[i].title = title;
+                            newData[i].content = content;
+                        }
+
                         this.panelOpen = true;
-                        this.results = data;
-                        this.count = data.length;
+                        this.results = newData;
+                        this.count = newData.length;
 
                     });
             } else {
                 // this.searchTerm = '';
-                this.count = 0;
-                this.panelOpen = false;
-                this.results = [];
+                this.initializeProperties();
             }
         },
 
         clearSearch() {
             this.searchTerm = '';
-            this.count = 0;
-            this.panelOpen = false;
-            this.results = [];
+            this.initializeProperties();
         },
 
         togglePanel() {
             this.panelOpen = !this.panelOpen;
+        },
+
+        initializeProperties() {
+            this.count = 0;
+            this.panelOpen = false;
+            this.results = [];
         }
+
     }
 }

@@ -2261,3 +2261,6 @@ html.dark .dropdown-content {
 .darkmode-toggle {
   top: -2px;
   position: relative; }
+
+mark {
+  background-color: yellow; }

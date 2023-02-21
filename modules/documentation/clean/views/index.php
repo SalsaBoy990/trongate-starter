@@ -22,9 +22,9 @@
                 <template x-for="item in results">
                     <div class="clean-container round border border-default margin-y">
                         <b>
-                            <a :href="'<?= BASE_URL ?>' + 'entries/show/' + item.id" x-text="item.title"></a>
+                            <a :href="'<?= BASE_URL ?>' + 'entries/show/' + item.id" x-html="item.title"></a>
                         </b>
-                        <p class="small" x-text="item.content.substr(0, 120) + '...'"></p>
+                        <p class="small" x-html="item.content.substr(0, 120) + '...'"></p>
                     </div>
                 </template>
             </div>
