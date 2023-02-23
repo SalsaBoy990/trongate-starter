@@ -10,7 +10,6 @@
     <!-- add your own stylesheet below here -->
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/prism.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <title>Public</title>
 
@@ -115,13 +114,5 @@
 <script src="documentation-clean_module/js/clean.js"></script>
 <script src="documentation-clean_module/js/prism.js"></script>
 
-<script>
-
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('data', $.data);
-        Alpine.data('filterData', $.filterData);
-    });
-
-</script>
 </body>
 </html>

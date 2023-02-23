@@ -10,7 +10,6 @@
     <!-- add your own stylesheet below here -->
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
     <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/prism.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <title>Public</title>
 </head>
@@ -84,9 +83,8 @@
     <ul auto-populate="true"></ul>
 </div>
 <script src="<?= BASE_URL ?>js/app.js"></script>
-<script src="documentation-clean_module/js/clean.js"></script>
-<script src="documentation-clean_module/js/alpine-init.js"></script>
-<script src="documentation-clean_module/js/prism.js"></script>
+<script src="documentation-clean_module/js/clean.js" type="text/javascript"></script>
+<script src="documentation-clean_module/js/prism.js" type="text/javascript"></script>
 
 </body>
 </html>

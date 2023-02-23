@@ -1267,7 +1267,8 @@ html, body {
   scroll-behavior: smooth; }
 
 body {
-  width: 100%; }
+  width: 100%;
+  background-color: #f8fafc; }
 
 *, *:before, *:after {
   box-sizing: inherit; }
@@ -1409,7 +1410,12 @@ body {
 
 .content {
   width: 100%;
-  min-width: 0; }
+  min-width: 0;
+  padding: 1.5em;
+  background-color: white; }
+  @media screen and (max-width: 576px) {
+    .content {
+      padding: 1em; } }
   .content > h1, .content > h2, .content > h3 {
     color: #2B5E92;
     margin-bottom: 1em;
@@ -1770,6 +1776,12 @@ button:disabled,
 .circle {
   line-height: initial !important; }
 
+.button-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  column-gap: 0.5em; }
+
 .card, .card-2 {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
 
@@ -2063,6 +2075,8 @@ ul.list-card {
   display: inline-block;
   cursor: pointer;
   border-radius: 6px; }
+  .dropdown-click .fa, .dropdown-hover .fa {
+    margin: 0 4px; }
 
 .dropdown-hover:hover .dropdown-content {
   display: block; }
@@ -2128,8 +2142,11 @@ table {
   display: inline-block; }
 
 html.dark body {
-  background-color: #293340;
+  background-color: #1e252f;
   color: #f1f1f1; }
+
+html.dark .content {
+  background-color: #293340; }
 
 html.dark h1, html.dark h2, html.dark h3, html.dark h4, html.dark h5, html.dark h6, html.dark label, html.dark form {
   color: #f1f1f1; }
@@ -2230,13 +2247,7 @@ html.dark .dropdown-content {
   background-color: #040404; }
 
 .container {
-  width: 95%; }
-
-.button-group {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  column-gap: 0.5em; }
+  width: 100%; }
 
 .z-2 {
   z-index: 2; }

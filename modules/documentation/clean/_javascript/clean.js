@@ -1,3 +1,5 @@
+import Alpine from 'alpinejs'
+
 import {data} from "./modules/data";
 import {tabsData} from "./modules/tabsData";
 import {accordionData} from "./modules/accordionData";
@@ -12,18 +14,20 @@ import {dropdownData} from "./modules/dropdownData";
 import {ajaxSearchData} from "./modules/ajaxSearchData";
 import {tabbedImagesData} from "./modules/tabbedImagesData";
 
-window.$ = {
-    data,
-    tabbedImagesData,
-    tabsData,
-    accordionData,
-    lightboxData,
-    sliderData,
-    filterData,
-    alertData,
-    animateData,
-    dropdownData,
-    ajaxSearchData,
-    modalData,
-    progressBarData,
-}
+window.Alpine = Alpine
+
+Alpine.data('data', data);
+Alpine.data('dropdownData', dropdownData);
+Alpine.data('ajaxSearchData', ajaxSearchData);
+Alpine.data('modalData', modalData);
+Alpine.data('progressBarData', progressBarData);
+Alpine.data('animateData', animateData);
+Alpine.data('filterData', filterData);
+Alpine.data('alertData', alertData);
+Alpine.data('sliderData', sliderData);
+Alpine.data('lightboxData', lightboxData);
+Alpine.data('accordionData', accordionData);
+Alpine.data('tabsData', tabsData);
+Alpine.data('tabbedImagesData', tabbedImagesData);
+
+Alpine.start()

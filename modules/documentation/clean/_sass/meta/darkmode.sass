@@ -3,16 +3,23 @@ html.dark
         background-color: $bg-dark
         color: $light-gray
 
+    .content
+        background-color: $bg-content
 
     h1, h2, h3, h4, h5, h6, label, form
         color: $light-gray
 
 
     button, .button
-        filter: saturate(70%)
+        //filter: saturate(70%)
 
         &:hover, &:focus
-            filter: invert(1)
+            //filter: invert(1)
+
+
+    .scroll-to-top-button
+        &:hover, &:focus
+            background-color: $amber
 
 
     input, textarea
@@ -44,7 +51,7 @@ html.dark
 
 
     .panel, .clean-container, .cell, .card
-        filter: saturate(65%)
+        //filter: saturate(65%)
 
         h1, h2, h3, h4, h5, h6, p, ul, ol, span
             color: inherit
