@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>css/app.css">
     <!-- don't change anything above here -->
     <!-- add your own stylesheet below here -->
-    <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/clean.css">
-    <link rel="stylesheet" type="text/css" href="documentation-clean_module/css/prism.css">
+    <link rel="stylesheet" type="text/css" href="clean_module/css/clean.css">
+    <link rel="stylesheet" type="text/css" href="clean_module/css/prism.css">
 
     <title>Public</title>
 </head>
@@ -22,7 +22,7 @@
             </div>
             <div class="logo">
                 <a href="<?= BASE_URL ?>">
-                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
+                    <img src="clean_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
                     <span><?= WEBSITE_NAME ?></span>
                 </a>
             </div>
@@ -33,14 +33,13 @@
                 ?>
                 <span class="pointer darkmode-toggle" rel="button"
                       @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
-                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
-                </span>
+                      :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'"></span>
             </div>
         </div>
         <div id="header-lg">
             <div class="logo">
                 <a href="<?= BASE_URL ?>">
-                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
+                    <img src="clean_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
                     <span><?= WEBSITE_NAME ?></span>
                 </a>
             </div>
@@ -64,7 +63,7 @@
 
     <div><?= Template::display($data) ?></div>
 
-    <span class="light-gray pointer scroll-to-top-button padding-small round" role="button"
+    <span class="light-gray pointer scroll-to-top-button padding-0-5 round" role="button"
           title="Toggle table of content"
           x-show="scrollTop > 800" @click="scrollToTop" x-transition>
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
@@ -74,8 +73,8 @@
 <footer class="footer">
     <div class="container">
         <!-- it's okay to remove the links and content here - everything is cool (DC) -->
-        <div class="normal">&copy; Copyright <?= date('Y').' '.OUR_NAME ?></div>
-        <div class="small"><?= anchor('https://trongate.io', 'Powered by Trongate') ?></div>
+        <div class="fs-14">&copy; Copyright <?= date('Y').' '.OUR_NAME ?></div>
+        <div class="fs-14"><?= anchor('https://trongate.io', 'Powered by Trongate') ?></div>
     </div>
 </footer>
 <div id="slide-nav">
@@ -83,8 +82,8 @@
     <ul auto-populate="true"></ul>
 </div>
 <script src="<?= BASE_URL ?>js/app.js"></script>
-<script src="documentation-clean_module/js/clean.js" type="text/javascript"></script>
-<script src="documentation-clean_module/js/prism.js" type="text/javascript"></script>
+<script src="clean_module/js/clean.js" type="text/javascript"></script>
+<script src="clean_module/js/prism.js" type="text/javascript"></script>
 
 </body>
 </html>

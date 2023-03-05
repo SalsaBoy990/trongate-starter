@@ -1,6 +1,13 @@
-button, .button, .close-button
+button,
+.button
+    border: 1px solid $primary-light
+    background-color: $primary-light
+
+button,
+.button,
+.close-button
     display: inline-block
-    padding: 8px 16px
+    padding: 0.5em 1em
     vertical-align: middle
     overflow: hidden
     text-decoration: none
@@ -8,33 +15,18 @@ button, .button, .close-button
     cursor: pointer
     white-space: nowrap
     box-sizing: border-box
-    -moz-box-sizing: border-box
-    -webkit-box-sizing: border-box
-    -webkit-touch-callout: none
-    -webkit-user-select: none
-    -moz-user-select: none
-    -ms-user-select: none
     user-select: none
-    border: 1px solid transparent
-    font-family: "Liberation Sans", Arial, sans-serif
-
-button:hover, .button:hover
-    background-color: $secondary
-
-button, .button
-    color: inherit
-    background-color: inherit
-
-button.close-button, span.close-button
-    background-color: transparent
-
-    &:hover
-        border: 1px solid transparent
-        background-color: rgba(0, 0, 0, 0.3)
+    font-family: $sans
 
 
-.shadow:hover
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+button:hover,
+.button:hover
+    background-color: $primary-dark
+
+
+.alt:hover,
+.alt:focus
+    color: $primary-light
 
 
 button:disabled,
@@ -45,129 +37,148 @@ button:disabled,
     background-color: $black
     opacity: 0.3
 
-    &:disabled:hover
+    &:hover
         box-shadow: none
         border: 1px solid transparent
         cursor: initial
 
 
-.button-circle, a.button-circle
-    padding: 12px
-    border-radius: 50%
-    aspect-ratio: 1
-    display: flex
-    align-items: center
-    justify-content: center
-    width: 30px
-    height: 30px
-    text-decoration: none
-
-
-.button-square, a.button-square
-    padding: 10px
-    border-radius: 0.125em
-    aspect-ratio: 1
-    display: flex
-    align-items: center
-    justify-content: center
-    width: 30px
-    height: 30px
-    text-decoration: none
-
-    @media screen and (max-width: 550px)
-        width: auto
-        display: flex
-
-
-.pointer
-    cursor: pointer
-
-
-.primary
+button.primary,
+.button.primary
     color: white
-    background-color: $primary
-    border-color: $primary
+    background-color: $primary-light
+    border-color: $primary-light
 
     &:hover
-        border-color: #2a3677
-        background-color: #2a3677
+        border-color: $primary-dark
+        background-color: $primary-dark
         color: white
 
-.primary.alt
-    color: $text
-    background-color: rgba(255, 255, 255, 0.8)
-    border-color: $primary
+
+    &.alt
+        color: $text
+        border-color: $primary-light
+        background-color: transparent
+
+        &:hover, &:focus
+            border-color: $primary-dark
+            background-color: white
+            color: $primary-dark
+
+
+button.danger,
+.button.danger
+    color: white
+    background-color: $error-light
+    border-color: $error-light
 
     &:hover
-        border-color: $primary
+        border-color: $error-dark
+        background-color: $error-dark
+        color: white
+
+    &.alt
+        border: 1px solid $red
+        color: $red
         background-color: white
-        color: $primary
+
+        &:hover, &:focus
+            color: white
+            background-color: $red
 
 
-.danger
+.button.info,
+button.info
     color: white
-    background-color: $red
-    border-color: $red
+    background-color: $info-light
+    border-color: $info-light
 
     &:hover
-        border-color: $dark-red
-        background-color: $dark-red
+        background-color: #186c77
+        border-color: #186c77
         color: white
 
+    &.alt
+        border: 1px solid $info-light
+        color: $info-light
+        background-color: white
 
-.info
+        &:hover, &:focus
+            color: white
+            background-color: $info-light
+
+
+button.success,
+.button.success
     color: white
-    background-color: $medium-blue
-    border-color: $medium-blue
+    background-color: $success-light
+    border-color: $success-light
 
     &:hover
-        background-color: $blue
-        border-color: $blue
-        color: white
+        background-color: $success-dark
+        border-color: $success-dark
+
+    &.alt
+        border: 1px solid $success-light
+        color: $success-light
+        background-color: white
+
+        &:hover, &:focus
+            color: white
+            background-color: $success-light
 
 
-.success
-    color: white
-    background-color: $grass-green
-    border-color: $grass-green
-
-    &:hover
-        background-color: $dark-green
-        border-color: $dark-green
-        color: white
-
-
-.other
-    color: white
-    background-color: $teal
-    border-color: $teal
+.button.warning,
+button.warning
+    color: $black
+    background-color: $warning-light
+    border-color: $warning-light
 
     &:hover
-        background-color: $dark-teal
-        border-color: $dark-teal
+        background-color: $warning-dark
+        border-color: $warning-dark
         color: white
 
+    &.alt
+        border: 1px solid $warning-light
+        color: $warning-light
+        background-color: white
 
-.black-button
-    background-color: $dark-grey
-    border-color: $dark-grey
+        &:hover, &:focus
+            color: white
+            border-color: $warning-dark
+            background-color: $warning-dark
+
+
+.button.black-button,
+button.black-button
+    background-color: $black
+    border-color: $black
     color: white
+
+    &:hover
+        background-color: white
+        border-color: $black
+        color: $black
+
+
+.button.white-button,
+button.white-button
+    background-color: $gray-0
+    border-color: $black
+    color: $black
 
     &:hover
         background-color: $black
-        border-color: $black
-        color: white
+        border-color: $gray-0
+        color: $gray-0
 
 
-.light-button
-    background-color: $light-gray
-    border-color: $dark-gray
-    color: $dark-gray
-
+button.active,
+.button.active
     &:hover
-        background-color: $dark-gray
-        border-color: $dark-gray
-        color: white
+        background-color: $primary-light
+
 
 .link-button
     background-color: transparent
@@ -177,33 +188,84 @@ button:disabled,
     &:hover
         background-color: transparent
         border-color: transparent
-        color: $primary
+        color: $primary-dark
 
-.white-button
-    background-color: $off-white
-    border-color: white
+
+.button.transparent,
+button.transparent
+    border-color: transparent
+    background-color: transparent
+    color: inherit
+
+    &:hover, &:focus
+        background-color: $primary-light
+        color: white
+
+
+.accordion-button
+    background-color: $accent-light
+    border-color: $accent-light
     color: $black
 
-    &:hover
-        background-color: white
-        border-color: white
-        color: $primary
 
 .scroll-to-top-button
     position: fixed
     right: 1.5em
     bottom: 2.5em
+    background-color: $gray-20
+    color: $text
 
     &:hover, &:focus
-        filter: invert(1)
+        background-color: $primary-light
+        color: white
 
 
-.circle
-    line-height: initial !important
+button.close-button,
+span.close-button
+    border: 1px solid transparent
+
+    &:hover
+        background-color: rgba(0, 0, 0, 0.3)
 
 
-.button-group
+.button-square,
+a.button-square,
+.button-circle,
+a.button-circle
+    aspect-ratio: 1
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 30px
+    height: 30px
+    text-decoration: none
+
+
+.button-circle,
+a.button-circle
+    padding: 0.75em
+    border-radius: 50%
+
+
+.button-square,
+a.button-square
+    padding: 0.625em
+    border-radius: 0.125em
+
+    @media screen and (max-width: $s-600)
+        width: auto
+        display: flex
+
+
+.button-group, .pagination-group
     display: flex
     flex-direction: row
     flex-wrap: nowrap
+
+
+.button-group
     column-gap: 0.5em
+
+
+.pagination-group
+    column-gap: 0.25em

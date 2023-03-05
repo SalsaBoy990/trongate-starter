@@ -2968,12 +2968,12 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
     return {
       tabId: "",
       tabsClass: "tabs",
-      buttonClass: "tabActivateButton",
+      buttonClass: "tab-switcher",
       activeButtonClass: "red",
       init() {
         this.tabId = "London";
         this.tabsClass = "tabs";
-        this.buttonClass = "tabActivateButton";
+        this.buttonClass = "tab-switcher";
         this.activeButtonClass = "red";
         this.switchTab(this.tabId);
       },
@@ -3005,7 +3005,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         this.accordionId = "";
         this.sameClick = false;
         this.toggleClass = "show";
-        this.headerActiveClass = "dark-grey";
+        this.headerActiveClass = "accordion-button";
         this.accordionItemClass = "accordion-item";
       },
       toggleAccordion(accordionId = "") {

@@ -7,13 +7,13 @@ export function tabsData() {
     return {
         tabId: '',
         tabsClass: "tabs",
-        buttonClass: "tabActivateButton",
+        buttonClass: "tab-switcher",
         activeButtonClass: "red",
 
         init() {
             this.tabId = 'London';
             this.tabsClass = "tabs";
-            this.buttonClass = "tabActivateButton";
+            this.buttonClass = "tab-switcher";
             this.activeButtonClass = "red";
 
             this.switchTab(this.tabId);

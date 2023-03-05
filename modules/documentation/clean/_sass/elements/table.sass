@@ -1,24 +1,3 @@
-.cell-row
-    display: table
-    width: 100%
-
-
-.cell
-    display: table-cell
-
-
-.cell-top
-    vertical-align: top
-
-
-.cell-middle
-    vertical-align: middle
-
-
-.cell-bottom
-    vertical-align: bottom
-
-
 table
     border-radius: 0.25em
     margin-top: 1em
@@ -27,22 +6,22 @@ table
     display: table
 
     th, td
-        border-color: $darkest-gray
+        border-color: $black
 
     th
-        font-size: $medium
+        font-size: $fs-16
         text-align: center
 
     thead
         height: 2em
-        background-color: $darkest-gray
+        background-color: $bg-primary
 
         tr
             height: 2em
 
         th
-            color: $off-white
-            background-color: $darkest-gray
+            color: $gray-0
+            background-color: $bg-primary
 
 
     tbody
@@ -50,7 +29,11 @@ table
             height: 2em
 
             td
-                color: $darkest-gray
+                color: $gray-80
 
-    @media screen and (max-width: $mobile)
+
+    @media screen and (max-width: $s-600)
         width: 100%
+
+    @media screen and (max-width: $s-800)
+        font-size: $fs-14

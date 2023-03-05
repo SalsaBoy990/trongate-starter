@@ -1,22 +1,22 @@
-@media (max-width: $xdesktop)
+@media (max-width: $s-1200)
     .auto
         max-width: 95%
 
 
-@media (max-width: $xmobile)
+
+@media (min-width: $s-1024)
+    .hide-desktop
+        display: none !important
+
+
+
+@media (max-width: $s-600)
     .clean-modal-content
         margin: 0 10px
 
+
     .clean-modal
         padding-top: 30px
-
-
-    .dropdown-hover.mobile .dropdown-content, .dropdown-click.mobile .dropdown-content
-        position: relative
-
-
-    .hide-small
-        display: none !important
 
 
     .mobile
@@ -24,30 +24,46 @@
         width: 100% !important
 
 
-    .bar-item.mobile, .dropdown-hover.mobile, .dropdown-click.mobile
+    .dropdown-hover.mobile
+        width: 100%
+
+        button
+            width: 100%
+
+        .dropdown-content
+            position: relative
+
+
+    .dropdown-click.mobile
+        width: 100%
+
+        button
+            width: 100%
+
+        .dropdown-content
+            position: relative
+
+
+    .bar-item.mobile,
+    .dropdown-hover.mobile,
+    .dropdown-click.mobile
         text-align: center
 
 
-    .dropdown-hover.mobile, .dropdown-hover.mobile button, .dropdown-hover.mobile button, .dropdown-click.mobile, .dropdown-click.mobile button, .dropdown-click.mobile button
-        width: 100%
 
-
-@media (max-width: $tablet)
+@media (max-width: $s-800)
     .clean-modal
         padding-top: 50px
 
 
-@media (min-width: $xtablet)
-    .hide-large
+
+@media (max-width: $s-1023) and (min-width: $s-601)
+    .hide-tablet
         display: none !important
 
 
-@media (max-width: 992px) and (min-width: 601px)
-    .hide-medium
-        display: none !important
 
-
-@media (max-width: $mobile)
+@media (max-width: $s-600)
     .main
         margin-left: 0 !important
         margin-right: 0 !important
@@ -57,3 +73,5 @@
         max-width: 100%
 
 
+    .hide-mobile
+        display: none !important

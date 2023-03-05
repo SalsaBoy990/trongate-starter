@@ -1,24 +1,22 @@
 #top-nav
-    font-size: 0.9em
+    font-size: 1em
 
 
-.bar-block .dropdown-hover, .bar-block .dropdown-click
+.bar-block .dropdown-hover,
+.bar-block .dropdown-click
     width: 100%
 
 
-.bar-block .dropdown-hover .dropdown-content, .bar-block .dropdown-click .dropdown-content
+.bar-block .dropdown-hover .dropdown-content,
+.bar-block .dropdown-click .dropdown-content
     min-width: 100%
 
 
-.bar-block .dropdown-hover .button, .bar-block .dropdown-click .button
+.bar-block .dropdown-hover .button,
+.bar-block .dropdown-click .button
     width: 100%
     text-align: left
-    padding: 8px 16px
-
-
-.bar
-    width: 100%
-    //background-color: transparent
+    padding: 0.5em 1em
 
 
 .center .bar
@@ -26,29 +24,49 @@
     width: auto
 
 
-.bar .bar-item
-    padding: 8px 16px
-    float: left
-    width: auto
-    border: none
-    display: block
-    outline: 0
+.bar
+    width: 100%
+
+    .bar-item
+        padding: 0.5em 1em
+        margin: 0
+        float: left
+        width: auto
+        display: block
+        outline: 0
+
+    .bar-search
+        display: flex
+        flex-direction: row
+        column-gap: 0.25em
+        padding-top: 0
+        padding-bottom: 0
+
+        .button, button
+            display: flex
+            align-items: center
+            justify-content: center
 
 
-.bar .dropdown-hover, .bar .dropdown-click
-    position: relative
-    float: left
+    .dropdown-hover,
+    .dropdown-click
+        position: relative
+        float: left
 
 
-.bar .button, .bar button
-    white-space: normal
-    margin-top: 0
+    .dropdown
+        button
+            text-decoration: underline
+
+    .button, button
+        white-space: normal
+        margin-top: 0
 
 
 .bar-block .bar-item
     width: 100%
     display: block
-    padding: 8px 16px
+    padding: 0.5em 1em
     text-align: left
     border: none
     white-space: normal
@@ -60,15 +78,7 @@
     text-align: center
 
 
-.bar.three
+.bar.three, .button-group.three
     .bar-item
+        margin-top: 0
         width: 33.3%
-
-
-.bar
-    .bar-item
-        margin: 0
-
-
-.slider-nav
-    width: 100%

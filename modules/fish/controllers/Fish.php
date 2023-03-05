@@ -1,5 +1,5 @@
 <?php
-class Fish extends Api {
+class Fish extends Trongate {
 
     private $default_limit = 20;
     private $per_page_options = array(10, 20, 50, 100);    
@@ -224,53 +224,6 @@ class Fish extends Api {
         $data['type'] = post('type', true);
         $data['habitat'] = post('habitat', true);        
         return $data;
-    }
-
-    function describe() {
-
-        $params = $this->_get_params_from_url(3);
-        $params = json_encode($params);
-        $params = ltrim($params);
-        $params = json_decode($params);
-        $params = get_object_vars($params);
-
-        $type = $params["type"] ?? null;
-        $search_param['type'] = '%' . $type . '%';
-        if ($type) {
-            $sql = 'SELECT * FROM fish WHERE type LIKE :type';
-            $row = $this->model->query_bind($sql, $search_param, 'object');
-
-            echo json_encode($row);
-            die;
-        }
-
-
-//        echo "Ready to describe the fish";
-     /*   $fish = $this->model->get('id');
-        echo json_encode($fish);*/
-    }
-
-
-    function _get_params_from_url($params_segment) {
-        //params segment is where params might be passed
-        $params_str = segment($params_segment);
-        $first_char = substr($params_str, 0, 1);
-        if ($first_char == '?') {
-            $params_str = substr($params_str, 1);
-        }
-
-        $data = [];
-        parse_str($params_str, $data);
-
-        //convert into json
-        $params = [];
-        foreach ($data as $key => $value) {
-            $key = $this->_prep_key($key);
-            $value = $this->_remove_special_characters($value);
-            $params[$key] = $value;
-        }
-
-        return $params;
     }
 
 }

@@ -1,75 +1,42 @@
-.padding-small
-    padding: 0.25em 0.5em
+$paddings: ("0": 0, "0-5": 0.5em, "1": 1em, "1-5": 1.5em, "2": 2em, "3": 3em, "4": 4em)
+$directions: ("left", "right", "top", "bottom")
+
+@each $padding, $i in $paddings
+    @each $direction in $directions
+        .padding-#{$direction}-#{$padding}
+            padding-#{$direction}: $i
 
 
-.padding
-    padding: 0.5em 1em
+@each $padding, $i in $paddings
+    .padding-top-bottom-#{$padding}
+        padding-top: $i
+        padding-bottom: $i
+
+    .padding-bottom-top-#{$padding}
+        padding-top: $i
+        padding-bottom: $i
+
+    .padding-#{$padding}
+        padding: $i
+
+    .padding-left-right-#{$padding}
+        padding-left: $i
+        padding-right: $i
+
+    .padding-right-left-#{$padding}
+        padding-left: $i
+        padding-right: $i
 
 
-.padding-large
-    padding: 12px 1.5em
-
-
-.padding-16, ul li.padding-16
-    padding-top: 1em
-    padding-bottom: 1em
-
-
-.padding-24
-    padding-top: 1.5em
-    padding-bottom: 1.5em
-
-
-.padding-32
-    padding-top: 2em
-    padding-bottom: 2em
-
-
-.padding-48
-    padding-top: 3em
-    padding-bottom: 3em
-
-
-.padding-64
-    padding-top: 4em
-    padding-bottom: 4em
-
-
-.padding-top-64
-    padding-top: 4em
-
-
-.padding-top-48
-    padding-top: 3em
-
-
-.padding-top-32
-    padding-top: 2em
-
-
-.padding-top-24
-    padding-top: 1.5em
-
-
-.padding-bottom-64
-    padding-bottom: 4em
-
-
-.padding-bottom-48
-    padding-bottom: 3em
-
-
-.padding-bottom-32
-    padding-bottom: 2em
-
-
-.padding-bottom-24
-    padding-bottom: 1.5em
-
-
-.row-padding, .row-padding > .half, .row-padding > .third, .row-padding > .twothird, .row-padding > .threequarter, .row-padding > .quarter, .row-padding > .col
+.row-padding,
+.row-padding > .half,
+.row-padding > .third,
+.row-padding > .twothird,
+.row-padding > .threequarter,
+.row-padding > .quarter,
+.row-padding > .col
     padding: 0 0.5em
 
+
 .row-padding
-    margin-left: -1em
-    margin-right: -1em
+    margin: 1em -1em

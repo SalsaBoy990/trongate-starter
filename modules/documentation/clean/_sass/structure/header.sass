@@ -1,11 +1,11 @@
 header
     color: $text
-    background-color: $off-white
+    background-color: $gray-0
 
     a
         color: $link
         &:hover
-            color: $darkest-gray
+            color: $gray-80
 
 
 #slide-nav
@@ -20,3 +20,28 @@ header
                     text-align: center
                     margin-right: 0.5em
 
+
+#header-sm,
+#header-lg
+    .logo
+        a
+            display: flex
+            align-items: center
+            column-gap: 0.25em
+            font-size: $fs-14
+
+            span
+                font-weight: 700
+
+            img
+                height: 36px
+                width: auto
+
+
+#close-btn
+    cursor: pointer
+
+
+.darkmode-toggle
+    top: -2px
+    position: relative

@@ -5,17 +5,14 @@
     flex-direction: column
     padding: 1.25em 6%
     align-items: center
-    background-color: $secondary
+    background-color: $bg-primary
 
     h1, p
         color: $white !important
         margin-bottom: 1em
 
-    h1
-        font-size: $xlarge
-
     p
-        font-size: $medium
+        font-size: $fs-16
 
 
     input[type="search"]
@@ -23,7 +20,7 @@
         justify-content: space-between
         width: 30em
         color: $text
-        background-color: $off-white
+        background-color: $gray-0
         cursor: pointer
         height: 44px
         padding-left: 1.75em
@@ -34,10 +31,10 @@
 
 
     i
-        color: $dark-gray
+        color: $gray-60
 
 
-    @media screen and (max-width: 768px)
+    @media screen and (max-width: $s-800)
         .searchbar input[type="search"], .searchbar
             width: 100%
 
@@ -54,6 +51,6 @@
     .card
         width: 30em
 
-        @media screen and (max-width: 768px)
+        @media screen and (max-width: $s-800)
             width: 88%
 

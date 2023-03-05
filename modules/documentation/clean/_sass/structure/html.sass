@@ -7,10 +7,22 @@ html, body
     line-height: 1.5
     scroll-behavior: smooth
 
+
 body
     width: 100%
     background-color: $bg-light
+    color: $text
 
 
 *, *:before, *:after
-    box-sizing: inherit // DO NOT REMOVE IT!!
+    box-sizing: inherit // DO NOT REMOVE THIS
+
+
+::selection
+    color: white
+    background: $primary-light !important
+
+
+@for $i from 1 through 10
+    .z-#{$i}
+        z-index: $i

@@ -14,7 +14,7 @@ export function accordionData() {
             this.accordionId = '';
             this.sameClick = false;
             this.toggleClass = "show";
-            this.headerActiveClass = "dark-grey";
+            this.headerActiveClass = "accordion-button";
             this.accordionItemClass = "accordion-item";
         },
 

@@ -4,7 +4,11 @@
     "request_type": "GET",
     "description": "Fetch rows from table",
     "enableParams": true,
-    "authorization":"*"
+    "authorization":{  
+        "roles": [
+            "admin"
+        ]
+    }
   },
   "Get By Post": {
     "url_segments": "api/get/fish",
@@ -96,21 +100,5 @@
         "label": "ID"
       }
     ]
-  },
-
-  "Describe": {
-    "url_segments": "fish/describe",
-    "request_type": "GET",
-    "description": "Describe the fish",
-    "enableParams": true,
-    "authorization": "*"
-  },
-
-  "Search": {
-    "url_segments": "api/search/fish",
-    "request_type": "GET",
-    "description": "Search for fish by type",
-    "enableParams": true,
-    "authorization": "*"
   }
 }

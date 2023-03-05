@@ -68,7 +68,7 @@
     </div>
 
 
-    <span class="light-gray pointer scroll-to-top-button padding-small round" role="button"
+    <span class="light-gray pointer scroll-to-top-button padding-0-5 round" role="button"
           title="Toggle table of content"
           x-show="scrollTop > 800" @click="scrollToTop" x-transition>
         <i class="fa fa-chevron-up" aria-hidden="true"></i>

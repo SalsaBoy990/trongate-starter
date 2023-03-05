@@ -7,7 +7,7 @@ select
     font-family: $sans
 
     &:focus
-        border-color: $solus-blue
+        border-color: $primary-light
 
 
 input
@@ -15,7 +15,7 @@ input
 
     &:disabled
         cursor: not-allowed
-        background-color: $light-gray
+        background-color: $gray-20
 
 
 input[type="radio"],
@@ -42,7 +42,9 @@ label ~ input[type="radio"]
     display: inline-block
 
 
-.disabled, button:disabled, .button:disabled
+.disabled,
+button:disabled,
+.button:disabled
     cursor: not-allowed
     opacity: 0.3
 
@@ -52,4 +54,4 @@ label ~ input[type="radio"]
 
 
 fieldset
-    border: 1px solid #c0c0c0
+    border: 1px solid $gray-20

@@ -1,11 +1,10 @@
 @import normalize
-@import theme
-
+//@import theme/default
+@import theme/friendly
 
 @import meta/sizes
 @import meta/colors
 @import meta/font
-@import meta/mixins
 @import meta/position
 @import meta/display
 @import meta/alignment
@@ -16,7 +15,6 @@
 @import meta/opacity
 @import meta/filter
 @import meta/animation
-@import meta/colors2
 
 
 // Structuring
@@ -30,6 +28,7 @@
 @import structure/toc
 @import structure/header
 @import structure/footer
+@import structure/slider
 
 
 // Media queries
@@ -54,40 +53,13 @@
 @import elements/dropdown
 @import elements/table
 @import elements/tooltip
+@import elements/mark
 
 @import meta/darkmode
 
-.container
-    width: 100%
 
+.shadow:hover
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 
-.z-2
-    z-index: 2
-
-#header-sm,
-#header-lg
-    .logo
-        a
-            display: flex
-            align-items: center
-            column-gap: 0.25em
-            font-size: $normal
-
-            span
-                font-weight: 700
-
-            img
-                height: 36px
-                width: auto
-
-
-#close-btn
-    cursor: pointer
-
-
-.darkmode-toggle
-    top: -2px
-    position: relative
-
-mark
-    background-color: yellow
+.card-4, .hover-shadow:hover
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)

@@ -1,4 +1,4 @@
-.dropdown-click, .dropdown-hover
+.dropdown
     position: relative
     display: inline-block
     cursor: pointer
@@ -7,9 +7,18 @@
     .fa
         margin: 0 4px
 
+    &.mobile
+        top: 2px
 
-.dropdown-hover:hover .dropdown-content
-    display: block
+    .button.transparent,
+    button.transparent
+        border-color: transparent
+        background-color: transparent
+        color: $primary-light
+
+        &:hover, &:focus
+            background-color: transparent
+            color: $black
 
 
 .dropdown-content
@@ -18,6 +27,7 @@
     background-color: #fff
     position: absolute
     min-width: 160px
+    width: 100%
     margin: 0
     padding: 0
     z-index: 1

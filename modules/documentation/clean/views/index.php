@@ -1,12 +1,12 @@
 <div x-data="ajaxSearchData" x-cloak x-init="panelOpen = false; searchTerm = ''">
     <section class="banner">
-        <h1>Section Banner</h1>
+        <h1 class="h3">Section Banner</h1>
         <p>This is a description of this section</p>
         <div class="searchbar relative">
             <input @keydown="searchByTitle('<?= BASE_URL ?>' + 'api/get/entries/')" x-model="searchTerm"
                    @click="togglePanel()" type="search"
                    placeholder="Search in entries"/>
-            <b class="left margin-left-8">
+            <b class="left margin-left-0-5">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </b>
         </div>
@@ -14,17 +14,17 @@
 
     <div x-cloak class="search-results relative">
         <div x-cloak x-show="panelOpen" :class="{'show': panelOpen }"
-             class="card white absolute padding z-2 hide">
+             class="card white absolute padding-1 z-2 hide">
             <span @click="clearSearch()"
-                  class="close-button large topright">&times;</span>
-            <h2 class="normal" x-text="'Results (' + count + ')'"></h2>
+                  class="close-button large topright round-large-top-right">&times;</span>
+            <h2 class="fs-16 margin-top-0" x-text="'Results (' + count + ')'"></h2>
             <div id="search-results">
                 <template x-for="item in results">
-                    <div class="clean-container round border border-default margin-y">
+                    <div class="box round border border-default">
                         <b>
                             <a :href="'<?= BASE_URL ?>' + 'entries/show/' + item.id" x-html="item.title"></a>
                         </b>
-                        <p class="small" x-html="item.content.substr(0, 120) + '...'"></p>
+                        <p class="fs-14" x-html="item.content.substr(0, 120) + '...'"></p>
                     </div>
                 </template>
             </div>
@@ -35,45 +35,55 @@
 
 
 <div x-data="{ showToc: false}" class="main-container container relative">
-    <span @click="showToc = ! showToc" class="pointer absolute padding-small" role="button" title="Table of content">
-        <i :class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
+    <span @click="showToc = ! showToc" class="pointer absolute padding-0-5" role="button" title="Table of content">
+        <i :class="{'fa fa-compress' : showToc,  'fa fa-expand' : !showToc }" aria-hidden="true"></i> <span class="fs-12">Table of content</span>
     </span>
 
     <aside x-show="showToc" x-cloak x-transition class="toc">
         <h2> Table of Contents </h2>
-        <nav>
-            <a href="#"><h3>Elements</h3></a>
+        <ul class="padding-left-right-0 no-bullets">
+            <li><a href="#">Elements</a></li>
+            <li><a href="#">Buttons</a></li>
 
-            <a href="#"><h3>Buttons</h3></a>
+            <li><a href="#">Headings</a></li>
+            <li>
+                <ul class="margin-top-bottom-0 padding-right-0">
+                    <li><a href="#">Heading 2</a></li>
+                </ul>
+            </li>
 
-            <a href="#"><h3>Headings</h3></a>
-            <a href="#"><h4>Heading 2</h4></a>
+            <li><a href="#">Lists</a></li>
+            <li>
+                <ul class="margin-top-bottom-0 padding-right-0">
+                    <li><a href="#">Ordered</a></li>
+                    <li><a href="#">Unordered</a></li>
+                </ul>
+            </li>
 
-            <a href="#"><h3>Lists</h3></a>
-            <a href="#"><h4>Ordered</h4></a>
-            <a href="#"><h4>Unordered</h4></a>
-            <a href="#"><h4>Nested</h4></a>
-            <a href="#"><h4>Definition Lists</h4></a>
+            <li><a href="#">Nested</a></li>
+            <li><a href="#">Definition Lists</a></li>
+            <li><a href="">Tables</a></li>
+            <li><a href="">Video</a></li>
 
-            <a href=""><h3>Tables</h3></a>
-
-            <a href=""><h3>Video</h3></a>
-        </nav>
+        </ul>
     </aside>
 
     <main class="content">
 
-        <h1> Elements </h1>
-        <h1> Buttons </h1>
+        <h1> Heading 1 </h1>
+        <h2> Buttons </h2>
 
         <div class="section">
-            <a class="button ripple padding-16 large red border-red hover-dark-red hover-border-dark-red shadow">Button</a>
-            <button class="ripple small medium-blue border-medium-blue border-blue hover-blue shadow">Button</button>
-            <a class="button ripple medium green border-green hover-dark-green hover-border-dark-green">Button</a>
-            <button class="ripple normal teal border-teal hover-dark-teal hover-border-dark-teal">Button</button>
+            <button class="primary">Primary</button>
+            <button class="danger">Danger</button>
+            <button class="warning">Warning</button>
+            <button class="info">Information</button>
+            <button class="success">Success</button>
+            <button class="black-button">Button</button>
+            <button class="white-button">Button</button>
+            <button disabled>Disabled</button>
         </div>
 
-        <h1> Headings </h1>
         <h2> Heading 2 </h2>
         <h3> Heading 3 </h3>
         <h4> Heading 4 </h4>
@@ -163,27 +173,27 @@
             classes are inspired by modern colors used in marketing, road signs, and sticky notes:</p>
         <div class="row">
             <div class="quarter">
-                <div class="clean-container purple center padding-16"><p>&nbsp;</p></div>
-                <div class="clean-container green center padding-16"><p>&nbsp;</p></div>
+                <div class="box primary center padding-1"><p>&nbsp;</p></div>
+                <div class="box accent center padding-1"><p>&nbsp;</p></div>
             </div>
             <div class="quarter">
-                <div class="clean-container pink center padding-16"><p>&nbsp;</p></div>
-                <div class="clean-container teal center padding-16"><p>&nbsp;</p></div>
+                <div class="box primary-dark center padding-1"><p>&nbsp;</p></div>
+                <div class="box accent-dark center padding-1"><p>&nbsp;</p></div>
             </div>
-            <div class="quarter hide-small">
-                <div class="clean-container orange text-white center padding-16"><p>&nbsp;</p></div>
-                <div class="clean-container cyan text-white center padding-16"><p>&nbsp;</p></div>
+            <div class="quarter hide-mobile">
+                <div class="box orange text-white center padding-1"><p>&nbsp;</p></div>
+                <div class="box red text-white center padding-1"><p>&nbsp;</p></div>
             </div>
-            <div class="quarter hide-small">
-                <div class="clean-container yellow center padding-16"><p>&nbsp;</p></div>
-                <div class="clean-container lime center padding-16"><p>&nbsp;</p></div>
+            <div class="quarter hide-mobile">
+                <div class="box green center padding-1"><p>&nbsp;</p></div>
+                <div class="box green-dark center padding-1"><p>&nbsp;</p></div>
             </div>
         </div>
 
         <hr>
 
-        <h2>Clean.CSS Containers</h2>
-        <p>The <a href="#">clean-container</a> class is the most important of the
+        <h2>Clean.CSS Boxes</h2>
+        <p>The <a href="#">box</a> class is the most important of the
             Clean.CSS
             classes. It provides equality like:</p>
         <ul>
@@ -195,16 +205,16 @@
             <li>Common colors</li>
         </ul>
 
-        <p>The clean-container class is typically used with HTML container elements, like:</p>
+        <p>The box class is typically used with HTML container elements, like:</p>
         <p>&lt;div&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, &lt;section&gt;, &lt;blockquote&gt;, &lt;form&gt;,
             and
             more.</p>
 
-        <article>
-            <div class="clean-container dark-grey round-top">
-                <h4>This is a Header</h4>
+        <article class="section">
+            <div class="box gray-60 round-top">
+                <h4 class="text-white">This is a Header</h4>
             </div>
-            <div class="clean-container light-grey text-brown">
+            <div class="box gray-20 text-gray-80">
                 <p>
                     This article is light grey and the text is brown.
                     This article is light grey and the text is brown.
@@ -213,7 +223,7 @@
                     This article is light grey and the text is brown.
                 </p>
             </div>
-            <div class="clean-container dark-grey round-bottom">
+            <div class="box gray-60 round-bottom">
                 <p class="opacity">This is a footer.</p>
             </div>
         </article>
@@ -224,28 +234,28 @@
         <p>The <a href="#">panel</a>
             class can display all kinds of notes and quotes:</p>
 
-        <div class="clean-container round border border-default margin-top margin-bottom">
+        <div class="box round border border-default margin-bottom-top-1">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round light-grey border border-default margin-top margin-bottom">
+        <div class="box round gray-20 border border-default margin-bottom-top-1">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round pale-red leftbar border border-red margin-top margin-bottom">
+        <div class="box round red-pale leftbar border border-red margin-bottom-top-1">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round pale-green bottombar border-green border margin-top margin-bottom">
+        <div class="box round green-pale bottombar border-green border margin-top-bottom-1">
             <p>London is the most populous city in the United Kingdom,
                 with a metropolitan area of over 9 million inhabitants.</p>
         </div>
 
-        <div class="clean-container round leftbar border border-default sand margin-top margin-bottom">
-            <p><i class="xlarge serif">"Make it as simple as possible, but not simpler."</i></p>
+        <div class="box round leftbar border border-default orange-pale margin-top-bottom-1">
+            <p><i class="fs-24 serif">"Make it as simple as possible, but not simpler."</i></p>
             <p>Albert Einstein</p>
         </div>
 
@@ -254,30 +264,31 @@
         <h2>Clean.CSS Alerts</h2>
         <p>The <a href="#">panel</a>
             class can also be used for all kinds of alerts:</p>
-        <div x-data="alertData" x-show="openAlert" class="panel pale-red text-dark-red border border-dark-red relative">
-            <span @click="hideAlert()" class="close-button large topright">&times;</span>
-            <h3>Danger!</h3>
-            <p>Red often indicates a dangerous or negative situation.</p>
+        <div x-data="alertData" x-show="openAlert"
+             class="panel danger text-red-dark border border-red-dark relative">
+            <span @click="hideAlert()" class="close-button fs-18 white-transparent topright">&times;</span>
+            <div class="h5 text-red-dark bold">Danger!</div>
+            <p class="margin-0">Red often indicates a dangerous or negative situation.</p>
         </div>
 
         <div x-data="alertData" x-show="openAlert"
-             class="panel pale-yellow text-dark-yellow border border-dark-yellow relative">
-            <span @click="hideAlert()" class="close-button large topright">&times;</span>
-            <h3>Warning!</h3>
-            <p>Yellow often indicates a warning that might need attention.</p>
+             class="panel warning text-orange-dark border border-orange-dark relative">
+            <span @click="hideAlert()" class="close-button fs-18 white-transparent topright">&times;</span>
+            <div class="h5 text-orange-dark bold">Warning!</div>
+            <p class="margin-0">Yellow often indicates a warning that might need attention.</p>
         </div>
 
         <div x-data="alertData" x-show="openAlert"
-             class="panel pale-green text-dark-green border border-dark-green relative">
-            <span @click="hideAlert()" class="close-button large topright">&times;</span>
-            <h3>Success!</h3>
-            <p>Green often indicates something successful or positive.</p>
+             class="panel success text-green-dark border border-green-dark relative">
+            <span @click="hideAlert()" class="close-button fs-18 white-transparent topright">&times;</span>
+            <div class="h5 text-green-dark bold">Success!</div>
+            <p class="margin-0">Green often indicates something successful or positive.</p>
         </div>
 
-        <div x-data="alertData" x-show="openAlert" class="panel pale-blue text-blue border border-blue relative">
-            <span @click="hideAlert()" class="close-button large topright">&times;</span>
-            <h3>Info!</h3>
-            <p>Blue often indicates a neutral informative change or action.</p>
+        <div x-data="alertData" x-show="openAlert" class="panel info text-cyan-dark border border-cyan-dark relative">
+            <span @click="hideAlert()" class="close-button fs-18 white-transparent topright">&times;</span>
+            <div class="h5 text-cyan-dark bold">Info!</div>
+            <p class="margin-0">Blue often indicates a neutral informative change or action.</p>
         </div>
 
         <hr>
@@ -286,32 +297,24 @@
         <p>The <a href="#">card</a>
             classes are suitable for both images and notes:</p>
 
-        <div class="cell-row">
 
-            <div class="cell cell-top card card-4" style="width:60%">
-                <header class="clean-container round-top medium-blue">
-                    <h2>A Car</h2>
-                </header>
-                <div class="clean-container">
-                    <p>
-                        A car is a wheeled, self-powered motor vehicle used for transportation.
-                        Most definitions of the term specify that cars are designed to run primarily on roads,
-                        to have seating for one to eight people, and to typically have four wheels.
-                        <br><br>(Wikipedia)
-                    </p>
-                </div>
+        <div class="card card-4">
+            <div class="box round-top primary">
+                <h2 class="text-white">A Car</h2>
             </div>
-            <div class="cell">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-            <div class="cell cell-top card card-4">
-                <div class="clean-container round-top">
-                    <h2>Amazing</h2>
-                </div>
+            <div class="box round-bottom">
+                <p>
+                    A car is a wheeled, self-powered motor vehicle used for transportation.
+                    Most definitions of the term specify that cars are designed to run primarily on roads,
+                    to have seating for one to eight people, and to typically have four wheels.
+                    <br><br>(Wikipedia)
+                </p>
                 <img src="documentation-clean_module/images/img_snowtops.jpg" alt="Car">
-                <div class="clean-container">
-                    <p>French Alps</p>
-                </div>
+                <p>French Alps</p>
             </div>
         </div>
+
+
         <div>
             <h3>Example</h3>
             <pre><code class="language-html">&lt;div class=&quot;panel yellow&quot;&gt;
@@ -367,38 +370,43 @@
         <p>The <a href="#">ul</a>
             tag can handle all kinds of lists:</p>
 
-        <ul class="list-card card card-4">
-            <li class="hover-light-grey">
-                <span onclick="this.parentElement.style.display='none'"
-                      class="close-button white xlarge float-right hover-red">&times;</span>
+        <ul class="card card-4">
+            <li class="hover-gray-20 relative">
+
                 <img src="documentation-clean_module/images/img_avatar2.png"
-                     class="float-left circle margin-right profile" alt="Mike">
+                     class="float-left circle margin-right-1 profile" alt="Mike">
                 <span class="large">Mike</span><br>
                 <span>Web Designer</span>
+
+                <span onclick="this.parentElement.style.display='none'"
+                      class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</span>
             </li>
-            <li class="hover-light-grey">
-                <span onclick="$.closeElement(event)"
-                      class="close-button white xlarge float-right hover-red">&times;</span>
+            <li class="hover-gray-20 relative">
                 <img src="documentation-clean_module/images/img_avatar5.png"
-                     class="float-left circle margin-right profile" alt="Jill">
+                     class="float-left circle margin-right-1 profile" alt="Jill">
                 <span class="large">Jill</span><br>
                 <span>Support</span>
+
+                <span onclick="this.parentElement.style.display='none'"
+                      class="close-button white fs-18 absolute right margin-right-0-5">&times;</span>
             </li>
-            <li class="hover-light-grey">
-                <span onclick="$.closeElement(event)"
-                      class="close-button white xlarge float-right hover-red">&times;</span>
+            <li class="hover-gray-20 relative">
                 <img src="documentation-clean_module/images/img_avatar6.png"
-                     class="float-left circle margin-right profile" alt="Jane">
+                     class="float-left circle margin-right-1 profile" alt="Jane">
                 <span class="large">Jane</span><br>
                 <span>Accountant</span>
+
+                <span onclick="this.parentElement.style.display='none'"
+                      class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</span>
             </li>
-            <li class="hover-light-grey">
-                <span onclick="$.closeElement(event)"
-                      class="close-button white xlarge float-right hover-red">&times;</span>
+            <li class="hover-gray-20 relative">
                 <img src="documentation-clean_module/images/img_avatar3.png"
-                     class="float-left circle margin-right profile" alt="Jack">
+                     class="float-left circle margin-right-1 profile" alt="Jack">
                 <span class="large">Jack</span><br>
                 <span>Advisor</span>
+
+                <span onclick="this.parentElement.style.display='none'"
+                      class="close-button white fs-18 float-right absolute right margin-right-0-5">&times;</span>
             </li>
         </ul>
         <div>
@@ -417,29 +425,28 @@
         <p>The <a href="#"><strong>button</strong> tag, and the <strong>button</strong></a>
             class provides buttons of all sizes and types.</p>
         <div class="section">
-            <button class="ripple primary">Primary</button>
-            <button class="ripple danger">Danger</button>
-            <button class="ripple info">Information</button>
-            <button class="ripple success">Success</button>
-            <button class="ripple other">Button</button>
-            <button class="ripple black-button">Button</button>
-            <button class="ripple light-button">Button</button>
+            <button class="primary">Primary</button>
+            <button class="danger">Danger</button>
+            <button class="warning">Danger</button>
+            <button class="info">Information</button>
+            <button class="success">Success</button>
+            <button class="black-button">Button</button>
+            <button class="white-button">Button</button>
             <button disabled>Disabled</button>
         </div>
         <div class="section">
             <button class="alt primary">Cancel</button>
-            <button class="alt light-grey round">Button</button>
-            <button class="alt white border border-blue round">Button</button>
-            <button class="alt white border border-red text-red hover-text-red hover-border-red round-large">Button
-            </button>
-            <button class="alt white border border-green round-xlarge">Button</button>
-            <button class="black padding-large hover-red hover-border-red">Button</button>
+            <button class="danger alt round-large">Button</button>
+            <button class="warning alt round-large">Button</button>
+            <button class="info alt round">Button</button>
+            <button class="success alt round-xlarge">Button</button>
+            <button class="black padding-large hover-red border-black hover-border-red">Button</button>
         </div>
 
         <p>Button bar</p>
 
-        <div class="bar three black">
-            <button class="bar-item">One</button>
+        <div class="bar three">
+            <button class="bar-item"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <button class="bar-item">Two</button>
             <button class="bar-item">Three</button>
         </div>
@@ -447,7 +454,7 @@
 
         <p>Circular or square buttons:</p>
 
-        <div class="bar" style="display: flex; gap: 10px">
+        <div class="button-group" style="display: flex; gap: 10px">
             <button class="button-circle ripple danger">
                 <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
@@ -460,7 +467,7 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </button>
 
-            <button class="button-circle ripple other">
+            <button class="button-circle ripple white-button">
                 <i class="fa fa-minus" aria-hidden="true"></i>
             </button>
 
@@ -475,14 +482,14 @@
         <p>The <a href="#">tag</a> and the
             <a href="#">badge</a>
             classes are capable of displaying all kinds of tags, labels, badges and signs:</p>
-        <p><span class="badge circle dark-grey text-white">2</span>
-            <span class="badge circle teal text-white">8</span>
+        <p><span class="badge circle gray-60 text-white">2</span>
+            <span class="badge circle primary text-white">8</span>
             <span class="badge circle red text-white">A</span>
-            <span class="badge circle orange text-white">B</span>
+            <span class="badge circle accent">B</span>
         </p>
 
-        <p><span class="badge dark-grey">New</span>
-            <span class="badge orange text-white">Warning</span>
+        <p><span class="badge gray-60">New</span>
+            <span class="badge accent">Warning</span>
             <span class="badge red">Danger</span>
             <span class="badge blue">Info</span>
         </p>
@@ -493,15 +500,15 @@
                     <div class="badge round green">Falcon Ridge Parkway</div>
                 </div>
                 <div>
-                    <div class="badge jumbo red">S</div>
-                    <div class="badge jumbo black">A</div>
-                    <div class="badge jumbo yellow">L</div>
-                    <div class="badge jumbo black">E</div>
+                    <div class="badge fs-64 red">S</div>
+                    <div class="badge fs-64 black">A</div>
+                    <div class="badge fs-64 accent">L</div>
+                    <div class="badge fs-64 black">E</div>
                 </div>
             </div>
 
             <div class="half">
-                <div class="badge xlarge padding-large round-large red center">DO NOT<br>
+                <div class="badge fs-24 padding-large round-large red center">DO NOT<br>
                     BREATHE<br>UNDER WATER
                 </div>
             </div>
@@ -519,7 +526,7 @@
                 <div class="col s6 green center">
                     <p>1/2</p>
                 </div>
-                <div class="col s6 dark-grey center text-light-grey">
+                <div class="col s6 black center text-gray-20">
                     <p>1/2</p>
                 </div>
             </div>
@@ -528,19 +535,19 @@
                 <div class="col s4 green center">
                     <p>1/3</p>
                 </div>
-                <div class="col s4 dark-grey center text-light-grey">
+                <div class="col s4 black center text-gray-20">
                     <p>1/3</p>
                 </div>
-                <div class="col s4 dark-grey center text-light-grey">
+                <div class="col s4 black center text-gray-20">
                     <p>1/3</p>
                 </div>
             </div>
 
             <div class="col m4">
-                <div class="col s4 dark-grey center">
+                <div class="col s4 black center">
                     <p>1/3</p>
                 </div>
-                <div class="col s8 green center text-light-grey">
+                <div class="col s8 green center text-gray-20">
                     <p>2/3</p>
                 </div>
             </div>
@@ -554,13 +561,13 @@
                 <div class="col s3 green center">
                     <p>1/4</p>
                 </div>
-                <div class="col s3 dark-grey center text-light-grey">
+                <div class="col s3 black center text-gray-20">
                     <p>1/4</p>
                 </div>
-                <div class="col s3 dark-grey center text-light-grey">
+                <div class="col s3 black center text-gray-20">
                     <p>1/4</p>
                 </div>
-                <div class="col s3 dark-grey center text-light-grey">
+                <div class="col s3 black center text-gray-20">
                     <p>1/4</p>
                 </div>
             </div>
@@ -569,10 +576,10 @@
                 <div class="col s6 green center">
                     <p>1/2</p>
                 </div>
-                <div class="col s3 dark-grey center">
+                <div class="col s3 black center">
                     <p>1/4</p>
                 </div>
-                <div class="col s3 dark-grey center text-light-grey">
+                <div class="col s3 black center text-gray-20">
                     <p>1/4</p>
                 </div>
             </div>
@@ -581,7 +588,7 @@
                 <div class="col s8 green center">
                     <p>2/3</p>
                 </div>
-                <div class="col s4 dark-grey center text-light-grey">
+                <div class="col s4 black center text-gray-20">
                     <p>1/3</p>
                 </div>
             </div>
@@ -592,16 +599,16 @@
         <div class="row-padding">
 
             <div class="col m4">
-                <div class="col s12 green center text-light-grey">
+                <div class="col s12 green center text-gray-20">
                     <p>1/1</p>
                 </div>
             </div>
 
             <div class="col m4">
-                <div class="col s3 dark-grey center">
+                <div class="col s3 black center">
                     <p>1/4</p>
                 </div>
-                <div class="col s3 dark-grey center">
+                <div class="col s3 black center">
                     <p>1/4</p>
                 </div>
                 <div class="col s6 green center">
@@ -610,13 +617,13 @@
             </div>
 
             <div class="col m4">
-                <div class="col s3 dark-grey center">
+                <div class="col s3 black center">
                     <p>1/4</p>
                 </div>
                 <div class="col s6 green center">
                     <p>1/2</p>
                 </div>
-                <div class="col s3 dark-grey center">
+                <div class="col s3 black center">
                     <p>1/4</p>
                 </div>
             </div>
@@ -627,31 +634,31 @@
         <div class="row-padding">
 
             <div class="col m4">
-                <div class="col center dark-grey text-light-grey" style="width:50px">
+                <div class="col center black text-gray-20" style="width:50px">
                     <p>50px</p>
                 </div>
-                <div class="rest green center text-light-grey">
+                <div class="rest green center text-gray-20">
                     <p>rest</p>
                 </div>
             </div>
 
             <div class="col m4">
-                <div class="col s3 dark-grey center">
+                <div class="col s3 black center">
                     <p>1/4</p>
                 </div>
-                <div class="rest green center text-light-grey">
+                <div class="rest green center text-gray-20">
                     <p>rest</p>
                 </div>
             </div>
 
             <div class="col m4">
-                <div class="col center dark-grey text-light-grey float-left" style="width:100px">
+                <div class="col center black text-gray-20 float-left" style="width:100px">
                     <p>100px</p>
                 </div>
-                <div class="col center dark-grey text-light-grey float-right" style="width:45px">
+                <div class="col center black text-gray-20 float-right" style="width:45px">
                     <p>45px</p>
                 </div>
-                <div class="rest green center text-light-grey">
+                <div class="rest green center text-gray-20">
                     <p>rest</p>
                 </div>
             </div>
@@ -670,7 +677,7 @@
                 <div class="col s6">
                     <div class="col s12 green" style="height:75px;margin-bottom:10px"></div>
                     <div class="col s6 green" style="height:40px;"></div>
-                    <div class="col s6 dark-grey" style="height:40px"></div>
+                    <div class="col s6 black" style="height:40px"></div>
                 </div>
 
             </div>
@@ -684,10 +691,10 @@
                 <div class="col s6">
                     <div class="col s12 green" style="height:50px;margin-bottom:10px"></div>
                     <div class="col s6 green" style="height:31px;"></div>
-                    <div class="col s6 dark-grey" style="height:31px;margin-bottom:10px"></div>
+                    <div class="col s6 black" style="height:31px;margin-bottom:10px"></div>
 
                     <div class="col s4 green" style="height:25px;"></div>
-                    <div class="col s4 dark-grey" style="height:25px"></div>
+                    <div class="col s4 black" style="height:25px"></div>
                     <div class="col s4 green" style="height:25px"></div>
                 </div>
 
@@ -706,12 +713,12 @@
                 <div class="col s12">
                     <div class="col s12 green" style="height:30px;margin-bottom:10px"></div>
                     <div class="col s8 green" style="height:18px;"></div>
-                    <div class="col s4 dark-grey" style="height:18px;margin-bottom:10px"></div>
+                    <div class="col s4 black" style="height:18px;margin-bottom:10px"></div>
 
                     <div class="col s3 green" style="height:15px;"></div>
-                    <div class="col s3 dark-grey" style="height:15px"></div>
+                    <div class="col s3 black" style="height:15px"></div>
                     <div class="col s3 green" style="height:15px"></div>
-                    <div class="col s3 dark-grey" style="height:15px"></div>
+                    <div class="col s3 black" style="height:15px"></div>
                 </div>
 
             </div>
@@ -729,30 +736,30 @@
 
             <div class="half">
                 <div class="relative green thumbnail">
-                    <div class="topleft padding">Top Left</div>
-                    <div class="topright padding">Top Right</div>
-                    <div class="bottomleft padding">Bottom Left</div>
-                    <div class="bottomright padding">Bottom Right</div>
-                    <div class="left padding">Left</div>
-                    <div class="right padding">Right</div>
-                    <div class="middle padding">Middle</div>
-                    <div class="topmiddle hide-small padding">Top Middle</div>
-                    <div class="bottommiddle hide-small padding">Bottom Middle</div>
+                    <div class="topleft padding-1">Top Left</div>
+                    <div class="topright padding-1">Top Right</div>
+                    <div class="bottomleft padding-1">Bottom Left</div>
+                    <div class="bottomright padding-1">Bottom Right</div>
+                    <div class="left padding-1">Left</div>
+                    <div class="right padding-1">Right</div>
+                    <div class="middle padding-1">Middle</div>
+                    <div class="topmiddle hide-mobile padding-1">Top Middle</div>
+                    <div class="bottommiddle hide-mobile padding-1">Bottom Middle</div>
                 </div>
             </div>
             <div class="half">
-                <p class="margin-top hide-medium hide-large">
+                <p class="margin-top-1 hide-tablet hide-desktop">
                 <div class="relative green">
-                    <img src="documentation-clean_module/images/img_lights.jpg" alt="Pants" class="thumbnail">
-                    <div class="topleft padding">Top Left</div>
-                    <div class="topright padding">Top Right</div>
-                    <div class="bottomleft padding">Bottom Left</div>
-                    <div class="bottomright padding">Bottom Right</div>
-                    <div class="left padding">Left</div>
-                    <div class="right padding">Right</div>
-                    <div class="middle padding">Middle</div>
-                    <div class="topmiddle hide-small padding">Top Middle</div>
-                    <div class="bottommiddle hide-small padding">Bottom Middle</div>
+                    <img src="documentation-clean_module/images/img_lights.jpg" alt="Lights" class="thumbnail">
+                    <div class="topleft padding-1">Top Left</div>
+                    <div class="topright padding-1">Top Right</div>
+                    <div class="bottomleft padding-1">Bottom Left</div>
+                    <div class="bottomright padding-1">Bottom Right</div>
+                    <div class="left padding-1">Left</div>
+                    <div class="right padding-1">Right</div>
+                    <div class="middle padding-1">Middle</div>
+                    <div class="topmiddle hide-mobile padding-1">Top Middle</div>
+                    <div class="bottommiddle hide-mobile padding-1">Bottom Middle</div>
                 </div>
             </div>
 
@@ -765,22 +772,23 @@
 
         <div x-data="modalData">
             <button @click="openModal()"
-                    class="dark-grey hover-black padding-16">Click to Open Modal
+                    class="black-button padding-1">Click to Open Modal
             </button>
 
             <div x-show="modal" x-cloak class="clean-modal" :class="{'show': modal}">
-                <div class="clean-modal-content small-content card card-4 animate-top relative">
-                    <header class="clean-container teal">
-                        <span @click="closeModal()" class="close-button large teal topright">&times;</span>
-                        <h2>Header</h2>
-                    </header>
-                    <div class="clean-container">
+                <div class="clean-modal-content content-600 card card-4 animate-top relative">
+                    <div class="box primary round-top">
+                        <span @click="closeModal()"
+                              class="close-button fs-18 primary topright round-top-right text-white">&times;</span>
+                        <h3 class="text-white">Header</h3>
+                    </div>
+                    <div class="box white">
                         <p>Some text. Some text. Some text.</p>
                         <p>Some text. Some text. Some text.</p>
                     </div>
-                    <footer class="clean-container teal">
+                    <div class="box primary round-bottom text-gray-10">
                         <p>Footer</p>
-                    </footer>
+                    </div>
                 </div>
             </div>
         </div>
@@ -794,8 +802,8 @@
                  @click="openModal()">
 
             <div x-show="modal" x-cloak class="clean-modal" :class="{'show': modal}" @click="closeModal()">
-                <span class="close-button hover-red xxlarge topright">&times;</span>
-                <div class="clean-modal-content medium-content card card-4 animate-zoom">
+                <span class="close-button gray-20 fs-18 topright">&times;</span>
+                <div class="clean-modal-content content-960 card card-4 animate-zoom">
                     <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
                 </div>
             </div>
@@ -806,25 +814,25 @@
         <h2>Clean.CSS Progress Bars</h2>
         <p>Read more at <a href="#">Clean.CSS Progress Bars</a>
 
-        <div class="dark-grey">
-            <div class="clean-container green center" style="width:25%">25%</div>
+        <div class="gray-20">
+            <div class="box green center" style="width:25%">25%</div>
         </div>
         <br>
 
-        <div class="light-grey">
-            <div class="clean-container red center" style="width:50%">50%</div>
+        <div class="gray-20">
+            <div class="box red center" style="width:50%">50%</div>
         </div>
         <br>
 
         <div x-data="progressBarData" x-init="width = 2; speed = 25;">
-            <div class="light-grey">
-                <div class="clean-container green" style="width:5%; height: 20px" :style="{ width: (width + '%') }"
+            <div class="gray-20">
+                <div class="box green" style="width:5%; height: 24px" :style="{ width: (width + '%') }"
                      x-text="label">0
                 </div>
             </div>
             <br>
 
-            <button class="dark-grey hover-black hover-border-black" @click="triggerMove()">
+            <button class="black-button" @click="triggerMove()">
                 Click Me
             </button>
         </div>
@@ -836,8 +844,8 @@
             classes provide dropdowns:</p>
         <div class="row">
             <div class="col s6">
-                <div x-data="dropdownData" class="dropdown-hover" @click.outside="hideDropdown">
-                    <button @mouseover="toggleDropdown" class="dark-grey hover-black">
+                <div x-data="dropdownData" class="dropdown" @click.outside="hideDropdown">
+                    <button @mouseover="toggleDropdown" class="black-button">
                         Hover Me! <i class="fa fa-caret-down"></i>
                     </button>
                     <div x-show="openDropdown" class="dropdown-content bar-block border">
@@ -848,11 +856,11 @@
                 </div>
             </div>
             <div class="col s6">
-                <div x-data="dropdownData" class="dropdown-click" @click.outside="hideDropdown">
-                    <button @click="toggleDropdown" class="dark-grey hover-black">
+                <div x-data="dropdownData" class="dropdown" @click.outside="hideDropdown">
+                    <button @click="toggleDropdown" class="black-button">
                         Click Me! <i class="fa fa-caret-down"></i>
                     </button>
-                    <div x-show="openDropdown" id="dropdownOne" class="dropdown-content bar-block card card-4">
+                    <div x-show="openDropdown" class="dropdown-content bar-block card card-4">
                         <a class="bar-item" href="javascript:void(0)">Link 1</a>
                         <a class="bar-item" href="javascript:void(0)">Link 2</a>
                         <a class="bar-item" href="javascript:void(0)">Link 3</a>
@@ -867,12 +875,10 @@
         <p>Read more at <a href="#">Clean.CSS Accordions</a></p>
 
         <div x-data="accordionData">
-            <button @click="toggleAccordion('accordionOne')"
-                    class="hover-dark-grey light-grey block left-align">Open
-                Section 1
+            <button @click="toggleAccordion('accordionOne')" class="block left-align">Open Section 1
             </button>
             <div id="accordionOne" class="hide accordion-item">
-                <div class="clean-container">
+                <div class="box">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore
                         et
@@ -882,7 +888,7 @@
                 </div>
             </div>
             <button @click="toggleAccordion('accordionTwo')"
-                    class="hover-dark-grey light-grey block left-align">Open
+                    class="block left-align">Open
                 Section 2
             </button>
             <div id="accordionTwo" class="hide bar-block accordion-item">
@@ -891,11 +897,11 @@
                 <a class="bar-item" href="javascript:void(0)">Link 3</a>
             </div>
             <button @click="toggleAccordion('accordionThree')"
-                    class="hover-dark-grey light-grey block left-align">Open
+                    class="block left-align">Open
                 Section 3
             </button>
             <div id="accordionThree" class="hide black accordion-item">
-                <div class="clean-container">
+                <div class="box">
                     <p>Accordion with Images:</p>
                     <img src="documentation-clean_module/images/img_snowtops.jpg"
                          class="animate-zoom thumbnail-third" alt="French Alps">
@@ -910,31 +916,31 @@
             web
             pages capable of displaying different subjects.</p>
         <div x-data="tabsData" class="border round">
-            <div class="bar light-grey">
-                <a href="javascript:void(0)" class="bar-item tabActivateButton"
+            <div class="bar">
+                <a href="javascript:void(0)" class="bar-item tab-switcher"
                    @click="switchTab('London')" :class="{'red': tabId === 'London'}">London</a>
-                <a href="javascript:void(0)" class="bar-item tabActivateButton"
+                <a href="javascript:void(0)" class="bar-item tab-switcher"
                    @click="switchTab('Paris')" :class="{'red': tabId === 'Paris'}">Paris</a>
-                <a href="javascript:void(0)" class="bar-item tabActivateButton"
+                <a href="javascript:void(0)" class="bar-item tab-switcher"
                    @click="switchTab('Tokyo')" :class="{'red': tabId === 'Tokyo'}">Tokyo</a>
             </div>
 
-            <div id="London" class="clean-container tabs animate-opacity red">
-                <h2>London</h2>
+            <div id="London" class="box tabs animate-opacity red">
+                <h2 class="text-white">London</h2>
                 <p>London is the capital of England.</p>
                 <p>It is the most populous city in the United Kingdom,
                     with a metropolitan area of over 9 million inhabitants.</p>
             </div>
 
-            <div id="Paris" class="clean-container tabs animate-opacity red">
-                <h2>Paris</h2>
+            <div id="Paris" class="box tabs animate-opacity red">
+                <h2 class="text-white">Paris</h2>
                 <p>Paris is the capital of France.</p>
                 <p>The Paris area is one of the largest population centers in Europe,
                     with more than 12 million inhabitants.</p>
             </div>
 
-            <div id="Tokyo" class="clean-container tabs animate-opacity red">
-                <h2>Tokyo</h2>
+            <div id="Tokyo" class="box tabs animate-opacity red">
+                <h2 class="text-white">Tokyo</h2>
                 <p>Tokyo is the capital of Japan.</p>
                 <p>It is the center of the Greater Tokyo Area,
                     and the most populous metropolitan area in the world.</p>
@@ -946,26 +952,26 @@
         <p>Tabbed Image Gallery (Click on one of the pictures):</p>
 
         <div x-data="tabbedImagesData">
-            <div class="row-padding margin-top">
-                <div class="col s3 clean-container">
+            <div class="row-padding">
+                <div class="col s3 box">
                     <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                        @click="openTabbedImage('Nature');">
                         <img src="documentation-clean_module/images/img_nature.jpg" alt="Nature">
                     </a>
                 </div>
-                <div class="col s3 clean-container">
+                <div class="col s3 box">
                     <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                        @click="openTabbedImage('Snow');">
                         <img src="documentation-clean_module/images/img_snowtops.jpg" alt="Fjords">
                     </a>
                 </div>
-                <div class="col s3 clean-container">
+                <div class="col s3 box">
                     <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                        @click="openTabbedImage('Mountains');">
                         <img src="documentation-clean_module/images/img_mountains.jpg" alt="Mountains">
                     </a>
                 </div>
-                <div class="col s3 clean-container">
+                <div class="col s3 box">
                     <a href="javascript:void(0)" class="hover-opacity tabbed-image-gallery-button"
                        @click="openTabbedImage('Lights');">
                         <img src="documentation-clean_module/images/img_lights.jpg" alt="Lights">
@@ -976,116 +982,108 @@
             <div id="Nature" class="picture relative tabbed-image-gallery-item">
                 <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Nature">
                 <span @click="hide(event)"
-                      class="topright close-button xlarge transparent text-white">&times;</span>
-                <div class="bottomleft clean-container padding text-white">Nature</div>
+                      class="topright close-button fs-18 transparent text-white">&times;</span>
+                <div class="bottomleft box padding-0-5 text-white black-transparent">Nature</div>
             </div>
 
             <div id="Snow" class="picture relative tabbed-image-gallery-item">
                 <img src="documentation-clean_module/images/img_snow_wide.jpg" alt="Snow">
                 <span @click="hide(event)"
-                      class="topright close-button xlarge transparent text-white">&times;</span>
-                <div class="bottomleft clean-container padding text-white">Snow</div>
+                      class="topright close-button fs-18 transparent text-white">&times;</span>
+                <div class="bottomleft box padding-0-5 text-white black-transparent">Snow</div>
             </div>
 
             <div id="Mountains" class="picture relative tabbed-image-gallery-item">
                 <img src="documentation-clean_module/images/img_mountains_wide.jpg" alt="Mountains">
                 <span @click="hide(event)"
-                      class="topright close-button xlarge transparent">&times;</span>
-                <div class="bottomleft clean-container padding text-white">Mountains</div>
+                      class="topright close-button fs-18 transparent">&times;</span>
+                <div class="bottomleft box padding-0-5 text-white black-transparent">Mountains</div>
             </div>
 
             <div id="Lights" class="picture relative tabbed-image-gallery-item">
                 <img src="documentation-clean_module/images/img_lights_wide.jpg" alt="Lights">
                 <span @click="hide(event)"
-                      class="topright close-button xlarge transparent text-white">&times;</span>
-                <div class="bottomleft clean-container padding text-white">Northern Lights</div>
+                      class="topright close-button fs-18 transparent text-white">&times;</span>
+                <div class="bottomleft box padding-0-5 text-white black-transparent">Northern Lights</div>
+                <div class="bottomleft box padding-0-5 text-white black-transparent">Northern Lights</div>
             </div>
         </div>
 
         <hr>
 
         <h2>Clean.CSS Navigation</h2>
-        <p>The <a href="#">bar</a> class can be used to create a navigation bar:
+        <p>The <a href="#">bar</a> class can be used to create a horizontal bar bar:
         </p>
 
-        <div class="bar black">
+        <div class="bar">
             <a href="javascript:void(0)" class="bar-item">Home</a>
             <a href="javascript:void(0)" class="bar-item">Link 1</a>
             <a href="javascript:void(0)" class="bar-item">Link 2</a>
-            <a href="javascript:void(0)" class="bar-item hide-small">Link 3</a>
+            <a href="javascript:void(0)" class="bar-item hide-mobile">Link 3</a>
             <a href="javascript:void(0)" class="bar-item float-right"><i class="fa fa-search"></i></a>
         </div>
 
         <p>Navigation bar with input:</p>
-        <div class="bar light-grey border">
-            <a href="javascript:void(0)" class="bar-item green mobile">Home</a>
+        <div class="bar border">
+            <a href="javascript:void(0)" class="bar-item primary no-underline mobile">Home</a>
             <a href="javascript:void(0)" class="bar-item mobile">Link 1</a>
             <a href="javascript:void(0)" class="bar-item mobile">Link 2</a>
-            <input type="text" class="bar-item white mobile" placeholder="Search..">
-            <a href="javascript:void(0)" class="bar-item black mobile">Go</a>
+            <div class="bar-item mobile bar-search">
+                <input type="text" class="white" placeholder="Search...">
+                <a href="javascript:void(0)" class="button primary">Go</a>
+            </div>
+
+
         </div>
 
         <p>Navigation bar with dropdown:</p>
-        <div class="bar light-grey">
+        <div class="bar">
             <a href="javascript:void(0)" class="bar-item mobile">Home</a>
             <a href="javascript:void(0)" class="bar-item mobile">Link 1</a>
-            <div class="dropdown-hover mobile">
-                <button>Dropdown <i class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content bar-block card card-4">
-                    <a class="bar-item text-black" href="javascript:void(0)">Link 1</a>
-                    <a class="bar-item text-black" href="javascript:void(0)">Link 2</a>
-                    <a class="bar-item text-black" href="javascript:void(0)">Link 3</a>
+            <div class="dropdown mobile center relative" x-data="dropdownData" class="dropdown"
+                 @click.outside="hideDropdown">
+                <button @click="toggleDropdown" class="transparent">Dropdown <i class="fa fa-caret-down"></i></button>
+                <div x-show="openDropdown" class="dropdown-content bar-block card card-4">
+                    <a class="bar-item" href="javascript:void(0)">Link 1</a>
+                    <a class="bar-item" href="javascript:void(0)">Link 2</a>
+                    <a class="bar-item" href="javascript:void(0)">Link 3</a>
                 </div>
             </div>
             <a href="javascript:void(0)" class="bar-item float-right mobile"><i
                         class="fa fa-search"></i></a>
         </div>
-        <div class="hide-small">
+        <div class="hide-mobile">
             <p>Customized bars:</p>
 
-
-            <div class="bar dark-grey">
-                <a class="bar-item mobile green third" href="javascript:void(0)">Home</a>
+            <div class="bar">
+                <a class="bar-item mobile green no-underline third" href="javascript:void(0)">Home</a>
                 <a class="bar-item mobile third" href="javascript:void(0)">Link 1</a>
                 <a class="bar-item mobile third" href="javascript:void(0)">Link 2</a>
             </div>
 
-            <div class="bar black">
-                <a class="bar-item hover-black padding-16 text-grey hover-text-white"
-                   href="javascript:void(0)">Home</a>
-                <a class="bar-item hover-black padding-16 bottombar border-red"
-                   href="javascript:void(0)">Link 1</a>
-                <a class="bar-item hover-black padding-16 text-grey hover-text-white"
-                   href="javascript:void(0)">Link 2</a>
-                <a class="bar-item hover-black padding-16 text-grey hover-text-white"
-                   href="javascript:void(0)">Link 3</a>
-                <a href="javascript:void(0)"
-                   class="bar-item float-right padding-16 hover-black text-grey hover-text-white"><i
-                            class="fa fa-search"></i></a>
-            </div>
         </div>
         <hr>
 
         <h2>Clean.CSS Pagination</h2>
         <p>Clean.CSS provides simple ways for <a href="#">page pagination</a>.</p>
 
-        <div class="bar margin-top margin-bottom">
-            <a class="bar-item button" href="javascript:void(0)">&laquo;</a>
-            <a class="bar-item button black" href="javascript:void(0)">1</a>
-            <a class="bar-item button" href="javascript:void(0)">2</a>
-            <a class="bar-item button" href="javascript:void(0)">3</a>
-            <a class="bar-item button" href="javascript:void(0)">4</a>
-            <a class="bar-item button" href="javascript:void(0)">5</a>
-            <a class="bar-item button" href="javascript:void(0)">&raquo;</a>
+        <div class="bar pagination-group margin-top-bottom-1">
+            <a class="bar-item button transparent" href="javascript:void(0)">&laquo;</a>
+            <a class="bar-item button active" href="javascript:void(0)">1</a>
+            <a class="bar-item button transparent" href="javascript:void(0)">2</a>
+            <a class="bar-item button transparent" href="javascript:void(0)">3</a>
+            <a class="bar-item button transparent" href="javascript:void(0)">4</a>
+            <a class="bar-item button transparent" href="javascript:void(0)">5</a>
+            <a class="bar-item button transparent" href="javascript:void(0)">&raquo;</a>
         </div>
 
-        <div class="bar border round margin-top margin-bottom">
+        <div class="bar border round margin-top-bottom-1">
             <a href="javascript:void(0)" class="button link-button">&#10094; Previous</a>
             <a href="javascript:void(0)" class="button float-right link-button">Next &#10095;</a>
         </div>
 
         <div class="center">
-            <div class="bar margin-top margin-bottom">
+            <div class="bar margin-top-bottom-1">
                 <a href="javascript:void(0)" class="button link-button">&#10094;</a>
                 <a href="javascript:void(0)" class="button link-button">&#10095;</a>
             </div>
@@ -1102,38 +1100,38 @@
              class="clean-content relative">
             <div class="relative slide-item">
                 <img src="documentation-clean_module/images/img_nature_wide.jpg" alt="Beautiful Nature">
-                <div class="topleft padding text-white small">
+                <div class="topleft padding-1 text-white black-transparent fs-14">
                     1 / 3
                 </div>
-                <div class="topright text-white padding hide-small">
+                <div class="topright text-white black-transparent padding-1 hide-mobile">
                     Beautiful Nature
                 </div>
             </div>
             <div class="relative slide-item">
                 <img src="documentation-clean_module/images/img_snow_wide.jpg" alt="French Alps">
-                <div class="topleft text-white padding small">
+                <div class="topleft text-white black-transparent padding-1 fs-14">
                     2 / 3
                 </div>
-                <div class="topright text-white padding hide-small">
+                <div class="topright text-white black-transparent padding-1 hide-mobile">
                     French Alps
                 </div>
             </div>
             <div class="relative slide-item">
                 <img src="documentation-clean_module/images/img_mountains_wide.jpg" alt="Mountains">
-                <div class="topleft text-white padding small">
+                <div class="topleft text-white black-transparent padding-1 fs-14">
                     3 / 3
                 </div>
-                <div class="topright text-black padding hide-small">
+                <div class="topright text-white black-transparent padding-1 hide-mobile">
                     Mountains
                 </div>
             </div>
-            <div class="slider-nav center clean-container section large text-white bottomleft">
-                <div class="float-left hover-text-khaki large pointer" @click="switchSlide(-1)">&#10094;</div>
-                <div class="float-right hover-text-khaki large pointer" @click="switchSlide(1)">&#10095;</div>
-                <div class="margin-top text-center">
-                    <span class="badge slide-dots border hover-white" @click="currentSlide(1)"></span>
-                    <span class="badge slide-dots border hover-white" @click="currentSlide(2)"></span>
-                    <span class="badge slide-dots border hover-white" @click="currentSlide(3)"></span>
+            <div class="slider-nav center section fs-18 text-white bottomleft">
+                <div class="float-left hover-text-accent padding-0-5 large pointer" @click="switchSlide(-1)">&#10094;</div>
+                <div class="float-right hover-text-accent padding-0-5 large pointer" @click="switchSlide(1)">&#10095;</div>
+                <div class="margin-top-1 text-center">
+                    <span class="slide-dots border hover-white" @click="currentSlide(1)"></span>
+                    <span class="slide-dots border hover-white" @click="currentSlide(2)"></span>
+                    <span class="slide-dots border hover-white" @click="currentSlide(3)"></span>
                 </div>
 
             </div>
@@ -1147,9 +1145,9 @@
             (modal image gallery):</p>
         <div x-data="lightboxData">
             <div x-show="openLighbox" class="gallery-modal black" :class="{'show': openLighbox }">
-                <span class="text-white xxlarge hover-text-grey clean-container topright pointer"
+                <span class="text-white white-transparent fs-24 hover-text-grey-20 padding-0-5 topright pointer"
                       title="Close Lightbox" @click="closeLightbox()">&times;</span>
-                <div class="clean-modal-content big-content">
+                <div class="clean-modal-content content-1024">
 
                     <div class="clean-content">
                         <img class="lightbox-item" src="documentation-clean_module/images/img_nature_wide.jpg"
@@ -1158,11 +1156,11 @@
                         <img class="lightbox-item" src="documentation-clean_module/images/img_mountains_wide.jpg"
                              alt="Mountains">
                         <div class="row black center">
-                            <div class="clean-container relative">
+                            <div class="box relative">
                                 <p id="lightbox-caption-id" class="text-center"></p>
-                                <span class="middle hover-text-grey large pointer" style="left:2%"
+                                <span class="middle hover-text-accent padding-0-5 large pointer" style="left:2%"
                                       @click="stepLightbox(-1)" title="Previous image">&#10094;</span>
-                                <span class="middle hover-text-grey large pointer" style="left:98%"
+                                <span class="middle hover-text-accent padding-0-5 large pointer" style="left:98%"
                                       @click="stepLightbox(1)" title="Next image">&#10095;</span>
                             </div>
 
@@ -1211,20 +1209,20 @@
 
         <div x-data="animateData">
             <div class="center">
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('top')">Top
+                <button class="success" @click="animate('top')">Top
                 </button>
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('bottom')">
+                <button class="success" @click="animate('bottom')">
                     Bottom
                 </button>
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('left')">Left
+                <button class="success" @click="animate('left')">Left
                 </button>
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('right')">Right
+                <button class="success" @click="animate('right')">Right
                 </button>
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('fade')">Fade In
+                <button class="success" @click="animate('fade')">Fade In
                 </button>
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('zoom')">Zoom
+                <button class="success" @click="animate('zoom')">Zoom
                 </button>
-                <button class="green hover-dark-green hover-border-dark-green" @click="animate('spin')">Spin
+                <button class="success" @click="animate('spin')">Spin
                 </button>
             </div>
             <div class="center">
@@ -1246,21 +1244,21 @@
 
         <div class="row-padding">
             <div class="col m3 s4">
-                <img src="documentation-clean_module/images/img_lights.jpg" class="round testsm"
+                <img src="documentation-clean_module/images/img_lights.jpg" class="round"
                      alt="Northern Lights">
             </div>
             <div class="col m3 s4">
-                <img src="documentation-clean_module/images/img_forest.jpg" class="circle testsm" alt="Forest">
+                <img src="documentation-clean_module/images/img_forest.jpg" class="circle" alt="Forest">
             </div>
             <div class="col m3 s4">
-                <img src="documentation-clean_module/images/img_mountains.jpg" class="testsm hover-opacity border"
+                <img src="documentation-clean_module/images/img_mountains.jpg" class="hover-opacity border"
                      alt="Mountains">
             </div>
-            <div class="col m3 hide-small">
+            <div class="col m3 hide-mobile">
                 <div class="relative">
                     <img src="documentation-clean_module/images/img_nature.jpg" alt="Nature"
-                         class="card card-4 testsm">
-                    <div class="bottomleft text-white clean-container padding">Nature
+                         class="card card-4">
+                    <div class="bottomleft text-white black-transparent box padding-0-5">Nature
                     </div>
                 </div>
             </div>
@@ -1274,30 +1272,30 @@
         <p>Add special <a href="#">effects</a> to any element:</p>
         <div class="row-padding center">
 
-            <div class="col m3 hide-small">
+            <div class="col m3 hide-mobile">
                 <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
-                <div class="red clean-container">
+                <div class="red box">
                     <p>Normal</p>
                 </div>
             </div>
 
             <div class="col m3 s4 opacity">
                 <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
-                <div class="red clean-container">
+                <div class="red box">
                     <p>Opacity</p>
                 </div>
             </div>
 
             <div class="col m3 s4 grayscale">
                 <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
-                <div class="red clean-container">
+                <div class="red box">
                     <p>Grayscale</p>
                 </div>
             </div>
 
             <div class="col m3 s4 sepia">
                 <img src="documentation-clean_module/images/img_workshop.jpg" alt="Workshop">
-                <div class="red clean-container">
+                <div class="red box">
                     <p>Sepia</p>
                 </div>
             </div>
@@ -1308,7 +1306,7 @@
         <h2>Clean.CSS Input Forms</h2>
         <p>The <a href="#">input</a> tags are for input forms:</p>
 
-        <div class="row-padding margin-bottom">
+        <div class="row-padding">
             <div class="third">
                 <label>One</label>
                 <input type="text" placeholder="One">
@@ -1323,16 +1321,26 @@
             </div>
         </div>
 
-        <input class="animate-input" type="text" style="width:30%;" placeholder="Click on me!">
+        <div class="row-padding">
+            <div class="half">
+                <label>First name</label>
+                <input type="text" placeholder="First name">
+            </div>
+            <div class="half">
+                <label>Family name</label>
+                <input type="text" placeholder="Family name">
+            </div>
+        </div>
 
-        <div class="row-padding margin-top">
+
+        <div class="row-padding">
 
             <div class="half">
-                <div class="card card-4 margin-top-32">
-                    <div class="clean-container blue round-top">
-                        <h3>Input Form</h3>
+                <div class="card card-4 margin-top-1-5">
+                    <div class="box primary round-top">
+                        <h3 class="text-white">Input Form</h3>
                     </div>
-                    <form class="clean-container padding-bottom-32">
+                    <form class="box padding-bottom-1-5">
                         <label>Name</label>
                         <input type="text" disabled>
 
@@ -1351,11 +1359,11 @@
             </div>
 
             <div class="half">
-                <div class="card card-4 margin-top-32">
-                    <div class="clean-container red round-top">
-                        <h3>Input Form</h3>
+                <div class="card card-4 margin-top-1-5">
+                    <div class="box red round-top">
+                        <h3 class="text-white">Input Form</h3>
                     </div>
-                    <form class="clean-container padding-bottom-32">
+                    <form class="box padding-bottom-1-5">
                         <label>Name</label>
                         <input type="text" required>
 
@@ -1428,18 +1436,6 @@
             </table>
         </div>
 
-        <div x-data="filterData" x-init="dataType = 'list'; sourceId = 'filter-list';">
-            <input type="text" placeholder="Search for fruits.." x-model="filterTerm" @keyup="filter()">
-            <ul id="filter-list">
-                <li>Apple</li>
-                <li>Orange</li>
-                <li>Banana</li>
-                <li>Peach</li>
-                <li>Melon</li>
-                <li>Cherry</li>
-            </ul>
-        </div>
-
         <hr>
 
         <h2>Clean.CSS Tooltips</h2>
@@ -1459,11 +1455,10 @@
 
         <div class="row-padding">
             <div class="half">
-                <div class="card text-dark-gray white">
-                    <div class="clean-container indigo round-top">
-                        <h3>Theme Indigo</h3>
+                <div class="card">
+                    <div class="box primary round-top">
+                        <h3 class="text-white">Movies 2014</h3>
                     </div>
-                    <div class="clean-container text-indigo"><h4>Movies 2014</h4></div>
                     <ul class="card-list">
                         <li>
                             <h4>Frozen</h4>
@@ -1479,20 +1474,17 @@
                         </li>
                     </ul>
 
-                    <div class="clean-container indigo xlarge round-bottom">&laquo;<span
-                                class="float-right">&raquo;</span></div>
+                    <div class="box text-white primary fs-24 round-bottom">&laquo;<span
+                                class="text-white float-right">&raquo;</span></div>
                 </div>
             </div>
 
             <div class="half">
-                <div class="card text-dark-gray white">
-                    <div class="clean-container teal round-top">
-                        <h3>Theme Teal</h3>
+                <div class="card">
+                    <div class="box accent-dark round-top">
+                        <h3 class="text-black">Movies 2014</h3>
                     </div>
-                    <div class="clean-container text-teal">
-                        <h4>Movies 2014</h4>
-                    </div>
-                    <div class="clean-container">
+                    <div class="box">
                         <ul class="card-list">
                             <li>
                                 <h4>Frozen</h4>
@@ -1508,7 +1500,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="clean-container teal xlarge round-bottom pointer">&laquo;<span
+                    <div class="box accent-dark fs-24 round-bottom pointer">&laquo;<span
                                 class="float-right">&raquo;</span></div>
                 </div>
             </div>

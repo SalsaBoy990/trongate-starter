@@ -69,7 +69,7 @@
     <div x-data="{ showToc: true}" class="main-container container relative">
 
 
-        <span @click="showToc = ! showToc" class="pointer absolute padding-small top-left margin-top-24" role="button"
+        <span @click="showToc = ! showToc" class="pointer absolute padding-0-5 top-left margin-top-1-5" role="button"
               title="Table of content">
             <i :class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
         </span>
@@ -92,7 +92,7 @@
     </div>
 
 
-    <span class="light-gray pointer scroll-to-top-button padding-small round" role="button"
+    <span class="light-gray pointer scroll-to-top-button padding-0-5 round" role="button"
           title="Toggle table of content"
           x-show="scrollTop > 800" @click="scrollToTop" x-transition>
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
