@@ -1,113 +1,151 @@
 <?php
 
-class Password_generator extends Trongate
+final class Password_generator extends Trongate
 {
-    private const PASSWORD_MAX_LENGTH = 99;
+    private const PASSWORD_MAX_LENGTH = 50;
     private const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
-    private const UPPERCASE  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    private const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     private const NUMBERS = '1234567890';
     private const SYMBOLS = '`~!@#$%^&*()-_=+]}[{;:,<.>/?\'"\|';
 
+    // To store password
+    private string $password;
+    private string $charset;
+    private bool $has_error;
+    private array $error_message;
 
-    function index() {
+
+    function __construct($module_name = null)
+    {
+        parent::__construct($module_name);
+
+        $this->password = '';
+        $this->charset = '';
+        $this->has_error = false;
+        $this->error_message = [];
+    }
+
+
+    /** Password generator view */
+    function index()
+    {
         $data['view_file'] = 'index';
         $this->template('clean_starter', $data);
     }
 
-
-    private function _generate_safe_password(array $args): string {
+    /** Generate safe password */
+    private function _generate_safe_password(array $args): array
+    {
         extract($args);
 
         // Contains specific character groups
-        $charset = '';
-
         if ($lowercase === true) {
-            $charset .= self::LOWERCASE;
+            $this->charset .= self::LOWERCASE;
         }
         if ($uppercase === true) {
-            $charset .= self::UPPERCASE;
+            $this->charset .= self::UPPERCASE;
         }
         if ($numbers === true) {
-            $charset .= self::NUMBERS;
+            $this->charset .= self::NUMBERS;
         }
         if ($symbols === true) {
-            $charset .= self::SYMBOLS;
+            $this->charset .= self::SYMBOLS;
         }
 
-        // to store password
-        $password = '';
+
+        if ($this->charset === '') {
+            $this->error_message['error'] = 'At least check one of the checkboxes!';
+            return $this->error_message;
+        }
+
 
         try {
             // Loop until the preferred length reached
             for ($i = 0; $i < $length; $i++) {
                 // get randomized length
-                $_rand = random_int(0, strlen($charset) - 1);
-                // returns part of the string
-                $password .= substr($charset, $_rand, 1);
+                $_rand = random_int(0, strlen($this->charset) - 1);
+                // add one random character from the string
+                $this->password .= substr($this->charset, $_rand, 1);
             }
         } catch (Exception $ex) {
-            return 'Please try again. Appropriate source of randomness not achieved this time.';
+            if (ENV === 'dev') {
+                json($ex);
+            }
+
+            $this->error_message['error'] = 'Appropriate source of randomness not achieved. Please try it again.';
+            return $this->error_message;
         }
 
-        return $password;
+
+        return ['password' => $this->password];
     }
 
-    function generate() {
+
+    /** Generate password api endpoint */
+    function generate()
+    {
         api_auth();
 
-        $has_error = false;
-
         $this->module('base');
-
         $params = $this->base->_get_params_from_url(3);
+
         extract($params);
         settype($length, 'integer');
 
         // Validate
         if ($length > self::PASSWORD_MAX_LENGTH) {
-            $error_message = 'Password length exceeds the maximum allowed (99)';
-            $has_error = true;
-        } else if ($length <= 0) {
-            $error_message = 'Password length cannot be zero or negative.';
-            $has_error = true;
+            $this->has_error = true;
+            $this->error_message['error'] = 'Password length exceeds the maximum allowed ('.self::PASSWORD_MAX_LENGTH.')';
+
+        } else {
+            if ($length <= 0) {
+                $this->has_error = true;
+                $this->error_message['error'] = 'Password length cannot be zero or negative.';
+            }
         }
 
         // Error response
-        if ($has_error === true) {
-            $output['body'] = json_encode([
-                'error' => $error_message
-            ]);
-            $output['code'] = 400;
-
-            $code = $output['code'];
-            http_response_code($code);
-            echo $output['body'];
-            die;
+        if ($this->has_error === true) {
+            die($this->_response($this->error_message, $this->_get_error_code()));
         }
 
 
         $args = [
             'length' => $length,
             'lowercase' => $lowercase == 'true', // boolean
-            'uppercase' => $uppercase  == 'true',
-            'numbers' => $numbers  == 'true',
-            'symbols' => $symbols  == 'true',
+            'uppercase' => $uppercase == 'true',
+            'numbers' => $numbers == 'true',
+            'symbols' => $symbols == 'true',
         ];
 
 
-        $result = [
-            'password' => $this->_generate_safe_password($args)
-        ];
+        $result = $this->_generate_safe_password($args);
 
-        $output['body'] = json_encode($result);
-        $output['code'] = 200;
+        if (array_key_exists('error', $result)) {
+            die($this->_response($result, $this->_get_error_code()));
+        }
+
+        // success
+        die($this->_response($result));
+    }
+
+
+    /** Handle response */
+    private function _response(array $response, int $response_code = 200): string
+    {
+        $output['body'] = json_encode($response);
+        $output['code'] = $response_code;
 
         $code = $output['code'];
         http_response_code($code);
-        echo $output['body'];
-        die;
+        return $output['body'];
     }
 
+    /** Gets the error codes (400 or 500) */
+    private function _get_error_code(): int
+    {
+        return $this->charset === '' ? 400 : 500;
+    }
 
 
 }

@@ -81,7 +81,7 @@ function safePasswordData() {
                     // error handling
                     if (!data) {
                         this.password = ''
-                        this.errorMessage = 'Some error occurred. Please try again!';
+                        this.errorMessage = 'There was an error. Please try it again!';
                     } else if (data.error) {
                         this.password = ''
                         this.errorMessage = data.error;
