@@ -1,7 +1,9 @@
 <section x-data="safePasswordData">
     <h1 style="text-align: left;">Safe password generator</h1>
 
-    <div id="errorbox"></div>
+    <div class="panel danger" x-show="errorMessage" x-cloak>
+        <span x-text="errorMessage"></span>
+    </div>
 
     <div class="gray-20 content-250">
         <div id="indicator" class="box green center"
@@ -38,7 +40,7 @@
 
     <h2 class="h4">Generated password:</h2>
     <div>
-        <input x-ref="mypassword" type="text" x-model="password" style="max-width: 400px; height: 60px;">
+        <input x-ref="mypassword" type="text" x-model="password" style="max-width: 500px; height: 60px;">
     </div>
 
     <button :class="isCopied() ? 'success' : ''" @click="copyToClipboard">

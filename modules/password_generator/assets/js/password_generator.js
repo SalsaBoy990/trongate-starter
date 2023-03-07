@@ -29,6 +29,7 @@ function safePasswordData() {
         strength: '66%',
         indicatorColor: '#e1e44c',
         password: '',
+        errorMessage: '',
 
 
         setStrength() {
@@ -77,11 +78,18 @@ function safePasswordData() {
             fetch(apiPath + '?' + queryParams.toString(), config)
                 .then((response) => response.json())
                 .then((data) => {
+                    // error handling
                     if (!data) {
-                        return;
+                        this.password = ''
+                        this.errorMessage = 'Some error occurred. Please try again!';
+                    } else if (data.error) {
+                        this.password = ''
+                        this.errorMessage = data.error;
+                    } else {
+                        this.password = data.password
+                        this.errorMessage = '';
                     }
-                    console.log(data)
-                    this.password = data.password
+
                 });
 
         }
