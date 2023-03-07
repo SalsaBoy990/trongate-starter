@@ -5,17 +5,11 @@ SASSFLAGS = --style nested -M
 
 # sassc - a very fast SASS compiler written in C++
 install-sass:
-	sudo apt install fontcustom sassc
+	sudo apt install sassc
 
 sass:
-	#fontcustom compile $(FONTCUSTOM_FLAGS)
 	sassc $(SASSFLAGS) modules/clean/_sass/clean.sass > modules/clean/assets/css/clean.css
 
-.DEFAULT_GOAL := all
-
-.PHONY: all
-
-all: sass
 
 # Watch changes in SASS files and compile the CSS bundle
 sass-watch:
