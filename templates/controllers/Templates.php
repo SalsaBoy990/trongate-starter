@@ -13,6 +13,10 @@ class Templates extends Trongate {
         load('clean', $data);
     }
 
+    function clean_starter($data) {
+        load('clean_starter', $data);
+    }
+
     function clean_empty($data) {
         load('clean_empty', $data);
     }
