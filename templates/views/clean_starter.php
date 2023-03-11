@@ -10,6 +10,8 @@
     <!-- add your own stylesheet below here -->
     <link rel="stylesheet" type="text/css" href="clean_module/css/clean.css">
     <link rel="stylesheet" type="text/css" href="clean_module/css/prism.css">
+    <link rel="stylesheet" type="text/css" href="weather_module/css/weather-icons.css">
+    <link rel="stylesheet" type="text/css" href="weather_module/css/weather.css">
 
     <title>Public</title>
 </head>
