@@ -39,7 +39,7 @@ function openWeatherData() {
         '50n': 'wi-night-alt-fog'
     };
 
-    const forecastDays = 4;
+    const maxForecastDays = 4;
 
     return {
         // user input
@@ -63,7 +63,7 @@ function openWeatherData() {
             // get the next X days for the forecasts
             this.currentDay = new Date().getDay();
 
-            for (let i = 1; i <= forecastDays; i++) {
+            for (let i = 1; i <= maxForecastDays; i++) {
                 let now = new Date();
                 now = now.setDate(now.getDate() + i);
                 let dayNumber = new Date(now).getDay();
@@ -103,7 +103,7 @@ function openWeatherData() {
                     } else {
                         this.weather = data.current;
                         this.forecasts = data.forecast.list;
-                        this.forecasts.length = forecastDays;
+                        this.forecasts.length = maxForecastDays;
                     }
                 });
         }
