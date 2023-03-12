@@ -3,7 +3,7 @@
 final class Weather extends Trongate
 {
 
-    private const API_KEY = '6bd5b850178e2134497c4b965fbaf54e';
+    private const API_KEY = '6bd5b850178e2134497c4b965fbaf54e'; // this is not my api key
     private const CURRENT_URL = 'https://api.openweathermap.org/data/2.5/weather';
     private const FORECAST_URL = 'https://api.openweathermap.org/data/2.5/forecast/daily';
     private const LANG = 'hu';
