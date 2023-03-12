@@ -30,3 +30,7 @@ esbuild:
 esbuild-watch:
 	./node_modules/.bin/esbuild modules/clean/_javascript/clean.js --bundle --sourcemap --outfile=modules/clean/assets/js/clean.js --watch
 
+
+basestats:
+	./node_modules/.bin/esbuild modules/basestats/_javascript/basestats/main.js --bundle --sourcemap --target=es6 --outfile=modules/basestats/assets/js/main.js
+
