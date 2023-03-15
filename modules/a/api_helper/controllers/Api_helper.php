@@ -1,10 +1,43 @@
 <?php
 
-class Base extends Trongate {
+class Api_helper extends Trongate
+{
+
+    /** make get call to the endpoint */
+    function _curl_call(string $query, $http_header_arguments = ['Content-Type: application/json']): string
+    {
+        // Initializes a new cURL session
+        $curl = curl_init($query);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $http_header_arguments);
+
+        // Execute cURL request
+        $response = curl_exec($curl);
+
+        // Close cURL session
+        curl_close($curl);
+
+
+        return $response;
+    }
+
+
+    /** Handle response */
+    function _response(array $response, int $response_code = 200): string
+    {
+        $output['body'] = json_encode($response);
+        $output['code'] = $response_code;
+
+        $code = $output['code'];
+        http_response_code($code);
+        return $output['body'];
+    }
 
 
     /* UTILITIES FOR API ENDPOINTS */
-    function _get_params_from_url($params_segment) {
+    function _get_params_from_url($params_segment)
+    {
         //params segment is where params might be passed
         $params_str = segment($params_segment);
         $first_char = substr($params_str, 0, 1);
@@ -26,12 +59,14 @@ class Base extends Trongate {
         return $params;
     }
 
-    function _prep_key($key) { //php convert json into URL string
+
+    function _prep_key($key)
+    { //php convert json into URL string
 
         //get last char
         $key = trim($key);
         $str_len = strlen($key);
-        $last_char = substr($key, $str_len-1);
+        $last_char = substr($key, $str_len - 1);
 
         if ($last_char == '!') {
             $key = $key.'=';
@@ -70,7 +105,9 @@ class Base extends Trongate {
         return $key;
     }
 
-    function _remove_special_characters($str) {
+
+    function _remove_special_characters($str)
+    {
         $ditch = '*!underscore!*';
         $replace = '_';
         $str = str_replace($ditch, $replace, $str);

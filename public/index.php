@@ -4,6 +4,10 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+// Setup translations
+require_once '../i18n/i18n.php';
+
+// Start the framework
 require_once '../engine/ignition.php';
 
 //Init Core Library
