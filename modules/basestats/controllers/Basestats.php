@@ -1,6 +1,6 @@
 <?php
 
-class Basestats extends Trongate
+final class Basestats extends Trongate
 {
     private string $csv_path;
 
