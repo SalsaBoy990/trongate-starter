@@ -32,6 +32,8 @@ final class Weather extends Trongate
             'units' => self::UNITS,
             'lang' => self::LANG,
         ];
+
+        $this->module('a-api_helper');
     }
 
 
@@ -59,7 +61,8 @@ final class Weather extends Trongate
             'forecast' => json_decode($forecast),
         ];
 
-        die(json_encode($results));
+        echo json_encode($results);
+        die;
     }
 
 
@@ -82,7 +85,7 @@ final class Weather extends Trongate
         $query = $this->_construct_query(self::CURRENT_URL);
 
         // make get call to the endpoint
-        return $this->_curl_call($query);
+        return $this->api_helper->_curl_call($query);
     }
 
 
@@ -103,8 +106,7 @@ final class Weather extends Trongate
     /** get user input; sanitize and process it */
     private function _input(): void
     {
-        $this->module('base');
-        $params = $this->base->_get_params_from_url(3);
+        $params = $this->api_helper->_get_params_from_url(3);
         extract($params);
 
         // Sanitize

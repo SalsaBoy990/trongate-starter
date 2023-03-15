@@ -23,6 +23,8 @@ final class Password_generator extends Trongate
         $this->charset = '';
         $this->has_error = false;
         $this->error_message = [];
+
+        $this->module('a-api_helper');
     }
 
 
@@ -86,8 +88,8 @@ final class Password_generator extends Trongate
     {
         api_auth();
 
-        $this->module('base');
-        $params = $this->base->_get_params_from_url(3);
+        $this->module('a-api_helper');
+        $params = $this->api_helper->_get_params_from_url(3);
 
         extract($params);
         settype($length, 'integer');
@@ -106,7 +108,8 @@ final class Password_generator extends Trongate
 
         // Error response
         if ($this->has_error === true) {
-            die($this->_response($this->error_message, $this->_get_error_code()));
+            echo $this->api_helper->_response($this->error_message, $this->_get_error_code());
+            die;
         }
 
 
@@ -122,11 +125,13 @@ final class Password_generator extends Trongate
         $result = $this->_generate_safe_password($args);
 
         if (array_key_exists('error', $result)) {
-            die($this->_response($result, $this->_get_error_code()));
+            echo $this->api_helper->_response($result, $this->_get_error_code());
+            die;
         }
 
         // success
-        die($this->_response($result));
+        echo $this->api_helper->_response($result);
+        die;
     }
 
 
