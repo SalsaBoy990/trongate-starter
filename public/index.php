@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 // Setup translations
 require_once '../i18n/i18n.php';
 
+// General helper functions
+require_once '../helper/helpers.php';
+
 // Start the framework
 require_once '../engine/ignition.php';
 
