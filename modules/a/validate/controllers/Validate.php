@@ -6,7 +6,7 @@ class Validate extends Trongate
      * Luhn algorithm to determine the validity of the credit card number
      * @see http://en.wikipedia.org/wiki/Luhn_algorithm
      */
-    static function _validate_card_number($card_number): void
+    public function _validate_card_number($card_number, $field_name = 'card_number'): void
     {
         $sum = '';
 
@@ -27,12 +27,15 @@ class Validate extends Trongate
         }
         // The sum must end with zero
         if (!(array_sum(str_split($sum)) % 10 === 0)) {
-            $_SESSION['form_submission_errors']['card-number'][] = 'The Card number is invalid.';
+            $_SESSION['form_submission_errors'][$field_name][] = 'The Card number is invalid.';
         }
     }
 
 
-    static public function _validate_expiration_month($field_name = 'expiration-month', $label = 'Expiration month')
+    /**
+     * Check if month in MM format is valid
+     */
+    public function _validate_expiration_month($field_name = 'month', $label = 'Expiration month'): void
     {
         // validate month in MM format
         $valid_months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
@@ -44,10 +47,13 @@ class Validate extends Trongate
     }
 
 
-    static public function _validate_card_expiration(
-        $card_field_name = 'card-number',
-        $month_field_name = 'expiration-month',
-        $year_field_name = 'expiration-year'
+    /**
+     * check if credit / debit card is valid
+     */
+    public function _validate_card_expiration(
+        $card_field_name = 'card_number',
+        $month_field_name = 'month',
+        $year_field_name = 'year'
     ) {
 
         $month = post($month_field_name, true);
@@ -64,7 +70,7 @@ class Validate extends Trongate
             if ($year === $current_year) {
 
                 if ($month < $current_month) {
-                    $_SESSION['form_submission_errors']['card-number'][] = 'Card is expired! Expired month.';
+                    $_SESSION['form_submission_errors'][$card_field_name][] = 'Card is expired! Expired month.';
 
                 } else {
                     if ($month === $current_month) {
@@ -100,7 +106,12 @@ class Validate extends Trongate
     }
 
 
-    function _validation_errors($opening_html=NULL, $closing_html=NULL, $keep = false) {
+    /**
+     * Outputs validation errors, but with an option to keep, or unset the $_SESSION property
+     * that is storing the error messages
+     */
+    function _validation_errors($opening_html = null, $closing_html = null, $keep = false): string
+    {
 
         if (isset($_SESSION['form_submission_errors'])) {
 
@@ -112,20 +123,20 @@ class Validate extends Trongate
             if ((isset($opening_html)) && (gettype($closing_html) == 'boolean')) {
                 //build individual form field validation error(s)
                 if (isset($form_submission_errors[$opening_html])) {
-                    $validation_err_str.= '<div class="validation-error-report">';
+                    $validation_err_str .= '<div class="validation-error-report">';
                     $form_field_errors = $form_submission_errors[$opening_html];
-                    foreach($form_field_errors as $validation_error) {
-                        $validation_err_str.= '<div>&#9679; '.$validation_error.'</div>';
+                    foreach ($form_field_errors as $validation_error) {
+                        $validation_err_str .= '<div>&#9679; '.$validation_error.'</div>';
                     }
-                    $validation_err_str.= '</div>';
+                    $validation_err_str .= '</div>';
                 }
 
                 return $validation_err_str;
 
             } else {
                 //normal error reporting
-                foreach($form_submission_errors as $key => $form_field_errors) {
-                    foreach($form_field_errors as $form_field_error) {
+                foreach ($form_submission_errors as $key => $form_field_errors) {
+                    foreach ($form_field_errors as $form_field_error) {
                         $validation_errors[] = $form_field_error;
                     }
                 }
@@ -135,8 +146,8 @@ class Validate extends Trongate
                     $closing_html = '</div>';
                 }
 
-                foreach($validation_errors as $form_submission_error) {
-                    $validation_err_str.= $opening_html.$form_submission_error.$closing_html;
+                foreach ($validation_errors as $form_submission_error) {
+                    $validation_err_str .= $opening_html.$form_submission_error.$closing_html;
                 }
 
                 if ($keep === false) {
@@ -147,21 +158,49 @@ class Validate extends Trongate
             echo $validation_err_str;
         }
 
+        return '';
+
     }
 
 
+    /**
+     * Unset the $_SESSION property that is storing the error messages
+     */
     function _clear_validation_errors(): void
     {
         unset($_SESSION['form_submission_errors']);
     }
 
+
+    /**
+     * Check if a form field has error messages
+     */
     function _has_error(string $field_name): bool
     {
         return isset($_SESSION['form_submission_errors'][$field_name]);
     }
 
+
+    /**
+     * Get the error messages that belongs to a form field
+     */
     function _get_error(string $field_name): ?string
     {
         return $_SESSION['form_submission_errors'][$field_name][0] ?? null;
+    }
+
+
+    /**
+     * Get data from posted form fields. $input_array is storing the fields names.
+     */
+    function _get_data_from_post(array $input_array, bool $clean_up = true): array
+    {
+        $data = [];
+
+        foreach ($input_array as $key => $value) {
+            $data[htmlspecialchars($value)] = post($value, $clean_up ? true : null);
+        }
+
+        return $data;
     }
 }
