@@ -54,7 +54,7 @@ class Validate extends Trongate
         $card_field_name = 'card_number',
         $month_field_name = 'month',
         $year_field_name = 'year'
-    ) {
+    ): void {
 
         $month = post($month_field_name, true);
         $year = post($year_field_name, true);
