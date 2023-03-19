@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" x-data="data" :class="{'dark': darkMode }" x-transition>
+<html lang="hu" x-data="data" :class="{'dark': darkMode }" x-transition>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="clean_module/css/prism.css">
     <link rel="stylesheet" type="text/css" href="weather_module/css/weather-icons.css">
     <link rel="stylesheet" type="text/css" href="weather_module/css/weather.css">
+    <link rel="stylesheet" type="text/css" href="payment_module/css/payment.css">
 
     <title>Public</title>
 </head>
