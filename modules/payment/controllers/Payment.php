@@ -2,8 +2,10 @@
 
 final class Payment extends Trongate
 {
+    /* CLASS CONSTANTS */
+
     // https://app.freecurrencyapi.com/dashboard
-    private const API_KEY = 'API_KEY'; // DO NOT COMMIT THE REAL KEY
+    private const API_KEY = 'WkQyonwTeedm0yV5Rpixj2m3iu9RzcwAanPhziFZ'; // DO NOT COMMIT THE REAL KEY
     private const API_URL = 'https://api.freecurrencyapi.com/v1/latest';
 
     // Min and max limits for the amount to pay
@@ -11,7 +13,12 @@ final class Payment extends Trongate
     private const MAX = 1000000;
 
     // list all form field names
-    private const INPUT_FIELDS = ['card_number', 'month', 'year', 'amount', 'cvv', 'full_name', 'email_address', 'currency_id'];
+    private const INPUT_FIELDS = [
+        'card_number', 'month', 'year', 'amount', 'cvv', 'full_name', 'email_address', 'currency_id'
+    ];
+
+
+    /* CLASS PROPERTIES */
 
     private string $from_currency;
     private string $to_currency;
@@ -52,6 +59,9 @@ final class Payment extends Trongate
 
     }
 
+
+    /* FORM METHODS */
+
     // the html payment form endpoint
     function form()
     {
@@ -79,7 +89,22 @@ final class Payment extends Trongate
     }
 
 
+    private function _get_data_from_post(): array
+    {
 
+        $data = $this->validate->_get_data_from_post(self::INPUT_FIELDS);
+
+        $month = post('month', true);
+        $data['month'] = $month < 10 ? '0'.$month : $month;
+
+        $year = post('year', true);
+        $data['year'] = $year < 10 ? '0'.$year : $year;
+
+        return $data;
+    }
+
+
+    /* CAPTURE PAYMENT WITH VALIDATION AND PDF GENERATION */
     // post endpoint to capture payment data
     function submit()
     {
@@ -134,16 +159,28 @@ final class Payment extends Trongate
             // expiration validation
             $this->validate->_validate_card_expiration();
 
+
             // this is a workaround to be able to have custom validations that are not part of the framework
             // intentionally not using _callback prefix, validation methods are outsourced in the "A" module instead
             if ($result === true && !isset($_SESSION['form_submission_errors'])) {
+
                 $this->to_currency = strtoupper(post('currency_id', true));
                 $this->amount = post('amount', true);
 
+                $this->full_name = post('full_name', true);
+                $this->email_address = post('email_address', true);
+
                 $this->_convert_currency();
 
-                $message = 'Converted currency: ' . $this->converted_amount . ' ' . $this->to_currency;
+                $message = 'Converted currency: '.$this->converted_amount.' '.$this->to_currency;
                 set_flashdata($message);
+
+                // todo: later on, the orders will be stored in the database of course
+                // and the invoices will be generated using the values from the order records
+                // currently the pdf is generated instantly, and a download prompt appears
+                // I am just messing around with dompdf...
+                $this->get_invoice();
+
                 $this->form();
 
             } else {
@@ -155,17 +192,31 @@ final class Payment extends Trongate
     }
 
 
+
+    /* CURRENCY CONVERSION WITH API - METHODS */
+
     // Convert the amount from one currency to another
     private function _convert_currency(): void
     {
         $query = $this->_construct_query();
-        $json = $this->api_helper->_curl_call($query);
-        $results = json_decode($json);
 
-        $currency_rates = $results->data;
+        try {
+            $json = $this->api_helper->_curl_call($query);
+            $results = json_decode($json);
 
-        // convert HUF -> USD -> EUR (example)
-        $this->converted_amount = $this->amount / $currency_rates->{$this->from_currency} * $currency_rates->{$this->to_currency};
+
+            if (!isset($results) || !property_exists($results, 'data')) {
+                throw new Exception($results->message ?? 'Unable to fetch data from currency conversion API.');
+            }
+
+            $currency_rates = $results->data;
+
+            // convert HUF -> USD -> EUR (example)
+            $this->converted_amount = $this->amount / $currency_rates->{$this->from_currency} * $currency_rates->{$this->to_currency};
+        } catch (Exception $ex) {
+            $this->validate->set_error($ex->getMessage());
+            $this->form();
+        }
     }
 
 
@@ -176,17 +227,57 @@ final class Payment extends Trongate
     }
 
 
-    private function _get_data_from_post(): array {
 
-        $data = $this->validate->_get_data_from_post(self::INPUT_FIELDS);
+    /* PDF INVOICE GENERATION METHODS */
 
-        $month = post('month', true);
-        $data['month'] = $month < 10 ? '0'.$month : $month;
+    public function get_invoice()
+    {
+        $html_content = $this->_prepare_pdf_content();
+        // instant download
+        $this->_generate_pdf_invoice($html_content, 'Invoice', 'default', true);
 
-        $year = post('year', true);
-        $data['year'] = $year < 10 ? '0'.$year : $year;
+    }
 
-        return $data;
+
+    private function _prepare_pdf_content(): string
+    {
+        $html_content = <<<HTML
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+                <td>Name</td>
+                <td>$this->full_name</td>
+            </tr>
+            <tr>
+                <td>Email address</td>
+                <td>$this->email_address</td>
+            </tr>
+            <tr>
+                <td>Submitted amount</td>
+                <td>$this->amount $this->from_currency</td>
+            </tr>
+            <tr>
+                <td>Converted amount</td>
+                <td>$this->converted_amount $this->to_currency</td>
+            </tr>
+        </tbody>
+</table>
+HTML;
+
+        return $html_content;
+    }
+
+
+    private function _generate_pdf_invoice(string $html_content, string $title, string $template, bool $is_attachment)
+    {
+        $this->module('invoice');
+        $this->invoice->print_invoice($html_content, $title, $template, $is_attachment);
     }
 
 }
