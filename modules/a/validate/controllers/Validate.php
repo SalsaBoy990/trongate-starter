@@ -191,6 +191,14 @@ class Validate extends Trongate
 
 
     /**
+     * Set the error message from the exception (mainly)
+     */
+    function set_error(string $message, string $name = 'exception') {
+        $_SESSION['form_submission_errors'][$name][] = $message;
+    }
+
+
+    /**
      * Get data from posted form fields. $input_array is storing the fields names.
      */
     function _get_data_from_post(array $input_array, bool $clean_up = true): array
