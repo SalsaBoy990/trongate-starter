@@ -1,0 +1,13 @@
+{
+    "name": "gulacsi/starcity",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Gulácsi András",
+            "email": "guland@protonmail.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}

@@ -2,3 +2,5 @@
 /.solus-theme/
 \.phpintel/
 /node_modules/
+
+/vendor/
