@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="weather_module/css/weather-icons.css">
     <link rel="stylesheet" type="text/css" href="weather_module/css/weather.css">
     <link rel="stylesheet" type="text/css" href="payment_module/css/payment.css">
+    <link rel="stylesheet" type="text/css" href="gallery_module/css/gallery.css">
 
     <title>Public</title>
 </head>

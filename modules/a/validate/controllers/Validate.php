@@ -211,4 +211,29 @@ class Validate extends Trongate
 
         return $data;
     }
+
+    // some basic sanitizing: remove trailing whitespace, html tags
+    function sanitize_text(string $str): string
+    {
+        $str = trim($str);
+        return strip_tags($str);
+    }
+
+    /**
+     * Check $_FILES[][name]
+     *
+     * @param string $filename - Uploaded file name.
+     */
+    function is_filename_valid(string $filename): bool
+    {
+        return (bool) preg_match("`^[-0-9A-Z_\.]+$`i", $filename);
+    }
+
+    /**
+     * @param string $filename - Uploaded file name.
+     */
+    function is_filename_too_long(string $filename): bool
+    {
+        return mb_strlen($filename, "UTF-8") > 225;
+    }
 }
