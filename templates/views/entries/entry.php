@@ -13,9 +13,18 @@
 
     <title><?= $title . ' | ' ?><?= WEBSITE_NAME ?>></title>
 
-    <?= Template::partial('partials/public/meta', $data) ?>
+	<?= Template::partial('partials/public/meta', $data) ?>
 
-    <script src="entries_module/assets/tinymce/tinymce.js" referrerpolicy="origin"></script>
+    <script src="entries_module/tinymce/tinymce.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#entry-content-area',
+            language: 'hu_HU',
+            directionality: 'ltr',
+            skin: (localStorage.getItem('darkMode') === true ? 'oxide-dark' : 'oxide'),
+            content_css: (localStorage.getItem('darkMode') === true ? 'dark' : 'default')
+        });
+    </script>
 </head>
 <body @scroll="setScrollToTop()">
 <div class="wrapper">
@@ -26,15 +35,15 @@
             </div>
             <div class="logo">
                 <a href="<?= BASE_URL ?>">
-                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
                     <span>Clean Theme</span>
                 </a>
             </div>
             <div>
-                <?php
-                echo anchor('account', '<i class="fa fa-user"></i>');
-                echo anchor('logout', '<i class="fa fa-sign-out"></i>');
-                ?>
+				<?php
+				echo anchor( 'account', '<i class="fa fa-user"></i>' );
+				echo anchor( 'logout', '<i class="fa fa-sign-out"></i>' );
+				?>
                 <span class="pointer darkmode-toggle" rel="button"
                       @click="toggleDarkMode" x-text="isDarkModeOn() ? '🔆' : '🌒'"
                       :title="isDarkModeOn() ? 'Light mode' : 'Dark mode'">
@@ -44,7 +53,7 @@
         <div id="header-lg">
             <div class="logo">
                 <a href="<?= BASE_URL ?>">
-                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>" />
+                    <img src="documentation_module/images/logo.png" alt="<?= WEBSITE_NAME ?>"/>
                     <span>Clean Theme</span>
                 </a>
             </div>
@@ -54,17 +63,37 @@
                     <li><a href="<?= BASE_URL ?>"><i class="fa fa-lightbulb-o"></i>About Us</a></li>
                     <li><a href="<?= BASE_URL ?>"><i class="fa fa-street-view"></i>Our Values</a></li>
                     <li><a href="<?= BASE_URL ?>"><i class="fa fa-gears"></i>How We Work</a></li>
-                    <li><a href="<?= BASE_URL ?>documentation-clean/index"><i class="fa fa-send"></i>Clean Template</a></li>
+                    <li><a href="<?= BASE_URL ?>documentation-clean/index"><i class="fa fa-send"></i>Clean Template</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </header>
 
 
-    <div class="main-container container relative">
+    <div x-data="{ showToc: true}" class="main-container container relative">
+
+
+        <span @click="showToc = ! showToc" class="pointer absolute padding-0-5 top-left margin-top-1-5" role="button"
+              title="Table of content">
+            <i :class="{'fa fa-arrow-left' : showToc,  'fa fa-arrow-right' : !showToc }" aria-hidden="true"></i>
+        </span>
+
+
+        <aside x-show="showToc" x-transition class="toc">
+            <h2 class="fs-20"> Table of Contents </h2>
+            <nav>
+				<?php foreach ( $entries as $entry ) { ?>
+                    <h3 class="fs-16"><?= anchor( 'entries/entry/' . $entry->url_string, $entry->title ) ?></h3>
+				<?php } ?>
+            </nav>
+        </aside>
+
+
         <main class="content">
-            <?= Template::display($data) ?>
+			<?= Template::display( $data ) ?>
         </main>
+
     </div>
 
 
@@ -78,8 +107,8 @@
 <footer class="footer">
     <div class="container">
         <!-- it's okay to remove the links and content here - everything is cool (DC) -->
-        <div class="normal">&copy; Copyright <?= date('Y').' '.OUR_NAME ?></div>
-        <div class="small"><?= anchor('https://trongate.io', 'Powered by Trongate') ?></div>
+        <div class="normal">&copy; Copyright <?= date( 'Y' ) . ' ' . OUR_NAME ?></div>
+        <div class="small"><?= anchor( 'https://trongate.io', 'Powered by Trongate' ) ?></div>
     </div>
 </footer>
 <div id="slide-nav">
@@ -92,4 +121,3 @@
 
 </body>
 </html>
-

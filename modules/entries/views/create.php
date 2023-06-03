@@ -1,37 +1,27 @@
-<?= anchor('entries/manage/', '<i class="fa fa-arrow-left" aria-hidden="true"></i> Back') ?>
-
-<h1><?= $page_headline ?></h1>
-
-<?php if (isset($_SESSION['form_submission_errors'])) { ?>
-    <div class="panel pale-red text-dark-red border border-dark-red relative">
-        <?= validation_errors() ?>
+<h1><?= $headline ?></h1>
+<?= validation_errors() ?>
+<div class="card">
+    <div class="card-heading">
+        Entry Details
     </div>
-<?php } ?>
+    <div class="card-body">
+		<?php
+		echo form_open( $form_location );
 
-<?php
-//echo form_open('entries/submit');
-echo form_open($form_location);
+		echo form_label( 'Title' );
+		echo form_input( 'title', $title, array( "placeholder" => "Enter Title" ) );
 
-echo form_label('Entry Title');
-//echo form_input('title', '');
-echo form_input('title', $title);
+		echo form_label( 'Content' );
+		echo form_textarea( 'content', $content,
+			array( "placeholder" => "Enter Content", 'id' => 'entry-content-area' ) );
 
-echo form_label('Entry Content');
-echo form_textarea('content', $content, [ 'id' => 'entry-content-area']);
+		echo form_label( 'Created At' );
+		$attr = array( "class" => "datetime-picker", "autocomplete" => "off", "placeholder" => "Select Created At" );
+		echo form_input( 'created_at', $created_at, $attr );
 
-echo '<br>';
-
-echo form_submit('submit', 'Submit', [ 'class' => 'primary']);
-?>
-
-
-<?php
-$update_id = segment(3);
-settype($update_id, 'int');
-
-if ($update_id>0) {
-    echo ' '.anchor('entries/delete/' . $update_id, 'Delete', ['class' => 'danger button']);
-}
-
-echo form_close();
-?>
+		echo form_submit( 'submit', 'Submit' );
+		echo anchor( $cancel_url, 'Cancel', array( 'class' => 'button alt' ) );
+		echo form_close();
+		?>
+    </div>
+</div>

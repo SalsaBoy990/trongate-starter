@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="<?= THEME_DIR ?>css/admin.css">
     <?= $additional_includes_top ?>
     <title>Admin</title>
+
+    <script src="entries_module/tinymce/tinymce.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#entry-content-area',
+            plugins: 'link code table lists image codesample',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | fontsizeselect | codesample',
+            language: 'hu_HU',
+            directionality: 'ltr',
+            height: 700,
+            browser_spellcheck: true,
+            forced_root_block: '',
+            skin: (localStorage.getItem('darkMode') == true ? 'oxide-dark' : 'oxide'),
+            content_css: (localStorage.getItem('darkMode') == true ? 'dark' : 'default')
+        });
+    </script>
 </head>
 <body>
     <header>    

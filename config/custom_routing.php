@@ -10,6 +10,9 @@ $routes = [
     // FRUITS
     'fruits/manage' => 'fruits/manage',
     'fruits' => 'fruits/index',
-    'fruits/(:any)' => 'fruits/fruit/$1'
+    'fruits/(:any)' => 'fruits/fruit/$1',
+
+	// ENTRIES MODULE
+	'entry/(:any)' => 'entries/entry/$1',
 ];
 define('CUSTOM_ROUTES', $routes);

@@ -9,6 +9,18 @@ class Templates extends Trongate {
         load('public', $data);
     }
 
+
+	/**
+	 * For entries module
+	 * @param $data
+	 *
+	 * @return void
+	 */
+	function entry($data) {
+		load('entries/entry', $data);
+	}
+
+
     function clean($data) {
         load('clean', $data);
     }
@@ -21,9 +33,17 @@ class Templates extends Trongate {
         load('clean_empty', $data);
     }
 
-    function clean_no_toc($data) {
-        load('clean_no_toc', $data);
+
+	/**
+	 * This is the base template for clean framework
+	 * @param $data
+	 *
+	 * @return void
+	 */
+	function clean_base($data) {
+        load('clean_base', $data);
     }
+
 
     function error_404($data) {
         load('error_404', $data);
