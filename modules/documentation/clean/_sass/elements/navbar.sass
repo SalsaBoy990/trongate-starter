@@ -43,6 +43,7 @@
         padding-bottom: 0
 
         .button, button
+            margin-top: 0
             display: flex
             align-items: center
             justify-content: center
@@ -55,12 +56,34 @@
 
 
     .dropdown
+        @media screen and (max-width: $s-601)
+            width: 100%
+
         button
+            display: block
+            text-align: center
+            margin: auto 0
             text-decoration: underline
+
+            @media screen and (max-width: $s-601)
+                width: 100%
+
+
+        .dropdown-content
+            width: 100%
+
+            .bar-item
+                @media screen and (max-width: $s-601)
+                    text-align: center
+
 
     .button, button
         white-space: normal
         margin-top: 0
+
+        @media screen and (max-width: $mobile)
+            //display: block
+            margin-top: 0
 
 
 .bar-block .bar-item
@@ -82,3 +105,8 @@
     .bar-item
         margin-top: 0
         width: 33.3%
+
+
+a.nav-link.active
+    font-weight: 700
+    background-color: $gray-20

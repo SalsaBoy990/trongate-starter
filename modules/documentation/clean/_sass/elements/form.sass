@@ -1,8 +1,9 @@
 input[type="text"],
+input[type="search"],
 input[type="number"],
-textarea,
 input[type="email"],
 input[type="password"],
+textarea,
 select
     font-family: $sans
 
@@ -23,7 +24,7 @@ input[type="checkbox"]
     cursor: pointer
     width: 1.25em
     height: 1.25em
-    margin: 0.6em 0.25em 1em 1em
+    margin: 0.6em 0.25em 1em 0
 
     &:disabled
         cursor: not-allowed
@@ -55,3 +56,21 @@ button:disabled,
 
 fieldset
     border: 1px solid $gray-20
+
+
+input[readonly]
+    background-color: $gray-20
+    cursor: not-allowed
+
+
+.checkbox-container
+    label
+        margin-top: 0
+
+        input
+            margin-bottom: 0
+
+
+select
+    background: white
+

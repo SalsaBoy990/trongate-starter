@@ -1,7 +1,14 @@
-button,
-.button
+button
     border: 1px solid $primary-light
     background-color: $primary-light
+
+
+.button
+    border: 1px solid $primary-light
+
+    &:hover, &:focus
+        background-color: white
+
 
 button,
 .button,
@@ -24,6 +31,9 @@ button:hover,
     background-color: $primary-dark
 
 
+.button.alt:hover
+    background-color: white
+
 .alt:hover,
 .alt:focus
     color: $primary-light
@@ -40,9 +50,15 @@ button:disabled,
     &:hover
         box-shadow: none
         border: 1px solid transparent
-        cursor: initial
 
 
+button.active,
+.button.active
+    &:hover
+        background-color: $primary-light
+
+
+/* Action color buttons */
 button.primary,
 .button.primary
     color: white
@@ -52,6 +68,29 @@ button.primary,
     &:hover
         border-color: $primary-dark
         background-color: $primary-dark
+        color: white
+
+
+    &.alt
+        color: $text
+        border-color: $primary-light
+        background-color: transparent
+
+        &:hover, &:focus
+            border-color: $primary-dark
+            background-color: white
+            color: $primary-dark
+
+
+button.secondary,
+.button.secondary
+    color: $black
+    background-color: $accent-light
+    border-color: $accent-light
+
+    &:hover
+        border-color: $accent-dark
+        background-color: $accent-dark
         color: white
 
 
@@ -172,14 +211,10 @@ button.white-button
         background-color: $black
         border-color: $gray-0
         color: $gray-0
+/* Action color buttons END */
 
 
-button.active,
-.button.active
-    &:hover
-        background-color: $primary-light
-
-
+/* Special buttons */
 .link-button
     background-color: transparent
     border-color: transparent
@@ -209,23 +244,67 @@ button.transparent
 
 
 .scroll-to-top-button
+    margin-top: 0
+    width: auto
     position: fixed
     right: 1.5em
     bottom: 2.5em
     background-color: $gray-20
     color: $text
+    display: flex
+    align-items: center
+    justify-content: center
 
     &:hover, &:focus
         background-color: $primary-light
         color: white
 
 
-button.close-button,
-span.close-button
+.icon-button
+    margin-top: 0
+    background-color: transparent
+    border: none
+    padding: 0.5em
+
+    &:hover, &:focus
+        background-color: transparent
+        border: none
+
+
+button.close-button
+    width: auto
+    margin-top: 0
+    margin-right: 0
     border: 1px solid transparent
+    background-color: transparent
+    color: $black
 
     &:hover
         background-color: rgba(0, 0, 0, 0.3)
+
+
+#close-btn
+    cursor: pointer
+
+
+button.pointer.darkmode-toggle
+    background-color: transparent
+    border: none
+    margin-top: 0
+
+
+button.logout-button
+    background-color: transparent
+    border: none
+    color: #C1354B
+    text-decoration: underline
+    margin: 0 0.5em
+    padding: 0 0.5em
+
+    &:hover, &:focus
+        border: none
+        color: $black
+        background-color: transparent
 
 
 .button-square,
@@ -255,8 +334,10 @@ a.button-square
     @media screen and (max-width: $s-600)
         width: auto
         display: flex
+/* Special buttons END */
 
 
+/* Button group row, pagination buttons */
 .button-group, .pagination-group
     display: flex
     flex-direction: row
@@ -266,6 +347,15 @@ a.button-square
 .button-group
     column-gap: 0.5em
 
+    button
+        margin-top: 0
+
+    .clean-modal-content
+        button
+            margin-top: 1em
+
 
 .pagination-group
     column-gap: 0.25em
+/* Button group row, pagination buttons END */
+
