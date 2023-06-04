@@ -1,14 +1,17 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass')(require('sass'));
-var babel = require('gulp-babel');
-//var cssnano = require('gulp-cssnano');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var cleanCSS = require('gulp-clean-css');
+const gulp        = require('gulp');
+const babel       = require("babelify");
+const browserify  = require('browserify');
+const buffer      = require('vinyl-buffer');
+const log         = require('gulplog');
+const sass        = require('gulp-sass')(require('sass'));
+const source      = require('vinyl-source-stream');
+const sourcemaps  = require("gulp-sourcemaps");
+const uglify      = require('gulp-uglify');
+const rename      = require('gulp-rename');
+const cleanCSS    = require('gulp-clean-css');
 
 
-var paths = {
+const paths = {
     styles: {
         src: '_sass/clean.sass',
         dest: 'assets/css/'
@@ -20,7 +23,7 @@ var paths = {
 };
 
 
-var watchPaths = {
+const watchPaths = {
     styles: '_sass/**/*.sass',
     scripts: '_javascript/**/*.js',
 }
@@ -33,7 +36,7 @@ var watchPaths = {
 function clean() {
     // You can use multiple globbing patterns as you would with `gulp.src`,
     // for example if you are using del 2.0 or above, return its promise
-    return del([ 'assets/js/main.min.js', 'assets/css/clean.min.css' ]);
+    return del(['assets/js/main.min.js', 'assets/css/clean.min.css']);
 }
 
 
@@ -49,7 +52,7 @@ function styles() {
             basename: 'clean',
             suffix: ''
         }))
-        .pipe(gulp.dest(paths.styles.dest));
+        .pipe(gulp.dest(paths.styles.dest, {sourcemaps: true}));
 }
 
 
@@ -57,10 +60,19 @@ function styles() {
  * Process JavaScript files
  */
 function scripts() {
-    return gulp.src(paths.scripts.src, {sourcemaps: true})
-        .pipe(babel())
-        // .pipe(uglify())
-        .pipe(concat('clean.js'))
+
+    const bundler = browserify({entries: paths.scripts.src}, {debug: false}).transform(babel);
+
+    bundler.bundle()
+        .on("error", function (err) {
+            console.error(err);
+            this.emit("end");
+        })
+        .pipe(source('clean.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(uglify())
+        .pipe(sourcemaps.write(paths.scripts.dest))
         .pipe(gulp.dest(paths.scripts.dest));
 }
 
