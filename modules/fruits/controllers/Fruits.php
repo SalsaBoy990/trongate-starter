@@ -244,7 +244,7 @@ class Fruits extends Trongate {
             $data['view_file'] = 'fruit';
             $data['title'] = $fruit->name;
             $data['description'] = $fruit->description;
-            $this->template('clean_no_toc', $data);
+            $this->template('clean_base', $data);
         }
     }
 

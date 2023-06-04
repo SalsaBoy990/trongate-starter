@@ -108,7 +108,7 @@ class Entries extends Trongate {
 		$data['title']       = 'Entries';
 		$data['description'] = 'This is the blog page with the newest entries';
 
-		$this->template( 'clean_base', $data );
+		$this->template( 'clean_main', $data );
 	}
 
 

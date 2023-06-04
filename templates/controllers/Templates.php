@@ -17,34 +17,35 @@ class Templates extends Trongate {
 	 * @return void
 	 */
 	function entry($data) {
-		load('entries/entry', $data);
+		load('modules/entries/entry', $data);
 	}
 
 
-    function clean($data) {
-        load('clean', $data);
+	/* This is the base template for clean framework */
+    function clean_div($data) {
+        load('modules/clean/clean_div', $data);
     }
-
-    function clean_starter($data) {
-        load('clean_starter', $data);
-    }
-
-    function clean_empty($data) {
-        load('clean_empty', $data);
-    }
-
 
 	/**
-	 * This is the base template for clean framework
+	 *
 	 * @param $data
 	 *
 	 * @return void
 	 */
-	function clean_base($data) {
-        load('clean_base', $data);
+	function clean_main($data) {
+        load('modules/clean/clean_main', $data);
     }
 
+	function clean_starter($data) {
+		load('clean_starter', $data);
+	}
 
+	function clean_empty($data) {
+		load('clean_empty', $data);
+	}
+
+
+	//
     function error_404($data) {
         load('error_404', $data);
     }

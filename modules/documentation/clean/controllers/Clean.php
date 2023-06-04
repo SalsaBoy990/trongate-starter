@@ -9,14 +9,14 @@ class Clean extends Trongate
     }
 
     function index() {
-        $this->view('index');
-    }
-
-    function clean() {
         $data['view_module'] = 'documentation/clean';
         $data['view_file'] = 'index';
 
-        $this->template('clean', $data);
+		// SEO
+		$data['title'] = 'Clean Components';
+		$data['description'] = 'Basic Components for Clean SS and JS library';
+
+        $this->template('clean_div', $data);
     }
 
     function __destruct() {
