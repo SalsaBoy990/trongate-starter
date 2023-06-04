@@ -72,7 +72,7 @@ function scripts() {
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
-        .pipe(sourcemaps.write(paths.scripts.dest))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(paths.scripts.dest));
 }
 
