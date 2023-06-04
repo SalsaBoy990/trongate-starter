@@ -14,5 +14,6 @@ $routes = [
 
 	// ENTRIES MODULE
 	'entry/(:any)' => 'entries/entry/$1',
+    'clean' => 'documentation-clean/index',
 ];
 define('CUSTOM_ROUTES', $routes);
