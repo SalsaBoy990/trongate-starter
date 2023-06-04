@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs'
+import focus from '@alpinejs/focus'
 
 import {data} from "./modules/data";
 import {tabsData} from "./modules/tabsData";
@@ -14,7 +15,13 @@ import {dropdownData} from "./modules/dropdownData";
 import {ajaxSearchData} from "./modules/ajaxSearchData";
 import {tabbedImagesData} from "./modules/tabbedImagesData";
 
+// for password_generator module
+import {safePasswordData} from "./modules/safePasswordData";
+
 window.Alpine = Alpine
+
+// enable focus trap extension
+Alpine.plugin(focus);
 
 Alpine.data('data', data);
 Alpine.data('dropdownData', dropdownData);
@@ -29,5 +36,6 @@ Alpine.data('lightboxData', lightboxData);
 Alpine.data('accordionData', accordionData);
 Alpine.data('tabsData', tabsData);
 Alpine.data('tabbedImagesData', tabbedImagesData);
+Alpine.data('safePasswordData', safePasswordData);
 
 Alpine.start()
