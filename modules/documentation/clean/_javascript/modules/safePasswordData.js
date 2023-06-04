@@ -1,5 +1,5 @@
 /*
-*  Ajax search in entries action
+*  Safe password data component
 *
 * */
 export function safePasswordData() {
