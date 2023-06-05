@@ -18,8 +18,8 @@
 //The main config file
 define('BASE_URL', 'http://localhost/starcity/');
 define('ENV', 'dev');
-define('DEFAULT_MODULE', 'documentation');
-define('DEFAULT_CONTROLLER', 'Documentation');
+define('DEFAULT_MODULE', 'frontpage');
+define('DEFAULT_CONTROLLER', 'Frontpage');
 define('DEFAULT_METHOD', 'index');
 define('MODULE_ASSETS_TRIGGER', '_module');
 

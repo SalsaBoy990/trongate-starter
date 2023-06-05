@@ -32,7 +32,7 @@ final class Password_generator extends Trongate
     function index()
     {
         $data['view_file'] = 'index';
-        $this->template('clean_starter', $data);
+        $this->template('clean_main', $data);
     }
 
     /** Generate safe password */

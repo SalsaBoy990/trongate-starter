@@ -27,7 +27,7 @@ final class Github_repositories extends Trongate
 
         $data['view_file'] = 'index';
         $data['token'] = $token;
-        $this->template('clean_starter', $data);
+        $this->template('clean_main', $data);
     }
 
     function repositories()

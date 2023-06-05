@@ -4,6 +4,10 @@
 
     <?php flashdata('<div class="panel success">', '</div>') ?>
 
+    <p>
+        <a href="<?= BASE_URL . 'gallery/form' ?>">Upload image to the gallery</a>
+    </p>
+
     <h2>Lightbox</h2>
     <div class="simple-gallery" x-data="lightboxData">
         <div x-show="openLighbox" class="gallery-modal black" :class="{'show': openLighbox }">

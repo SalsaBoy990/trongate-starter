@@ -16,7 +16,7 @@ final class Basestats extends Trongate
         $data['view_file'] = 'index';
         $data['test'] = $this->_getData();
 
-        $this->template('clean_starter', $data);
+        $this->template('basestats', $data);
 
     }
 

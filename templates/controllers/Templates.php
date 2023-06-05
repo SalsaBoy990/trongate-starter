@@ -36,6 +36,30 @@ class Templates extends Trongate {
         load('modules/clean/clean_main', $data);
     }
 
+
+	/* This is the template for weather module */
+	function weather($data) {
+		load('modules/weather_module/weather', $data);
+	}
+
+
+	/* This is the template for the gallery module */
+	function gallery($data) {
+		load('modules/gallery_module/gallery', $data);
+	}
+
+	/* This is the template for the basestats module */
+	function basestats($data) {
+		load('modules/basestats_module/basestats', $data);
+	}
+
+	/* This is the template for the payment module */
+	function payment($data) {
+		load('modules/payment_module/payment', $data);
+	}
+
+
+
 	function clean_starter($data) {
 		load('clean_starter', $data);
 	}

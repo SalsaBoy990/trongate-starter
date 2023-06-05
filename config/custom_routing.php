@@ -7,7 +7,7 @@ $routes = [
     //'laptops/(:num)' => 'products/browse/$1'
     'laptops/(:any)' => 'products/browse/$1',
 
-    // FRUITS
+    // FRUITS MODULE
     'fruits/manage' => 'fruits/manage',
     'fruits' => 'fruits/index',
     'fruits/(:any)' => 'fruits/fruit/$1',
@@ -15,5 +15,14 @@ $routes = [
 	// ENTRIES MODULE
 	'entry/(:any)' => 'entries/entry/$1',
     'clean' => 'documentation-clean/index',
+
+	// WEATHER MODULE
+	'weather' => 'weather/city',
+
+	// BASESTATS MODULE
+	'basestats' => 'basestats/index',
+
+	// GALLERY MODULE
+    'gallery' => 'gallery/gallery',
 ];
 define('CUSTOM_ROUTES', $routes);

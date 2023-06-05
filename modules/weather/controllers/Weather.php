@@ -41,7 +41,7 @@ final class Weather extends Trongate
     public function city()
     {
         $data['view_file'] = 'index';
-        $this->template('clean_starter', $data);
+        $this->template('weather', $data);
     }
 
 

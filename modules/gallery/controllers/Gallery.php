@@ -54,7 +54,7 @@ class Gallery extends Trongate implements JsonSerializable
         $data['view_file'] = 'form';
         $data['error_stack'] = $this->error_stack;
         $data['form_location'] = str_replace('/form', '/submit', current_url());
-        $this->template('clean_starter', $data);
+        $this->template('gallery', $data);
     }
 
     // gallery view
@@ -78,7 +78,11 @@ class Gallery extends Trongate implements JsonSerializable
         $data['images'] = $this->gallery_images;
         $data['number_of_images'] = count($this->gallery_images);
         $data['view_file'] = 'gallery';
-        $this->template('clean_starter', $data);
+
+	    $data['title'] = 'Image gallery';
+	    $data['description'] = 'A Very Simple Image Gallery';
+
+        $this->template('gallery', $data);
     }
 
     public function submit() {
@@ -326,7 +330,7 @@ class Gallery extends Trongate implements JsonSerializable
 
                 // Check upload content to filter out some malicious code
                 // read the header information of the image and will fail on an invalid image.
-                if (!@getimagesize($_FILES['image']['tmp_name'])) {
+                if ($_FILES['image']['tmp_name'] && !@getimagesize($_FILES['image']['tmp_name'])) {
                     $has_error = true;
                     $this->validate->set_error('A feltöltött kép érvénytelen.');
                     $this->error_stack[] = 'A feltöltött kép érvénytelen.';

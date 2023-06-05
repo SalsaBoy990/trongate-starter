@@ -1,4 +1,4 @@
-<h1>Simple Image Gallery</h1>
+<h1>Simple Image Upload</h1>
 
 <h2>Képfeltöltés</h2>
 

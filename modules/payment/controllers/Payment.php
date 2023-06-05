@@ -72,7 +72,7 @@ final class Payment extends Trongate
         $data['currency_options'] = $this->_get_currency_options($data['currency_id']);
 
 
-        $this->template('clean_starter', $data);
+        $this->template('payment', $data);
     }
 
     // setup values for the currency select field
@@ -179,7 +179,7 @@ final class Payment extends Trongate
                 // and the invoices will be generated using the values from the order records
                 // currently the pdf is generated instantly, and a download prompt appears
                 // I am just messing around with dompdf...
-                $this->get_invoice();
+//                $this->get_invoice();
 
                 $this->form();
 
