@@ -8,27 +8,32 @@ $links = [
 
 	'Entries' => [
 		'url' => BASE_URL . 'entries',
-		'icon' => 'fa fa-lightbulb-o',
+		'icon' => 'fa fa-solid fa-book',
 	],
 
-	'Our Values' => [
-		'url' => BASE_URL,
-		'icon' => 'fa fa-street-view',
+	'PWD Generator' => [
+		'url' => BASE_URL . 'password_generator',
+		'icon' => 'fa fa-lock',
 	],
 
 	'Get In Touch' => [
-		'url' => BASE_URL,
-		'icon' => 'fa fa-send',
+		'url' => BASE_URL . 'mailer/contact',
+		'icon' => 'fa fa-solid fa-envelope',
 	],
 
 	'Clean CSS' => [
 		'url' => BASE_URL . 'clean',
-		'icon' => 'fa fa-send',
+		'icon' => 'fa fa-solid fa-layer-group',
 	],
 
 ];
 
 
 foreach ($links as $title => $values) { ?>
-    <li><a href="<?= $values['url'] ?>" <?= is_active_link($values['url']) ? 'aria-current="page"' : '' ?> class="<?= is_active_link($values['url'])  ? 'active' : '' ?>"><i class="<?= $values['icon'] ?>"></i><?= $title ?></a></li>
+    <li><a href="<?= $values['url'] ?>" <?= is_active_link($values['url']) ? 'aria-current="page"' : '' ?> class="<?= is_active_link($values['url'])  ? 'active' : '' ?>">
+            <i class="<?= $values['icon'] ?>"></i>
+            <?= $title ?>
+        </a>
+    </li>
 <?php } ?>
+
