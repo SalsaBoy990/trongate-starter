@@ -16,6 +16,7 @@ class Invoice extends Trongate
 
         $this->options = new Options;
         $this->options->set('defaultFont', 'Courier');
+        $this->options->setIsRemoteEnabled(true);
 
         // https://github.com/dompdf/dompdf/blob/6782abfc090b132134cd6cea0ec6d76f0fce2c56/src/Options.php#L294
         // directory where dompdf should read images
@@ -81,9 +82,7 @@ HTML;
         // template will be populated with the arguments received
         $content = file_get_contents(dirname(__FILE__, 2).'/templates/' . $template . '.html');
 
-        $content = str_replace('{{ logo_path }}', $logo_path, $content);
-        $content = str_replace('{{ title }}', $title, $content);
-        $content = str_replace('{{ content }}', $html_content, $content);
+        $content = str_replace(['{{ logo_path }}', '{{ title }}', '{{ content }}'], [$logo_path, $title, $html_content], $content);
 
 
         // do the actual generation
@@ -120,6 +119,9 @@ HTML;
         $this->dompdf->stream($filename.'.pdf', [
             "Attachment" => $is_attachment ? 1 : 0
         ]);
+
+        $output = $this->dompdf->output();
+        file_put_contents(dirname(__FILE__, 2).'/assets/test.pdf', $output);
     }
 
 }
